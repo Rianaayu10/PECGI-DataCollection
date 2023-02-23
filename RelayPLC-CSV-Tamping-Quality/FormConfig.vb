@@ -187,20 +187,40 @@ Public Class FormConfig
     End Sub
 
     Private Sub up_Combo()
+
+        Dim comboSource As New Dictionary(Of String, String)()
+        comboSource.Add("31001", "Mixing Mach Vacuum HT42H")
+        comboSource.Add("31002", "Mixing Mach Vacuum HT35H")
+        comboSource.Add("31003", "Mixing Mach Vacuum EC")
+        comboSource.Add("31004", "High Speed Mixer Mch")
+        comboSource.Add("31005", "Conveyor transfer powder")
+        comboSource.Add("31006", "Oscilator Mach")
+        comboSource.Add("31007", "Conveyor transfer box")
+        comboSource.Add("31008", "Box lift")
+        comboSource.Add("31009", "Expandmetal tension 1")
+        comboSource.Add("31010", "Expandmetal tension 2")
+        comboSource.Add("31011", "Oven Roller Mach Manual #1")
+        comboSource.Add("31012", "Oven Heater Mach Manual #1")
+        comboSource.Add("31013", "Oven Roller Mach Manual #2")
+        comboSource.Add("31014", "Oven Heater Mach Manual #2")
+        comboSource.Add("31015", "Hoop Tension")
+        comboSource.Add("31016", "Mesin Pressing (auto manual)")
+        comboSource.Add("31017", "Roller Mach Manual #1")
+        comboSource.Add("31018", "Roller Mach Manual #2")
+        comboSource.Add("31019", "Roller Mach Manual #3")
+        comboSource.Add("31020", "Roller Mach Manual #4")
+        comboSource.Add("31021", "Roller Mach Manual #5")
+        comboSource.Add("31022", "Slitter Mach 1")
+        comboSource.Add("31023", "Slitter Mach 1")
+
         With cboMachineType
-            .DataMode = C1.Win.C1List.DataModeEnum.AddItem
             .ColumnHeaders = False
-            .ClearItems()
-            .AddItem("High Speed Mixer Mch")
-            .AddItem("TAMPING T-05")
-            .AddItem("TAMPING T-06")
-            .AddItem("TAMPING T-07")
-            .AddItem("TAMPING T-08")
-            .AddItem("TAMPING T-09")
-            .AddItem("TAMPING T-10")
-            .AddItem("TAMPING T-12")
-            .ExtendRightColumn = True
+            .DataSource = New BindingSource(comboSource, Nothing)
+            .DisplayMember = "Value"
+            .ValueMember = "Key"
+            .Splits(0).DisplayColumns(0).Visible = False
             .DropDownWidth = .Width
+            .ColumnWidth = .Width
             .HScrollBar.Height = 0
             .SelectedIndex = -1
         End With
@@ -229,7 +249,7 @@ Public Class FormConfig
 
                 cmd = New SqlCommand(sql, connection)
                 cmd.CommandType = CommandType.StoredProcedure
-                cmd.Parameters.AddWithValue("Type", Trim(cboMachineType.Text))
+                cmd.Parameters.AddWithValue("Type", Trim(cboMachineType.SelectedValue))
 
                 da = New SqlDataAdapter(cmd)
                 da.Fill(ds)
@@ -265,7 +285,7 @@ Public Class FormConfig
                 cmd.CommandType = CommandType.StoredProcedure
 
                 With cmd.Parameters
-                    .AddWithValue("Type", Trim(cboMachineType.Text))
+                    .AddWithValue("Type", Trim(cboMachineType.SelectedValue))
                     .AddWithValue("ServerPath", Trim(txtBobbinArrangingPath.Text))
                     .AddWithValue("LocalPath", Trim(txtBobbinArrangingLocalPath.Text))
                     .AddWithValue("UserFTP", Trim(txtBobbinArrangingUser.Text))

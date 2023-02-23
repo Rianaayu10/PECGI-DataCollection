@@ -18,54 +18,12 @@ Public Module mdlMain
 
     Public Builder As SqlConnectionStringBuilder
 
-    Public gs_ServerPathT05 As String = ""
-    Public gs_LocalPathT05 As String = ""
-    Public gs_UserT05 As String = ""
-    Public gs_PasswordT05 As String = ""
-    Public gs_FileName_HistoryT05 As String = "LOG11039_OperationHistory.csv"
-    Public gi_IntervalT05 As Integer = All_Interval
-
-    Public gs_ServerPathT06 As String = ""
-    Public gs_LocalPathT06 As String = ""
-    Public gs_UserT06 As String = ""
-    Public gs_PasswordT06 As String = ""
-    Public gs_FileName_HistoryT06 As String = "LOG11040_OperationHistory.csv"
-    Public gi_IntervalT06 As Integer = All_Interval
-
-    Public gs_ServerPathT07 As String = ""
-    Public gs_LocalPathT07 As String = ""
-    Public gs_UserT07 As String = ""
-    Public gs_PasswordT07 As String = ""
-    Public gs_FileName_HistoryT07 As String = "LOG11041_OperationHistory.csv"
-    Public gi_IntervalT07 As Integer = All_Interval
-
-    Public gs_ServerPathT08 As String = ""
-    Public gs_LocalPathT08 As String = ""
-    Public gs_UserT08 As String = ""
-    Public gs_PasswordT08 As String = ""
-    Public gs_FileName_HistoryT08 As String = "LOG11042_OperationHistory.csv"
-    Public gi_IntervalT08 As Integer = All_Interval
-
-    Public gs_ServerPathT09 As String = ""
-    Public gs_LocalPathT09 As String = ""
-    Public gs_UserT09 As String = ""
-    Public gs_PasswordT09 As String = ""
-    Public gs_FileName_HistoryT09 As String = "LOG11063_OperationHistory.csv"
-    Public gi_IntervalT09 As Integer = All_Interval
-
-    Public gs_ServerPathT10 As String = ""
-    Public gs_LocalPathT10 As String = ""
-    Public gs_UserT10 As String = ""
-    Public gs_PasswordT10 As String = ""
-    Public gs_FileName_HistoryT10 As String = "LOG11043_OperationHistory.csv"
-    Public gi_IntervalT10 As Integer = All_Interval
-
-    Public gs_ServerPathT12 As String = ""
-    Public gs_LocalPathT12 As String = ""
-    Public gs_UserT12 As String = ""
-    Public gs_PasswordT12 As String = ""
-    Public gs_FileName_HistoryT12 As String = "LOG11064_OperationHistory.csv"
-    Public gi_IntervalT12 As Integer = All_Interval
+    Public gs_ServerPath_HighSpeedMixerMch As String = ""
+    Public gs_LocalPath_HighSpeedMixerMch As String = ""
+    Public gs_User_HighSpeedMixerMch As String = ""
+    Public gs_Password_HighSpeedMixerMch As String = ""
+    Public gs_FileName_History_HighSpeedMixerMch As String = "LOG31004_OperationHistory.csv"
+    Public gi_Interval_HighSpeedMixerMch As Integer = All_Interval
 
     Public ConStr As String = setting.ConnectionString
     Public list() As String = {"1:16", "17:32", "33:48", "49:64", "65:80", "81:96", "97:112", "113:128", "129:144", "145:160"}

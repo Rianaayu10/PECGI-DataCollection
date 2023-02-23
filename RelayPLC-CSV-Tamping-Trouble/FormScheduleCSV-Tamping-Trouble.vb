@@ -20,13 +20,10 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
 #Region "DECLARATION"
 
-    Dim Tamping5 As Integer = 1
-    Dim Tamping6 As Byte = 2
-    Dim Tamping7 As Byte = 3
-    Dim Tamping8 As Byte = 4
-    Dim Tamping9 As Byte = 5
-    Dim Tamping10 As Byte = 6
-    Dim Tamping12 As Byte = 7
+    Dim HighSpeedMixerMch As Integer = 1
+    Dim GroupLine_HighSpeedMixerMch As Integer = 3
+    Dim Line_HighSpeedMixerMch As String = "31004"
+    Dim Machine_HighSpeedMixerMch As String = "31004"
 
     Dim col_ProcessName As Integer = 0
     Dim Col_ProcessType As Byte = 1
@@ -39,13 +36,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
     Dim FilesList As New List(Of String)
 
-    Dim Thd_Tamping5 As SchedulerSetting
-    Dim Thd_Tamping6 As SchedulerSetting
-    Dim Thd_Tamping7 As SchedulerSetting
-    Dim Thd_Tamping8 As SchedulerSetting
-    Dim Thd_Tamping9 As SchedulerSetting
-    Dim Thd_Tamping10 As SchedulerSetting
-    Dim Thd_Tamping12 As SchedulerSetting
+    Dim Thd_HighSpeedMixerMch As SchedulerSetting
 
     Dim m_Finish As Boolean
 
@@ -73,6 +64,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
         col_S = 18
         col_T = 19
         col_U = 20
+        col_V = 21
     End Enum
 
     Public Structure SchedulerSetting
@@ -122,59 +114,11 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
         up_TimeStop()
 
-        Do Until Thd_Tamping5.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping5.Status = "iddle" Then
-                Thd_Tamping5.ScheduleThd = Nothing
+        Do Until Thd_HighSpeedMixerMch.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_HighSpeedMixerMch.Status = "iddle" Then
+                Thd_HighSpeedMixerMch.ScheduleThd = Nothing
             End If
-            If Thd_Tamping5.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping6.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping6.Status = "iddle" Then
-                Thd_Tamping6.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping6.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping7.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping7.Status = "iddle" Then
-                Thd_Tamping7.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping7.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping8.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping8.Status = "iddle" Then
-                Thd_Tamping8.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping8.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping9.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping9.Status = "iddle" Then
-                Thd_Tamping9.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping9.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping10.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping10.Status = "iddle" Then
-                Thd_Tamping10.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping10.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping12.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping12.Status = "iddle" Then
-                Thd_Tamping12.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping12.ScheduleThd Is Nothing Then Exit Do
+            If Thd_HighSpeedMixerMch.ScheduleThd Is Nothing Then Exit Do
             Thread.Sleep(100)
         Loop
 
@@ -360,35 +304,11 @@ Public Class FormScheduleCSV_Tamping_Trouble
             ''==================
 
             '01. TAMPING T-05
-            pProses = "Tamping T-05"
-            up_ProcessData(Tamping5, "Tamping T-05", gs_LocalPathT05, gs_FileName_HistoryT05, "085", 2)
-
-            '02. TAMPING T-06
-            pProses = "Tamping T-06"
-            up_ProcessData(Tamping6, "Tamping T-06", gs_LocalPathT06, gs_FileName_HistoryT06, "086", 2)
-
-            '03. TAMPING T-07
-            pProses = "Tamping T-07"
-            up_ProcessData(Tamping7, "Tamping T-07", gs_LocalPathT07, gs_FileName_HistoryT07, "087", 2)
-
-            '04. TAMPING T-08
-            pProses = "Tamping T-08"
-            up_ProcessData(Tamping8, "Tamping T-08", gs_LocalPathT08, gs_FileName_HistoryT08, "088", 2)
-
-            '09. TAMPING T-09
-            pProses = "Tamping T-09"
-            up_ProcessData(Tamping9, "Tamping T-09", gs_LocalPathT09, gs_FileName_HistoryT09, "095", 2)
-
-            '06. TAMPING T-10
-            pProses = "Tamping T-10"
-            up_ProcessData(Tamping5, "Tamping T-10", gs_LocalPathT10, gs_FileName_HistoryT10, "089", 2)
-
-            '07. TAMPING T-12
-            pProses = "Tamping T-12"
-            up_ProcessData(Tamping5, "Tamping T-12", gs_LocalPathT12, gs_FileName_HistoryT12, "096", 2)
+            pProses = "HighSpeedMixerMch"
+            up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch)
 
         Catch ex As Exception
-            WriteToErrorLog(pProses & "error : ", ex.Message)
+            WriteToErrorLog(pProses, "error : " & ex.Message)
         Finally
             txtMsg.Text = "Data OK"
         End Try
@@ -421,60 +341,12 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
                     For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
 
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-05" Then
-                            gs_ServerPathT05 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT05 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT05 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT05 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT05 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-06" Then
-                            gs_ServerPathT06 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT06 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT06 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT06 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT06 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-07" Then
-                            gs_ServerPathT07 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT07 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT07 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT07 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT07 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-08" Then
-                            gs_ServerPathT08 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT08 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT08 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT08 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT08 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-09" Then
-                            gs_ServerPathT09 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT09 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT09 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT09 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT09 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-10" Then
-                            gs_ServerPathT10 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT10 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT10 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT10 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT10 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-12" Then
-                            gs_ServerPathT12 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT12 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT12 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT12 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT12 = ds.Tables(0).Rows(i)("TimeInterval")
+                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_HighSpeedMixerMch Then
+                            gs_ServerPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_HighSpeedMixerMch = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_HighSpeedMixerMch = ds.Tables(0).Rows(i)("TimeInterval")
                         End If
 
                     Next
@@ -491,40 +363,11 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
     Private Sub up_ClearVariable()
 
-        gs_ServerPathT05 = ""
-        gs_LocalPathT05 = ""
-        gs_UserT05 = ""
-        gs_PasswordT05 = ""
+        gs_ServerPath_HighSpeedMixerMch = ""
+        gs_LocalPath_HighSpeedMixerMch = ""
+        gs_User_HighSpeedMixerMch = ""
+        gs_Password_HighSpeedMixerMch = ""
 
-        gs_ServerPathT06 = ""
-        gs_LocalPathT06 = ""
-        gs_UserT06 = ""
-        gs_PasswordT06 = ""
-
-        gs_ServerPathT07 = ""
-        gs_LocalPathT07 = ""
-        gs_UserT07 = ""
-        gs_PasswordT07 = ""
-
-        gs_ServerPathT08 = ""
-        gs_LocalPathT08 = ""
-        gs_UserT08 = ""
-        gs_PasswordT08 = ""
-
-        gs_ServerPathT09 = ""
-        gs_LocalPathT09 = ""
-        gs_UserT09 = ""
-        gs_PasswordT09 = ""
-
-        gs_ServerPathT10 = ""
-        gs_LocalPathT10 = ""
-        gs_UserT10 = ""
-        gs_PasswordT10 = ""
-
-        gs_ServerPathT12 = ""
-        gs_LocalPathT12 = ""
-        gs_UserT12 = ""
-        gs_PasswordT12 = ""
     End Sub
 
     Private Sub up_TimeStart()
@@ -534,93 +377,15 @@ Public Class FormScheduleCSV_Tamping_Trouble
         Try
 
             Thread.Sleep(200)
-            Thd_Tamping5 = New SchedulerSetting
-            With Thd_Tamping5
+            Thd_HighSpeedMixerMch = New SchedulerSetting
+            With Thd_HighSpeedMixerMch
                 .Name = "T-05"
                 .EndSchedule = False
                 .Lock = New Object
-                .DelayTime = gi_IntervalT05
+                .DelayTime = gi_Interval_HighSpeedMixerMch
                 .ScheduleThd = New Thread(AddressOf up_RefreshTamping5)
                 .ScheduleThd.IsBackground = True
                 .ScheduleThd.Name = "T-05"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(220)
-            Thd_Tamping6 = New SchedulerSetting
-            With Thd_Tamping6
-                .Name = "T-06"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT06
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping6)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-06"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping7 = New SchedulerSetting
-            With Thd_Tamping7
-                .Name = "T-07"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT07
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping7)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-07"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping8 = New SchedulerSetting
-            With Thd_Tamping8
-                .Name = "T-08"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT08
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping8)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-08"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping9 = New SchedulerSetting
-            With Thd_Tamping9
-                .Name = "T-09"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT09
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping9)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-09"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping10 = New SchedulerSetting
-            With Thd_Tamping10
-                .Name = "T-10"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT10
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping10)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-10"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping12 = New SchedulerSetting
-            With Thd_Tamping12
-                .Name = "T-12"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT12
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping12)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-12"
                 .ScheduleThd.Start()
             End With
 
@@ -636,49 +401,23 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
         m_Finish = True
 
-        SyncLock Thd_Tamping5.Lock
-            Thd_Tamping5.EndSchedule = True
+        SyncLock Thd_HighSpeedMixerMch.Lock
+            Thd_HighSpeedMixerMch.EndSchedule = True
         End SyncLock
 
-        SyncLock Thd_Tamping6.Lock
-            Thd_Tamping6.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping7.Lock
-            Thd_Tamping7.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping8.Lock
-            Thd_Tamping8.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping9.Lock
-            Thd_Tamping9.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping10.Lock
-            Thd_Tamping10.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping12.Lock
-            Thd_Tamping12.EndSchedule = True
-        End SyncLock
     End Sub
 
     Private Function up_ToInserDatatable_Trouble(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pGroupCount As Integer) As DataTable
         Dim dt As New DataTable
         Dim tmpDatde As String()
-        Dim Col_Line As String = "", AlarmCode As String
+        Dim Col_Line As String = ""
         Dim pAlarm1 As String = "", EndTime As String, LastUpdate As String
         Dim pMachine As String = "", StartTime As String = "", ModeCls As String = "", StatusCls As String = ""
         Dim li_Add As Integer = 0, pBitValue As String = "", pChr As String = ""
         Dim pMid As Integer = 0
         Dim ls_Alarm1 As String = "0", ls_Alarm2 As String = "0", ls_Alarm3 As String = "0", ls_Alarm4 As String = "0", ls_Alarm5 As String = "0",
-            ls_Alarm6 As String = "0", ls_Alarm7 As String = "0", ls_Alarm8 As String = "0", ls_Alarm9 As String = "0", ls_Alarm10 As String = "0"
-
-        'Dim pSerialNo As String = "", pSeqNo As Integer = 0, pSubSeq_No As Integer = 0
-        'pSerialNo = Format(Now, "yyMMdd") & "-" & Format(Now, "HHmmss") & "-" & pLineCode
-
+            ls_Alarm6 As String = "0", ls_Alarm7 As String = "0", ls_Alarm8 As String = "0", ls_Alarm9 As String = "0", ls_Alarm10 As String = "0",
+            ls_Alarm11 As String = "0", ls_Alarm12 As String = "0", ls_Alarm13 As String = "0", ls_Alarm14 As String = "0"
 
         Try
 
@@ -696,13 +435,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
                     Dim dtCSV As DataTable = ReadCSV(fi.FullName)
 
-                    ''Save semua kolom CSV untuk Kenading saja
-                    ''========================================
-                    'If pLineCode = "121" Then
-                    '    up_SavedataCSV(dtCSV, pLineCode, "21002")
-                    'End If
-                    ''========================================
-
                     If dtCSV.Rows.Count > 0 Then
 
                         With dt.Columns
@@ -719,6 +451,10 @@ Public Class FormScheduleCSV_Tamping_Trouble
                             .Add("TroubleCode8", GetType(String))
                             .Add("TroubleCode9", GetType(String))
                             .Add("TroubleCode10", GetType(String))
+                            .Add("TroubleCode11", GetType(String))
+                            .Add("TroubleCode12", GetType(String))
+                            .Add("TroubleCode13", GetType(String))
+                            .Add("TroubleCode14", GetType(String))
                             .Add("StartTime", GetType(String))
                             .Add("EndTime", GetType(String))
                             .Add("LstUpdate", GetType(String))
@@ -738,39 +474,28 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                 For index = 1 To pGroupCount
                                     Dim startGroup As Int16 = Convert.ToInt16(list(index - 1).Split(":")(0))
                                     Dim endGroup As Int16 = Convert.ToInt16(list(index - 1).Split(":")(1))
-                                    Dim alarm As String = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(3 + index))), startGroup, endGroup)
+                                    Dim alarm As String = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(5 + index))), startGroup, endGroup)
 
                                     If index = 1 Then
                                         ls_Alarm1 = alarm
-                                    End If
-                                    If index = 2 Then
+                                    ElseIf index = 2 Then
                                         ls_Alarm2 = alarm
-                                    End If
-                                    If index = 3 Then
+                                    ElseIf index = 3 Then
                                         ls_Alarm3 = alarm
                                     End If
-                                    If index = 4 Then
-                                        ls_Alarm4 = alarm
-                                    End If
-                                    If index = 5 Then
-                                        ls_Alarm5 = alarm
-                                    End If
-                                    If index = 6 Then
-                                        ls_Alarm6 = alarm
-                                    End If
-                                    If index = 7 Then
-                                        ls_Alarm7 = alarm
-                                    End If
-                                    If index = 8 Then
-                                        ls_Alarm8 = alarm
-                                    End If
-                                    If index = 9 Then
-                                        ls_Alarm9 = alarm
-                                    End If
-                                    If index = 10 Then
-                                        ls_Alarm10 = alarm
-                                    End If
                                 Next
+
+                                ls_Alarm4 = Trim(dtCSV.Rows(x)(4))
+                                ls_Alarm5 = Trim(dtCSV.Rows(x)(5))
+                                ls_Alarm6 = Trim(dtCSV.Rows(x)(6))
+                                ls_Alarm7 = Trim(dtCSV.Rows(x)(7))
+                                ls_Alarm8 = Trim(dtCSV.Rows(x)(8))
+                                ls_Alarm9 = Trim(dtCSV.Rows(x)(9))
+                                ls_Alarm10 = Trim(dtCSV.Rows(x)(10))
+                                ls_Alarm11 = Trim(dtCSV.Rows(x)(11))
+                                ls_Alarm12 = Trim(dtCSV.Rows(x)(12))
+                                ls_Alarm13 = Trim(dtCSV.Rows(x)(13))
+                                ls_Alarm14 = Trim(dtCSV.Rows(x)(14))
 
                                 If Trim(dtCSV.Rows(x + 1)(0)) <> "" Then
                                     EndTime = Format(CDate(20 & Trim(dtCSV.Rows(x + 1)(0)) & " " & Trim(dtCSV.Rows(x + 1)(1))), "yyyy-MM-dd HH:mm:ss")
@@ -778,14 +503,10 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                     EndTime = Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
                                 End If
 
-                                dt.Rows.Add(Col_Line, ModeCls, StatusCls, ls_Alarm1, ls_Alarm2, ls_Alarm3, ls_Alarm4, ls_Alarm5, ls_Alarm6, ls_Alarm7, ls_Alarm8, ls_Alarm9, ls_Alarm10, StartTime, EndTime, LastUpdate, "Tes")
+                                dt.Rows.Add(Col_Line, ModeCls, StatusCls, ls_Alarm1, ls_Alarm2, ls_Alarm3, ls_Alarm4, ls_Alarm5, ls_Alarm6, ls_Alarm7, ls_Alarm8, ls_Alarm9, ls_Alarm10, ls_Alarm11, ls_Alarm12, ls_Alarm13, ls_Alarm14, StartTime, EndTime, LastUpdate, "Tes")
 
                             End If
                         Next
-
-                        ''Send to History Folder
-                        ''======================
-                        'My.Computer.FileSystem.MoveFile(pLocalPath & "\" & fi.Name, pLocalPath & "\History\" & fi.Name, True)
 
                         Return dt
 
@@ -833,7 +554,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
                     'Backup CSV on database
                     up_SavedataCSV(dtCSV, pLineCode)
 
-
                     If dtCSV.Rows.Count > 0 Then
 
                         With dt.Columns
@@ -848,17 +568,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
                         End With
 
                         If dt_LastData.Rows.Count > 0 Then
-                            'dt.Rows.Add(
-                            '    Trim(dt_LastData.Rows(0).Item("LineCode")),
-                            '    Trim(dt_LastData.Rows(0).Item("Mode")),
-                            '    Trim(dt_LastData.Rows(0).Item("Status")),
-                            '    Trim(dt_LastData.Rows(0).Item("TroubleCode")),
-                            '    Trim(dt_LastData.Rows(0).Item("Start_Time")),
-                            '    Trim(dt_LastData.Rows(0).Item("End_Time")),
-                            '    Trim(dt_LastData.Rows(0).Item("Last_Update")),
-                            '    Trim(dt_LastData.Rows(0).Item("Last_User"))
-                            '    )
-
                             tmp_Alarm1 = Trim(dt_LastData.Rows(0).Item("TroubleCode"))
                             tmp_Alarm2 = Trim(dt_LastData.Rows(0).Item("TroubleCode"))
                             tmp_Alarm3 = Trim(dt_LastData.Rows(0).Item("TroubleCode"))
@@ -873,6 +582,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
                         For x = 0 To dtCSV.Rows.Count - 2
                             tmpDatde = Split(Trim(dtCSV.Rows(x)(0)), "/")
                             Col_Line = pLineCode
+
                             If tmpDatde(0) > 0 Then
 
                                 StartTime = Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
@@ -880,12 +590,17 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                 StatusCls = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(3))), 0, 15)
                                 LastUpdate = Format(Now, "yyyy-MM-dd HH:mm:ss")
 
-                                Dim group As Int16
-                                group = GetGroup(dtCSV, x, pGroupTroubleCount)
-
-                                EndTime = ""
+                                If dt_LastData.Rows.Count > 0 Then
+                                    If Trim(dt_LastData.Rows(0).Item("TroubleCode")) <> "0" Then
+                                        ls_Trouble = True
+                                    End If
+                                End If
 
                                 Dim startGroup As Int16, endGroup As Int16
+                                Dim group As Int16
+
+                                group = GetGroup(dtCSV, x, pGroupTroubleCount) 'dapatkan group yg memilik nika
+                                EndTime = ""
 
                                 If (group <> 0) Then
 
@@ -893,46 +608,20 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                     endGroup = Convert.ToInt16(list(group - 1).Split(":")(1))
 
                                     If x = 0 Then 'Row Pertama otomatis loging
-                                        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(group + 3))), startGroup, endGroup)
+                                        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(group + 5))), startGroup, endGroup)
                                         dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
                                         iRow_Data = iRow_Data + 1
                                     Else
-
                                         If (tmp_Alarm3 <> ls_Alarm3 And ls_Trouble = False) Then
                                             EndTime = StartTime
                                             dt.Rows(iRow_Data - 1)("EndTime") = StartTime
-                                            AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(group + 3))), startGroup, endGroup)
+                                            AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(group + 5))), startGroup, endGroup)
                                             dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
                                             iRow_Data = iRow_Data + 1
-
-                                            'Dim pLastBit As Integer = up_GetLastBit(AlarmCode, startGroup, endGroup)
-                                            'Dim pMid As Integer = 16
-                                            'Dim pChr As String = ""
-
-                                            'For i As Integer = startGroup To endGroup
-                                            '    pChr = Mid(AlarmCode, pMid, 1)
-
-                                            '    If pChr <> "0" Then
-
-                                            '        AlarmCode = i
-
-                                            '        If i <> pLastBit Then
-                                            '            EndTime = StartTime
-                                            '        Else
-                                            '            EndTime = ""
-                                            '        End If
-
-                                            '        dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                            '        iRow_Data = iRow_Data + 1
-
-                                            '    End If
-                                            '    pMid = pMid - 1
-                                            'Next
 
                                             ls_Trouble = True
 
                                         End If
-
                                     End If
                                 Else
                                     EndTime = ""
@@ -941,7 +630,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                         startGroup = Convert.ToInt16(list(pGroupTroubleCount - 1).Split(":")(0))
                                         endGroup = Convert.ToInt16(list(pGroupTroubleCount - 1).Split(":")(1))
 
-                                        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(pGroupTroubleCount + 3))), startGroup, endGroup)
+                                        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(pGroupTroubleCount + 5))), startGroup, endGroup)
                                         dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
                                         iRow_Data = iRow_Data + 1
                                     Else
@@ -958,220 +647,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
                                     End If
                                 End If
 
-                                'JIKA GROUP 3 ADA ALARM, MAKA AMBIL LEBIH DULU'
-                                '=============================================
-                                'If ls_Alarm3 <> 0 Then
-
-                                '    EndTime = ""
-
-                                '    'JIKA GROUP 3 ADA ALARM, MAKA AMBIL LEBIH DULU'
-                                '    '=============================================
-                                '    If x = 0 Then 'Row Pertama otomatis loging
-
-                                '        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(6))), 32, 47)
-
-                                '        'If (tmp_Alarm3 <> ls_Alarm3 And ls_Alarm3 = 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'ElseIf (tmp_Alarm3 = "0" And ls_Alarm3 <> 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'End If
-
-                                '        dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        iRow_Data = iRow_Data + 1
-                                '    Else
-
-                                '        If (tmp_Alarm3 <> ls_Alarm3 And ls_Trouble = False) Then
-
-                                '            dt.Rows(iRow_Data - 1)("EndTime") = StartTime
-
-                                '            Dim pLastBit As Integer = up_GetLastBit(ls_Alarm3, 32, 47)
-                                '            Dim pMid As Integer = 16
-                                '            Dim pChr As String = ""
-
-                                '            For i As Integer = 32 To 47
-                                '                pChr = Mid(ls_Alarm3, pMid, 1)
-
-                                '                If pChr <> "0" Then
-
-                                '                    AlarmCode = i
-
-                                '                    If i <> pLastBit Then
-                                '                        EndTime = StartTime
-                                '                    Else
-                                '                        EndTime = ""
-                                '                    End If
-
-                                '                    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '                    iRow_Data = iRow_Data + 1
-
-                                '                End If
-                                '                pMid = pMid - 1
-                                '            Next
-
-                                '            ls_Trouble = True
-
-                                '        End If
-
-                                '    End If
-                                '    'End If
-
-                                'ElseIf ls_Alarm2 <> 0 Then
-
-                                '    EndTime = ""
-
-                                '    'NEXT JIKA ALARM GROUP 3 TIDAK ADA DAN GROUP 2 ADA ALARM MAKA AMBIL GROUP 2
-                                '    '========================================================================
-                                '    If x = 0 Then 'Row Pertama otomatis loging
-
-                                '        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(5))), 16, 31)
-
-                                '        'If (tmp_Alarm2 <> AlarmCode And AlarmCode = 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'ElseIf (tmp_Alarm2 = "0" And AlarmCode <> 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-
-                                '        'End If
-
-                                '        dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        iRow_Data = iRow_Data + 1
-                                '    Else
-
-                                '        If (tmp_Alarm2 <> ls_Alarm2 And ls_Trouble = False) Then
-
-                                '            dt.Rows(iRow_Data - 1)("EndTime") = StartTime
-
-                                '            Dim pLastBit As Integer = up_GetLastBit(ls_Alarm2, 16, 31)
-                                '            Dim pMid As Integer = 16
-                                '            Dim pChr As String = ""
-
-                                '            For i As Integer = 16 To 31
-                                '                pChr = Mid(ls_Alarm2, pMid, 1)
-
-                                '                If pChr <> "0" Then
-
-                                '                    AlarmCode = i
-
-                                '                    If i <> pLastBit Then
-                                '                        EndTime = StartTime
-                                '                    Else
-                                '                        EndTime = ""
-                                '                    End If
-
-                                '                    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '                    iRow_Data = iRow_Data + 1
-
-                                '                End If
-                                '                pMid = pMid - 1
-                                '            Next
-
-                                '            ls_Trouble = True
-
-                                '        End If
-
-                                '    End If
-                                '    'End If
-
-                                'ElseIf ls_Alarm1 <> 0 Then
-
-                                '    EndTime = ""
-
-                                '    'NEXT JIKA GROUP 3 DAN 2 TIDAK ADA ALARM MAKA AMBIL GROUP 1
-                                '    '==========================================================
-                                '    If x = 0 Then 'Row Pertama otomatis loging
-
-                                '        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(4))), 0, 15)
-
-                                '        'If (tmp_Alarm1 <> ls_Alarm1 And ls_Alarm1 = 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'ElseIf (tmp_Alarm1 = "0" And ls_Alarm1 <> 0) Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'End If
-
-                                '        dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        iRow_Data = iRow_Data + 1
-                                '    Else
-
-                                '        If (tmp_Alarm1 <> ls_Alarm1 And ls_Trouble = False) Then
-
-                                '            dt.Rows(iRow_Data - 1)("EndTime") = StartTime
-
-                                '            Dim pLastBit As Integer = up_GetLastBit(ls_Alarm1, 0, 15)
-                                '            Dim pMid As Integer = 16
-                                '            Dim pChr As String = ""
-
-                                '            For i As Integer = 0 To 15
-                                '                pChr = Mid(ls_Alarm1, pMid, 1)
-
-                                '                If pChr <> "0" Then
-
-                                '                    AlarmCode = i
-
-                                '                    If i <> pLastBit Then
-                                '                        EndTime = StartTime
-                                '                    Else
-                                '                        EndTime = ""
-                                '                    End If
-
-                                '                    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '                    iRow_Data = iRow_Data + 1
-
-                                '                End If
-                                '                pMid = pMid - 1
-                                '            Next
-
-                                '            ls_Trouble = True
-
-                                '        End If
-
-                                '    End If
-
-                                '    'End If
-
-
-                                'ElseIf ls_Alarm1 = 0 And ls_Alarm2 = 0 And ls_Alarm3 = 0 Then
-
-
-
-                                '    EndTime = ""
-
-                                '    If x = 0 Then 'Row Pertama otomatis loging
-
-                                '        AlarmCode = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(6))), 32, 47)
-
-                                '        'If tmp_Alarm1 <> "0" Then
-                                '        '    dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        '    iRow_Data = iRow_Data + 1
-                                '        'End If
-
-                                '        dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '        iRow_Data = iRow_Data + 1
-                                '    Else
-
-                                '        If tmp_Alarm1 <> ls_Alarm1 Or tmp_Alarm2 <> ls_Alarm2 Or tmp_Alarm3 <> ls_Alarm3 Then
-
-                                '            dt.Rows(iRow_Data - 1)("EndTime") = StartTime
-
-                                '            AlarmCode = 0
-
-                                '            dt.Rows.Add(Col_Line, ModeCls, StatusCls, AlarmCode, StartTime, EndTime, LastUpdate, "Tes")
-                                '            iRow_Data = iRow_Data + 1
-
-                                '            ls_Trouble = False
-
-                                '        End If
-
-                                '    End If
-
-
-
-                                'End If
-
                                 tmp_StartTime = StartTime
                                 tmp_Alarm1 = ls_Alarm1
                                 tmp_Alarm2 = ls_Alarm2
@@ -1181,10 +656,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
                             End If
                         Next
-
-                        'Send to History Folder
-                        '======================
-                        'My.Computer.FileSystem.MoveFile(pLocalPath & "\" & fi.Name, pLocalPath & "\History\" & fi.Name, True)
 
                         Return dt
 
@@ -1204,7 +675,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
         Dim cmd As SqlCommand
         Dim da As SqlDataAdapter
         Dim dt As New DataTable
-        Dim sql As String
 
         Try
 
@@ -1213,13 +683,11 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
             Using con = New SqlConnection(ConStr)
                 con.Open()
-                'Modif using sp
-                sql = "SELECT TOP 1 * FROM " & TblName & " WHERE LineCode = '" & pLineCode & "' ORDER BY Start_Time DESC,End_Time"
-
-                cmd = New SqlCommand
-                cmd.CommandText = sql
+                cmd = New SqlCommand("sp_CSVTrouble_CreateTable", con)
+                cmd.CommandType = CommandType.StoredProcedure
                 cmd.Connection = con
-                cmd.CommandType = CommandType.Text
+                cmd.Parameters.AddWithValue("TableName", TblName)
+                cmd.Parameters.AddWithValue("LineCode", pLineCode)
 
                 da = New SqlDataAdapter(cmd)
                 da.Fill(dt)
@@ -1236,31 +704,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
     End Function
 
     Private Sub up_RefreshTamping5()
-        up_Refresh(Tamping5, "Tamping T-05", Thd_Tamping5, gs_ServerPathT05, gs_LocalPathT05, gs_UserT05, gs_PasswordT05, gs_FileName_HistoryT05, "085", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping6()
-        up_Refresh(Tamping6, "Tamping T-06", Thd_Tamping6, gs_ServerPathT06, gs_LocalPathT06, gs_UserT06, gs_PasswordT06, gs_FileName_HistoryT06, "086", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping7()
-        up_Refresh(Tamping7, "Tamping T-07", Thd_Tamping7, gs_ServerPathT07, gs_LocalPathT07, gs_UserT07, gs_PasswordT07, gs_FileName_HistoryT07, "087", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping8()
-        up_Refresh(Tamping8, "Tamping T-08", Thd_Tamping8, gs_ServerPathT08, gs_LocalPathT08, gs_UserT08, gs_PasswordT08, gs_FileName_HistoryT08, "088", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping9()
-        up_Refresh(Tamping9, "Tamping T-09", Thd_Tamping9, gs_ServerPathT09, gs_LocalPathT09, gs_UserT09, gs_PasswordT09, gs_FileName_HistoryT09, "095", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping10()
-        up_Refresh(Tamping10, "Tamping T-10", Thd_Tamping10, gs_ServerPathT10, gs_LocalPathT10, gs_UserT10, gs_PasswordT10, gs_FileName_HistoryT10, "089", 2)
-    End Sub
-
-    Private Sub up_RefreshTamping12()
-        up_Refresh(Tamping12, "Tamping T-12", Thd_Tamping12, gs_ServerPathT12, gs_LocalPathT12, gs_UserT12, gs_PasswordT12, gs_FileName_HistoryT12, "096", 2)
+        up_Refresh(HighSpeedMixerMch, "High Speed Mixer Mch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch)
     End Sub
 
     Private Sub up_Refresh(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal Thd As SchedulerSetting, ByVal pServerPath As String, ByVal pLocalPath As String, ByVal pUser As String, ByVal pPassword As String, ByVal pFileNameHistory As String, ByVal pLineCode As String, ByVal pGroupCount As Integer)
@@ -1290,7 +734,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
                         'Delete File
                         '===========
-                        DeleteFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory, "zz")
+                        'DeleteFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory, "zz")
                     End If
                 End If
                 '====================
@@ -1323,6 +767,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
         Dim con As New SqlConnection
         'gs_LocalPathMIX = "D:\PECGI CSV\Tamping\LOG_Mc21001"
 
+        grid.AddItem("")
         grid.Item(pProcess, Col_ErrorMessage) = ""
 
         Dim dtHis, dtHis2 As New DataTable
@@ -1344,8 +789,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
             If dtHis IsNot Nothing Then
                 If dtHis.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_History(dtMixHis, "MIX_His_CSV_")
 
                     cmd = New SqlCommand("sp_Insert_Log_CSV_Trouble", con)
                     cmd.CommandType = CommandType.StoredProcedure
@@ -1420,69 +863,10 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
         'FTP TAMPING T-05
         '====================
-        If gs_ServerPathT05 <> "" And gs_LocalPathT05 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT05, gs_UserT05, gs_PasswordT05)
+        If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT05, gs_PasswordT05, gs_ServerPathT05, gs_LocalPathT05, gs_FileName_HistoryT05, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-06
-        '====================
-        If gs_ServerPathT06 <> "" And gs_LocalPathT06 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT06, gs_UserT06, gs_PasswordT06)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT06, gs_PasswordT06, gs_ServerPathT06, gs_LocalPathT06, gs_FileName_HistoryT06, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-07
-        '====================
-        If gs_ServerPathT07 <> "" And gs_LocalPathT07 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT07, gs_UserT07, gs_PasswordT07)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT07, gs_PasswordT07, gs_ServerPathT07, gs_LocalPathT07, gs_FileName_HistoryT07, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-08
-        '====================
-        If gs_ServerPathT08 <> "" And gs_LocalPathT08 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT08, gs_UserT08, gs_PasswordT08)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT08, gs_PasswordT08, gs_ServerPathT08, gs_LocalPathT08, gs_FileName_HistoryT08, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-09
-        '====================
-        If gs_ServerPathT09 <> "" And gs_LocalPathT09 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT09, gs_UserT09, gs_PasswordT09)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT09, gs_PasswordT09, gs_ServerPathT09, gs_LocalPathT09, gs_FileName_HistoryT09, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-10
-        '====================
-        If gs_ServerPathT10 <> "" And gs_LocalPathT10 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT10, gs_UserT10, gs_PasswordT10)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT10, gs_PasswordT10, gs_ServerPathT10, gs_LocalPathT10, gs_FileName_HistoryT10, "zz")
-            End If
-        End If
-
-        'FTP TAMPING T-12
-        '====================
-        If gs_ServerPathT12 <> "" And gs_LocalPathT12 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT12, gs_UserT12, gs_PasswordT12)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT12, gs_PasswordT12, gs_ServerPathT12, gs_LocalPathT12, gs_FileName_HistoryT12, "zz")
+                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, "zz")
             End If
         End If
         '====================
@@ -1511,7 +895,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
             .Add("Alarm_Code_O", GetType(String))
             .Add("Alarm_Code_P", GetType(String))
         End With
-        'Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
+
         For x = 0 To dtTmp.Rows.Count - 1
             If Trim(dtTmp.Rows(x).Item(0)) <> "" Then
                 dt.Rows.Add(Format(CDate(20 & (Trim(dtTmp.Rows(x).Item(0)))), "yyyy-MM-dd"), Format(CDate(dtTmp.Rows(x).Item(1)), "HH:mm:ss"), Trim(dtTmp.Rows(x).Item(2)), Trim(dtTmp.Rows(x).Item(3)),
@@ -1551,8 +935,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
             cmd.CommandTimeout = 100000
             Dim i As Integer = cmd.ExecuteNonQuery()
-
-
 
             SQLTrans.Commit()
 
@@ -1727,14 +1109,13 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
         Do While groupCount > 0
             Dim trouble As String
-            trouble = DecimalToBinary(Trim(dtCSV.Rows(idx)(groupCount + 3)))
+            trouble = DecimalToBinary(Trim(dtCSV.Rows(idx)(groupCount + 5)))
             If (trouble <> 0) Then
                 Return groupCount
             Else
                 groupCount = groupCount - 1
             End If
         Loop
-
         Return 0
     End Function
 
@@ -1782,9 +1163,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
         txtMsg.Text = ""
 
         Try
-
             For i = 0 To Files.Count - 1
-
                 For Each Item In Pattern
                     Dim pSplit As String()
                     pSplit = Split(Files(i), "/")
@@ -1795,11 +1174,9 @@ Public Class FormScheduleCSV_Tamping_Trouble
                         fileName = pSplit(3)
                     End If
 
-                    If fileName = pTrouble Or fileName = pQuality Then
+                    If fileName = pTrouble Then
                         If Files(i).ToUpper.Contains(Item.ToUpper) Then
-                            'Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & Files(i)), FtpWebRequest)
                             Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & fileName), FtpWebRequest)
-
                             request.Method = WebRequestMethods.Ftp.DownloadFile ' >> Download File
 
                             ' This example assumes the FTP site uses anonymous logon.
@@ -1808,35 +1185,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
                             End If
 
                             Using response As FtpWebResponse = DirectCast(request.GetResponse(), FtpWebResponse)
-
-                                'My.Computer.FileSystem.WriteAllBytes(" ", response.GetResponseStream)
-                                Using responseStream As Stream = response.GetResponseStream()
-                                    Using MS As New IO.MemoryStream
-                                        'MsgBox("copy")
-                                        responseStream.CopyTo(MS)
-                                        My.Computer.FileSystem.WriteAllBytes(PathToWriteFilesTo & "\" & fileName, MS.ToArray, False)
-
-                                    End Using
-                                End Using
-                            End Using
-                        End If
-                    ElseIf fileName Like "*" & pTrouble & "*" Then
-                        If Files(i).ToUpper.Contains(Item.ToUpper) Then
-                            'Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & Files(i)), FtpWebRequest)
-                            Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & fileName), FtpWebRequest)
-
-                            request.Method = WebRequestMethods.Ftp.DownloadFile ' >> Download File
-
-                            ' This example assumes the FTP site uses anonymous logon.
-                            If UserName <> "OBU" And UserName <> "OBO" And UserName <> "OSP" Then
-                                request.Credentials = New NetworkCredential(UserName, Password)
-                                'Else
-                                '    request.Credentials = New NetworkCredential("Tos", "Tosis")
-                            End If
-
-                            Using response As FtpWebResponse = DirectCast(request.GetResponse(), FtpWebResponse)
-
-                                'My.Computer.FileSystem.WriteAllBytes(" ", response.GetResponseStream)
                                 Using responseStream As Stream = response.GetResponseStream()
                                     Using MS As New IO.MemoryStream
                                         'MsgBox("copy")

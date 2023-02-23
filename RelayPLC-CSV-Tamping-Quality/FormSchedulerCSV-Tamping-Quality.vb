@@ -6,9 +6,7 @@ Imports C1.Win.C1FlexGrid
 
 Public Class FormSchedulerCSV_Tamping_Quality
 #Region "INITIAL"
-
     Private cConfig As clsConfig
-
     Const ConnectionErrorMsg As String = "A network-related or instance-specific error occurred while establishing a connection to SQL Server"
     Const TransportErrorMsg As String = "A transport-level error has occurred"
 
@@ -20,20 +18,13 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
 #Region "DECLARATION"
 
-    Dim Tamping5 As Integer = 1
-    Dim Tamping6 As Byte = 2
-    Dim Tamping7 As Byte = 3
-    Dim Tamping8 As Byte = 4
-    Dim Tamping9 As Byte = 5
-    Dim Tamping10 As Byte = 6
-    Dim Tamping12 As Byte = 7
-    Dim OvenSeparator As Byte = 8
-    Dim OvenBubuk As Byte = 9
-    Dim OvenBobin As Byte = 10
-    Dim OvenMangan As Byte = 11
-    Dim OvenAnodeCap As Byte = 12
-    Dim OvenCaseCarbon As Byte = 13
-    Dim HighSpeedMixerMch As Integer = 14
+    'Machine High Speed Mixer
+    Dim HighSpeedMixerMch As Integer = 1
+    Dim Factory As String = "F004"
+    Dim GroupLine_HighSpeedMixerMch As Integer = 3
+    Dim Line_HighSpeedMixerMch As String = "31004"
+    Dim Machine_HighSpeedMixerMch As String = "31004"
+    Dim Thd_HighSpeedMixerMch As SchedulerSetting
 
     Dim col_ProcessName As Integer = 0
     Dim Col_ProcessType As Byte = 1
@@ -43,25 +34,8 @@ Public Class FormSchedulerCSV_Tamping_Quality
     Dim Col_ErrorMessage As Byte = 5
 
     Dim col_Count As Integer = 6
-
     Dim FilesList As New List(Of String)
-
-    Dim Thd_Tamping5 As SchedulerSetting
-    Dim Thd_Tamping6 As SchedulerSetting
-    Dim Thd_Tamping7 As SchedulerSetting
-    Dim Thd_Tamping8 As SchedulerSetting
-    Dim Thd_Tamping9 As SchedulerSetting
-    Dim Thd_Tamping10 As SchedulerSetting
-    Dim Thd_Tamping12 As SchedulerSetting
-    Dim Thd_OvenSeparator As SchedulerSetting
-    Dim Thd_OvenBubuk As SchedulerSetting
-    Dim Thd_OvenBobin As SchedulerSetting
-    Dim Thd_OvenMangan As SchedulerSetting
-    Dim Thd_OvenCaseCarbon As SchedulerSetting
-    Dim Thd_OvenAnodeCap As SchedulerSetting
-
     Dim m_Finish As Boolean
-
     Dim log As clsLog
 
     Private Enum ExcelCols
@@ -86,6 +60,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
         col_S = 18
         col_T = 19
         col_U = 20
+        col_V = 21
     End Enum
 
     Public Structure SchedulerSetting
@@ -135,83 +110,11 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         up_TimeStop()
 
-        Do Until Thd_Tamping5.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping5.Status = "iddle" Then
-                Thd_Tamping5.ScheduleThd = Nothing
+        Do Until Thd_HighSpeedMixerMch.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_HighSpeedMixerMch.Status = "iddle" Then
+                Thd_HighSpeedMixerMch.ScheduleThd = Nothing
             End If
-            If Thd_Tamping5.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping6.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping6.Status = "iddle" Then
-                Thd_Tamping6.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping6.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping7.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping7.Status = "iddle" Then
-                Thd_Tamping7.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping7.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping8.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping8.Status = "iddle" Then
-                Thd_Tamping8.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping8.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping9.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping9.Status = "iddle" Then
-                Thd_Tamping9.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping9.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping10.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping10.Status = "iddle" Then
-                Thd_Tamping10.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping10.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_Tamping12.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_Tamping12.Status = "iddle" Then
-                Thd_Tamping12.ScheduleThd = Nothing
-            End If
-            If Thd_Tamping12.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_OvenSeparator.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_OvenSeparator.Status = "iddle" Then
-                Thd_OvenSeparator.ScheduleThd = Nothing
-            End If
-            If Thd_OvenSeparator.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_OvenBubuk.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_OvenBubuk.Status = "iddle" Then
-                Thd_OvenBubuk.ScheduleThd = Nothing
-            End If
-            If Thd_OvenBubuk.ScheduleThd Is Nothing Then Exit Do
-            Thread.Sleep(100)
-        Loop
-
-        Do Until Thd_OvenBobin.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
-            If Thd_OvenBobin.Status = "iddle" Then
-                Thd_OvenBobin.ScheduleThd = Nothing
-            End If
-            If Thd_OvenBobin.ScheduleThd Is Nothing Then Exit Do
+            If Thd_HighSpeedMixerMch.ScheduleThd Is Nothing Then Exit Do
             Thread.Sleep(100)
         Loop
 
@@ -228,7 +131,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
     Private Sub btnStart_Click(sender As Object, e As EventArgs) Handles btnStart.Click
         txtMsg.Text = ""
 
-        up_TimeStart()
+        up_TimeStart() 'temporay hiden modified by riana
 
         btnStart.Enabled = False
         btnStop.Enabled = True
@@ -274,12 +177,10 @@ Public Class FormSchedulerCSV_Tamping_Quality
         If Me.WindowState = FormWindowState.Minimized Then
             If Me.WindowState = FormWindowState.Minimized Then
                 NotifyIcon1.Visible = True
-                'NotifyIcon1.Icon = SystemIcons.Application
                 NotifyIcon1.BalloonTipIcon = ToolTipIcon.Info
                 NotifyIcon1.BalloonTipTitle = "RELAY PLC CSV QUALITY (TAMPING)"
                 NotifyIcon1.BalloonTipText = "Move to system tray"
                 NotifyIcon1.ShowBalloonTip(50)
-                'Me.Hide()
                 ShowInTaskbar = False
             End If
         End If
@@ -395,38 +296,9 @@ Public Class FormSchedulerCSV_Tamping_Quality
             up_FTP()
             ''==================
 
-            ''High Speed Mixer Mch
-            'pProses = "High Speed Mixer Mch"
-            'up_ProcessData(Tamping5, "High Speed Mixer Mch", gs_LocalPathHighSpeedMixerMch, gs_FileName_QualityHighSpeedMixerMch, 2, "015", "31004")
-
-
-            '01. TAMPING T-05
-            pProses = "Tamping T-05"
-            up_ProcessData(Tamping5, "Tamping T-05", gs_LocalPathT05, gs_FileName_QualityT05, 2, "", "")
-
-            '02. TAMPING T-06
-            pProses = "Tamping T-06"
-            up_ProcessData(Tamping6, "Tamping T-06", gs_LocalPathT06, gs_FileName_QualityT06, 2, "", "")
-
-            '03. TAMPING T-07
-            pProses = "Tamping T-07"
-            up_ProcessData(Tamping7, "Tamping T-07", gs_LocalPathT07, gs_FileName_QualityT07, 2, "", "")
-
-            '04. TAMPING T-08
-            pProses = "Tamping T-08"
-            up_ProcessData(Tamping8, "Tamping T-08", gs_LocalPathT08, gs_FileName_QualityT08, 2, "", "")
-
-            '09. TAMPING T-09
-            pProses = "Tamping T-09"
-            up_ProcessData(Tamping9, "Tamping T-09", gs_LocalPathT09, gs_FileName_QualityT09, 2, "", "")
-
-            '06. TAMPING T-10
-            pProses = "Tamping T-10"
-            up_ProcessData(Tamping10, "Tamping T-10", gs_LocalPathT10, gs_FileName_QualityT10, 2, "", "")
-
-            '07. TAMPING T-12
-            pProses = "Tamping T-12"
-            up_ProcessData(Tamping12, "Tamping T-12", gs_LocalPathT12, gs_FileName_QualityT12, 2, "", "")
+            'High Speed Mixer Mch
+            pProses = "High Speed Mixer Mch"
+            up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, Factory)
 
         Catch ex As Exception
             WriteToErrorLog(pProses, "error : " & ex.Message)
@@ -462,68 +334,12 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
                     For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
 
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "High Speed Mixer Mch" Then
-                            gs_ServerPathHighSpeedMixerMch = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathHighSpeedMixerMch = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserHighSpeedMixerMch = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordHighSpeedMixerMch = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalHighSpeedMixerMch = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-05" Then
-                            gs_ServerPathT05 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT05 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT05 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT05 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT05 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-06" Then
-                            gs_ServerPathT06 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT06 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT06 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT06 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT06 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-07" Then
-                            gs_ServerPathT07 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT07 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT07 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT07 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT07 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-08" Then
-                            gs_ServerPathT08 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT08 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT08 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT08 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT08 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-09" Then
-                            gs_ServerPathT09 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT09 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT09 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT09 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT09 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-10" Then
-                            gs_ServerPathT10 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT10 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT10 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT10 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT10 = ds.Tables(0).Rows(i)("TimeInterval")
-                        End If
-
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = "TAMPING T-12" Then
-                            gs_ServerPathT12 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPathT12 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_UserT12 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_PasswordT12 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_IntervalT12 = ds.Tables(0).Rows(i)("TimeInterval")
+                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_HighSpeedMixerMch Then
+                            gs_ServerPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_HighSpeedMixerMch = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_HighSpeedMixerMch = ds.Tables(0).Rows(i)("TimeInterval")
                         End If
 
                     Next
@@ -540,40 +356,11 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
     Private Sub up_ClearVariable()
 
-        gs_ServerPathT05 = ""
-        gs_LocalPathT05 = ""
-        gs_UserT05 = ""
-        gs_PasswordT05 = ""
+        gs_ServerPath_HighSpeedMixerMch = ""
+        gs_LocalPath_HighSpeedMixerMch = ""
+        gs_User_HighSpeedMixerMch = ""
+        gs_Password_HighSpeedMixerMch = ""
 
-        gs_ServerPathT06 = ""
-        gs_LocalPathT06 = ""
-        gs_UserT06 = ""
-        gs_PasswordT06 = ""
-
-        gs_ServerPathT07 = ""
-        gs_LocalPathT07 = ""
-        gs_UserT07 = ""
-        gs_PasswordT07 = ""
-
-        gs_ServerPathT08 = ""
-        gs_LocalPathT08 = ""
-        gs_UserT08 = ""
-        gs_PasswordT08 = ""
-
-        gs_ServerPathT09 = ""
-        gs_LocalPathT09 = ""
-        gs_UserT09 = ""
-        gs_PasswordT09 = ""
-
-        gs_ServerPathT10 = ""
-        gs_LocalPathT10 = ""
-        gs_UserT10 = ""
-        gs_PasswordT10 = ""
-
-        gs_ServerPathT12 = ""
-        gs_LocalPathT12 = ""
-        gs_UserT12 = ""
-        gs_PasswordT12 = ""
     End Sub
 
     Private Sub up_TimeStart()
@@ -581,173 +368,16 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Me.Cursor = Cursors.WaitCursor
 
         Try
-
             Thread.Sleep(200)
-            Thd_Tamping5 = New SchedulerSetting
-            With Thd_Tamping5
-                .Name = "T-05"
+            Thd_HighSpeedMixerMch = New SchedulerSetting
+            With Thd_HighSpeedMixerMch
+                .Name = "HighSpeedMixerMch"
                 .EndSchedule = False
                 .Lock = New Object
-                .DelayTime = gi_IntervalT05
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping5)
+                .DelayTime = gi_Interval_HighSpeedMixerMch
+                .ScheduleThd = New Thread(AddressOf up_Refresh_HighSpeedMixerMch)
                 .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-05"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(220)
-            Thd_Tamping6 = New SchedulerSetting
-            With Thd_Tamping6
-                .Name = "T-06"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT06
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping6)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-06"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping7 = New SchedulerSetting
-            With Thd_Tamping7
-                .Name = "T-07"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT07
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping7)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-07"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping8 = New SchedulerSetting
-            With Thd_Tamping8
-                .Name = "T-08"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT08
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping8)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-08"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping9 = New SchedulerSetting
-            With Thd_Tamping9
-                .Name = "T-09"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT09
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping9)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-09"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping10 = New SchedulerSetting
-            With Thd_Tamping10
-                .Name = "T-10"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT10
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping10)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-10"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_Tamping12 = New SchedulerSetting
-            With Thd_Tamping12
-                .Name = "T-12"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalT12
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping12)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-12"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenSeparator = New SchedulerSetting
-            With Thd_OvenSeparator
-                .Name = "OvenSeparator"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenSeparator
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenSeparator)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenSeparator"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenBubuk = New SchedulerSetting
-            With Thd_OvenBubuk
-                .Name = "OvenBubuk"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenBubuk
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenBubuk)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenBubuk"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenBobin = New SchedulerSetting
-            With Thd_OvenBobin
-                .Name = "OvenBobin"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenBobin
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenBobin)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenBobin"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenMangan = New SchedulerSetting
-            With Thd_OvenMangan
-                .Name = "OvenMangan"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenMangan
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenMangan)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenMangan"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenAnodeCap = New SchedulerSetting
-            With Thd_OvenAnodeCap
-                .Name = "OvenAnodeCap"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenAnodeCap
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenAnodeCap)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenAnodeCap"
-                .ScheduleThd.Start()
-            End With
-
-            Thread.Sleep(240)
-            Thd_OvenCaseCarbon = New SchedulerSetting
-            With Thd_OvenCaseCarbon
-                .Name = "OvenCaseCarbon"
-                .EndSchedule = False
-                .Lock = New Object
-                .DelayTime = gi_IntervalOvenCaseCarbon
-                .ScheduleThd = New Thread(AddressOf up_RefreshOvenCaseCarbon)
-                .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "OvenCaseCarbon"
+                .ScheduleThd.Name = "HighSpeedMixerMch"
                 .ScheduleThd.Start()
             End With
 
@@ -763,57 +393,10 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         m_Finish = True
 
-        SyncLock Thd_Tamping5.Lock
-            Thd_Tamping5.EndSchedule = True
+        SyncLock Thd_HighSpeedMixerMch.Lock
+            Thd_HighSpeedMixerMch.EndSchedule = True
         End SyncLock
 
-        SyncLock Thd_Tamping6.Lock
-            Thd_Tamping6.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping7.Lock
-            Thd_Tamping7.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping8.Lock
-            Thd_Tamping8.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping9.Lock
-            Thd_Tamping9.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping10.Lock
-            Thd_Tamping10.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_Tamping12.Lock
-            Thd_Tamping12.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenSeparator.Lock
-            Thd_OvenSeparator.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenBubuk.Lock
-            Thd_OvenBubuk.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenBobin.Lock
-            Thd_OvenBobin.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenMangan.Lock
-            Thd_OvenMangan.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenAnodeCap.Lock
-            Thd_OvenAnodeCap.EndSchedule = True
-        End SyncLock
-
-        SyncLock Thd_OvenCaseCarbon.Lock
-            Thd_OvenCaseCarbon.EndSchedule = True
-        End SyncLock
     End Sub
 
     Private Function up_ToInserDatatable_Trouble(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pGroupCount As Integer) As DataTable
@@ -829,7 +412,6 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         'Dim pSerialNo As String = "", pSeqNo As Integer = 0, pSubSeq_No As Integer = 0
         'pSerialNo = Format(Now, "yyMMdd") & "-" & Format(Now, "HHmmss") & "-" & pLineCode
-
 
         Try
 
@@ -963,6 +545,8 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Dim data_016, data_017, data_018, data_019, data_020 As String
         Dim data_021, data_022, data_023, data_024, data_025 As String
 
+        txtMsg.Text = ""
+
         Try
 
             Dim di As New IO.DirectoryInfo(pLocalPath)
@@ -1016,47 +600,52 @@ Public Class FormSchedulerCSV_Tamping_Quality
                             .Add("data_025", GetType(String))
                         End With
 
-                        For x = 0 To dtCSV.Rows.Count
-                            tmpDatde = Split(Trim(dtCSV.Rows(x)(0)), "/")
-                            If tmpDatde(0) > 0 Then
-                                col_Line = pLineCode
-                                col_Machine = pMCCode
-                                col_model = "BBRSRUSA0PAD"
-                                Col_MeasTime = Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
-                                data_001 = "2" 'from CSV
-                                data_002 = "0"
-                                data_003 = "0"
-                                data_004 = "0"
-                                data_005 = "0"
-                                data_006 = "0"
-                                data_007 = "0"
-                                data_008 = "0"
-                                data_009 = "0"
-                                data_010 = "0"
-                                data_011 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(2))), 0, 15)
-                                data_012 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(3))), 0, 15)
-                                data_013 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(4))), 0, 15)
-                                data_014 = Trim(dtCSV.Rows(x)(5))
-                                data_015 = Trim(dtCSV.Rows(x)(6))
-                                data_016 = Trim(dtCSV.Rows(x)(7))
-                                data_017 = Trim(dtCSV.Rows(x)(8))
-                                data_018 = Trim(dtCSV.Rows(x)(9))
-                                data_019 = Trim(dtCSV.Rows(x)(10))
-                                data_020 = Trim(dtCSV.Rows(x)(11))
-                                data_021 = Trim(dtCSV.Rows(x)(12))
-                                data_022 = Trim(dtCSV.Rows(x)(13))
-                                data_023 = Trim(dtCSV.Rows(x)(14))
-                                data_024 = Trim(dtCSV.Rows(x)(15))
-                                data_025 = Trim(dtCSV.Rows(x)(16))
+                        For x = 0 To dtCSV.Rows.Count - 2
+                            Try
+                                tmpDatde = Split(Trim(dtCSV.Rows(x)(0)), "/")
+                                If tmpDatde(0) > 0 Then
+                                    col_Line = pLineCode
+                                    col_Machine = pMCCode
+                                    col_model = "BBRSRUSA0PAD"
+                                    Col_MeasTime = Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
+                                    data_001 = "2" 'code from csv
+                                    data_002 = Trim(dtCSV.Rows(x)(2))
+                                    data_003 = Trim(dtCSV.Rows(x)(3))
+                                    data_004 = Trim(dtCSV.Rows(x)(4))
+                                    data_005 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(5))), 0, 15)
+                                    data_006 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(6))), 0, 15)
+                                    data_007 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(7))), 0, 15)
+                                    data_008 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(8))), 0, 15)
+                                    data_009 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(9))), 0, 15)
+                                    data_010 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(10))), 0, 15)
+                                    data_011 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(11))), 0, 15)
+                                    data_012 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(12))), 0, 15)
+                                    data_013 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(13))), 0, 15)
+                                    data_014 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(14))), 0, 15)
+                                    data_015 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(15))), 0, 15)
+                                    data_016 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(16))), 0, 15)
+                                    data_017 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(17))), 0, 15)
+                                    data_018 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(18))), 0, 15)
+                                    data_019 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(19))), 0, 15)
+                                    data_020 = up_GetCodeTrouble(DecimalToBinary(Trim(dtCSV.Rows(x)(20))), 0, 15)
+                                    data_021 = "0"
+                                    data_022 = "0"
+                                    data_023 = "0"
+                                    data_024 = "0"
+                                    data_025 = "0"
 
-                                dt.Rows.Add(col_Line, col_Machine, col_model, Col_MeasTime,
-                                            data_001, data_002, data_003, data_004, data_005,
-                                            data_006, data_007, data_008, data_009, data_010,
-                                            data_011, data_012, data_013, data_014, data_015,
-                                            data_016, data_017, data_018, data_019, data_020,
-                                            data_021, data_022, data_023, data_024, data_025)
+                                    dt.Rows.Add(col_Line, col_Machine, col_model, Col_MeasTime,
+                                                data_001, data_002, data_003, data_004, data_005,
+                                                data_006, data_007, data_008, data_009, data_010,
+                                                data_011, data_012, data_013, data_014, data_015,
+                                                data_016, data_017, data_018, data_019, data_020,
+                                                data_021, data_022, data_023, data_024, data_025)
 
-                            End If
+                                End If
+                            Catch ex As Exception
+                                txtMsg.Text = ex.Message
+                                WriteToErrorLog("Quality Process error in LineCode : " & pLineCode, ex.Message)
+                            End Try
                         Next
 
                         'Send to History Folder
@@ -1064,21 +653,14 @@ Public Class FormSchedulerCSV_Tamping_Quality
                         My.Computer.FileSystem.MoveFile(pLocalPath & "\" & fi.Name, pLocalPath & "\History\" & fi.Name, True)
 
                         Return dt
-
-
                     End If
-
                 End If
-
             Next
-
             Return dt
-
         Catch ex As Exception
             txtMsg.Text = ex.Message
             WriteToErrorLog("Quality Process error in LineCode : " & pLineCode, ex.Message)
         End Try
-
     End Function
 
     Private Function up_GetLastData(ByVal pLineCode As String) As DataTable
@@ -1115,54 +697,8 @@ Public Class FormSchedulerCSV_Tamping_Quality
         End Try
 
     End Function
-
-    Private Sub up_RefreshTamping5()
-        up_Refresh(Tamping5, "Tamping T-05", Thd_Tamping5, gs_ServerPathT05, gs_LocalPathT05, gs_UserT05, gs_PasswordT05, gs_FileName_QualityT05, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping6()
-        up_Refresh(Tamping6, "Tamping T-06", Thd_Tamping6, gs_ServerPathT06, gs_LocalPathT06, gs_UserT06, gs_PasswordT06, gs_FileName_QualityT06, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping7()
-        up_Refresh(Tamping7, "Tamping T-07", Thd_Tamping7, gs_ServerPathT07, gs_LocalPathT07, gs_UserT07, gs_PasswordT07, gs_FileName_QualityT07, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping8()
-        up_Refresh(Tamping8, "Tamping T-08", Thd_Tamping8, gs_ServerPathT08, gs_LocalPathT08, gs_UserT08, gs_PasswordT08, gs_FileName_QualityT08, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping9()
-        up_Refresh(Tamping9, "Tamping T-09", Thd_Tamping9, gs_ServerPathT09, gs_LocalPathT09, gs_UserT09, gs_PasswordT09, gs_FileName_QualityT09, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping10()
-        up_Refresh(Tamping10, "Tamping T-10", Thd_Tamping10, gs_ServerPathT10, gs_LocalPathT10, gs_UserT10, gs_PasswordT10, gs_FileName_QualityT10, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshTamping12()
-        up_Refresh(Tamping12, "Tamping T-12", Thd_Tamping12, gs_ServerPathT12, gs_LocalPathT12, gs_UserT12, gs_PasswordT12, gs_FileName_QualityT12, 2, "", "")
-    End Sub
-
-    Private Sub up_RefreshOvenSeparator()
-        up_Refresh(OvenSeparator, "Oven Separator", Thd_OvenSeparator, gs_ServerPathOvenSeparator, gs_LocalPathOvenSeparator, gs_UserOvenSeparator, gs_PasswordOvenSeparator, gs_FileName_QualityOvenSeparator, 2, "", "", "Oven_Separator(-----current-----).csv")
-    End Sub
-
-    Private Sub up_RefreshOvenBubuk()
-        up_Refresh(OvenBubuk, "Oven Bubuk", Thd_OvenBubuk, gs_ServerPathOvenBubuk, gs_LocalPathOvenBubuk, gs_UserOvenBubuk, gs_PasswordOvenBubuk, gs_FileName_QualityOvenBubuk, 2, "", "", "Oven_Bubuk(-----current-----).csv")
-    End Sub
-
-    Private Sub up_RefreshOvenBobin()
-        up_Refresh(OvenBobin, "Oven Bobin", Thd_OvenBobin, gs_ServerPathOvenBobin, gs_LocalPathOvenBobin, gs_UserOvenBobin, gs_PasswordOvenBobin, gs_FileName_QualityOvenBobin, 2, "", "", "Oven_Bobbin(-----current-----).csv")
-    End Sub
-    Private Sub up_RefreshOvenMangan()
-        up_Refresh(OvenMangan, "Oven Mangan", Thd_OvenMangan, gs_ServerPathOvenMangan, gs_LocalPathOvenMangan, gs_UserOvenMangan, gs_PasswordOvenMangan, gs_FileName_QualityOvenMangan, 2, "", "", "Oven_Mangan(-----current-----).csv")
-    End Sub
-    Private Sub up_RefreshOvenAnodeCap()
-        up_Refresh(OvenAnodeCap, "Oven AnodeCap", Thd_OvenAnodeCap, gs_ServerPathOvenAnodeCap, gs_LocalPathOvenAnodeCap, gs_UserOvenAnodeCap, gs_PasswordOvenAnodeCap, gs_FileName_QualityOvenAnodeCap, 2, "", "", "Oven_AnodeCap(-----current-----).csv")
-    End Sub
-    Private Sub up_RefreshOvenCaseCarbon()
-        up_Refresh(OvenCaseCarbon, "Oven CaseCarbon", Thd_OvenCaseCarbon, gs_ServerPathOvenCaseCarbon, gs_LocalPathOvenCaseCarbon, gs_UserOvenCaseCarbon, gs_PasswordOvenCaseCarbon, gs_FileName_QualityOvenCaseCarbon, 2, "", "", "Oven_CaseCarbon(-----current-----).csv")
+    Private Sub up_Refresh_HighSpeedMixerMch()
+        up_Refresh(HighSpeedMixerMch, "HighSpeedMixerMch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch)
     End Sub
 
     Private Sub up_Refresh(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal Thd As SchedulerSetting, ByVal pServerPath As String, ByVal pLocalPath As String, ByVal pUser As String, ByVal pPassword As String, ByVal pFileNameHistory As String, ByVal pGroupCount As Integer, ByVal pLineCode As String, ByVal pMCCode As String, Optional pFileName As String = "")
@@ -1197,20 +733,10 @@ Public Class FormSchedulerCSV_Tamping_Quality
                 End If
                 '====================
 
-                If (pProcessName = "Oven Separator") Then
-                    up_ProcessOvenSeparator()
-                ElseIf (pProcessName = "Oven Bobin") Then
-                    up_ProcessOvenBobin()
-                ElseIf (pProcessName = "Oven Bubuk") Then
-                    up_ProcessOvenBubuk()
-                ElseIf (pProcessName = "Oven CaseCarbon") Then
-                    up_ProcessOvenCaseCarbon()
-                ElseIf (pProcessName = "Oven AnodeCap") Then
-                    up_ProcessOvenAnodeCap()
-                ElseIf (pProcessName = "Oven Mangan") Then
-                    up_ProcessOvenMangan()
+                If (pProcessName = "High Speed Mixer Mch") Then
+                    up_Process_HighSpeedMixerMch()
                 Else
-                    up_ProcessData(pProcess, pProcessName, pLocalPath, pFileNameHistory, pGroupCount, pLineCode, pMCCode)
+                    up_ProcessData(pProcess, pProcessName, pLocalPath, pFileNameHistory, pGroupCount, pLineCode, pMCCode, Factory)
                 End If
 
                 Threading.Thread.Sleep(DelayTime)
@@ -1234,176 +760,13 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Loop
     End Sub
 
-    Private Sub up_ProcessOvenBubuk()
+    Private Sub up_Process_HighSpeedMixerMch()
         Dim con As New SqlConnection
 
-        'gs_LocalPathOBU = "D:\PECGI CSV\Tamping\LOG_Mc21003"
-
-        grid.Item(OvenBubuk, Col_ErrorMessage) = ""
-
-        Dim dtOvenBubuk As New DataTable
-        dtOvenBubuk = up_ToInserDatatable_OvenBubuk(gs_LocalPathOvenBubuk, gs_FileName_QualityOvenBubuk, "052", "21003", "Oven_Bubuk(-----current-----).csv") 'Oven Bubuk 1
-
-        Dim dtOvenBubuk2 As New DataTable
-        dtOvenBubuk2 = up_ToInserDatatable_OvenBubuk(gs_LocalPathOvenBubuk, gs_FileName_QualityOvenBubuk, "052B", "21003", "Oven_Bubuk(-----current-----).csv") 'Oven Bubuk 2
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(OvenBubuk, Col_ProcessStatus) = "RUNNING"
-
-            If dtOvenBubuk IsNot Nothing Then
-                If dtOvenBubuk.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOvenBubuk
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            If dtOvenBubuk2 IsNot Nothing Then
-                If dtOvenBubuk2.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOvenBubuk2
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(OvenBubuk, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenBubuk, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(OvenBubuk, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenBubuk Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-    Private Sub up_ProcessOvenBobin()
-        Dim con As New SqlConnection
-
-        grid.Item(OvenBobin, Col_ErrorMessage) = ""
-
-        Dim dtOvenBobin As New DataTable
-        dtOvenBobin = up_ToInserDatatable_Oven(gs_LocalPathOvenBobin, gs_FileName_QualityOvenBobin, "059", "21009", "Oven_Bobbin(-----current-----).csv")
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(OvenBobin, Col_ProcessStatus) = "RUNNING"
-
-            If dtOvenBobin IsNot Nothing Then
-                If dtOvenBobin.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOvenBobin
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(OvenBobin, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenBobin, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(OvenBobin, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenBobbin Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-    Private Sub up_ProcessOvenSeparator()
-        Dim con As New SqlConnection
-
-        grid.Item(OvenSeparator, Col_ErrorMessage) = ""
+        grid.Item(HighSpeedMixerMch, Col_ErrorMessage) = ""
 
         Dim dtOvenSep As New DataTable
-        dtOvenSep = up_ToInserDatatable_Oven(gs_LocalPathOvenSeparator, gs_FileName_QualityOvenSeparator, "060", "21010", "Oven_Separator(-----current-----).csv")
+        dtOvenSep = up_ToInserDatatable_Oven(gs_LocalPath_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, "HighSpeedMixerMch(-----current-----).csv")
 
         con = New SqlConnection(ConStr)
         con.Open()
@@ -1416,7 +779,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Try
 
             Application.DoEvents()
-            grid.Item(OvenSeparator, Col_ProcessStatus) = "RUNNING"
+            grid.Item(HighSpeedMixerMch, Col_ProcessStatus) = "RUNNING"
 
             If dtOvenSep IsNot Nothing Then
                 If dtOvenSep.Rows.Count > 0 Then
@@ -1451,11 +814,11 @@ Public Class FormSchedulerCSV_Tamping_Quality
             SQLTrans.Commit()
 
             Application.DoEvents()
-            grid.Item(OvenSeparator, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenSeparator, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
+            grid.Item(HighSpeedMixerMch, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
+            grid.Item(HighSpeedMixerMch, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
 
         Catch ex As Exception
-            grid.Item(OvenSeparator, Col_ErrorMessage) = ex.Message
+            grid.Item(HighSpeedMixerMch, Col_ErrorMessage) = ex.Message
             WriteToErrorLog("OvenSeparator Process", ex.Message)
             SQLTrans.Rollback()
         End Try
@@ -1588,216 +951,19 @@ Public Class FormSchedulerCSV_Tamping_Quality
                 End If
 
             Next
-
-            Return dt
-
         Catch ex As Exception
             txtMsg.Text = ex.Message
         End Try
-
+        Return dt
     End Function
-    Private Sub up_ProcessOvenAnodeCap()
+
+    Private Sub up_ProcessData(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal pLocalPath As String, ByVal pFileNameHistory As String, ByVal pGroupCount As Integer, ByVal pLineCode As String, ByVal pMCCode As String, ByVal pFactoryCode As String)
         Dim con As New SqlConnection
-
-        grid.Item(OvenAnodeCap, Col_ErrorMessage) = ""
-
-        Dim dtOven As New DataTable
-        dtOven = up_ToInserDatatable_Oven(gs_LocalPathOvenAnodeCap, gs_FileName_QualityOvenAnodeCap, "060", "21010", "Oven_AnodeCap(-----current-----).csv")
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(OvenAnodeCap, Col_ProcessStatus) = "RUNNING"
-
-            If dtOven IsNot Nothing Then
-                If dtOven.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOven
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(OvenAnodeCap, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenAnodeCap, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(OvenAnodeCap, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenAnodeCap Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-    Private Sub up_ProcessOvenMangan()
-        Dim con As New SqlConnection
-
-        grid.Item(OvenMangan, Col_ErrorMessage) = ""
-
-        Dim dtOven As New DataTable
-        dtOven = up_ToInserDatatable_Oven(gs_LocalPathOvenMangan, gs_FileName_QualityOvenMangan, "060", "21010", "Oven_Mangan(-----current-----).csv")
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(OvenMangan, Col_ProcessStatus) = "RUNNING"
-
-            If dtOven IsNot Nothing Then
-                If dtOven.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOven
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(OvenMangan, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenMangan, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(OvenMangan, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenMangan Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-    Private Sub up_ProcessOvenCaseCarbon()
-        Dim con As New SqlConnection
-
-        grid.Item(OvenCaseCarbon, Col_ErrorMessage) = ""
-
-        Dim dtOven As New DataTable
-        dtOven = up_ToInserDatatable_Oven(gs_LocalPathOvenCaseCarbon, gs_FileName_QualityOvenCaseCarbon, "060", "21010", "Oven_CaseCarbon(-----current-----).csv")
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(OvenCaseCarbon, Col_ProcessStatus) = "RUNNING"
-
-            If dtOven IsNot Nothing Then
-                If dtOven.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOven
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(OvenCaseCarbon, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(OvenCaseCarbon, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(OvenCaseCarbon, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenCaseCarbon Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-
-    Private Sub up_ProcessData(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal pLocalPath As String, ByVal pFileNameHistory As String, ByVal pGroupCount As Integer, ByVal pLineCode As String, ByVal pMCCode As String)
-        Dim con As New SqlConnection
-        'gs_LocalPathMIX = "D:\PECGI CSV\Tamping\LOG_Mc21001"
 
         grid.AddItem("")
         grid.Item(pProcess, Col_ErrorMessage) = ""
 
-        Dim dtHis, dtInfo As New DataTable
-        'dtHis = up_ToInserDatatable_Trouble2(pLocalPath, pFileNameHistory, "057")
+        Dim dtInfo As New DataTable
         dtInfo = up_ToInserDatatable_Quality(pLocalPath, pFileNameHistory, pLineCode, pMCCode)
 
         con = New SqlConnection(ConStr)
@@ -1809,44 +975,12 @@ Public Class FormSchedulerCSV_Tamping_Quality
         SQLTrans = con.BeginTransaction
 
         Try
-
             Application.DoEvents()
             grid.Item(pProcess, Col_ProcessStatus) = "RUNNING"
-
-            If dtHis IsNot Nothing Then
-                If dtHis.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_History(dtMixHis, "MIX_His_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Log_CSV_Trouble_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@LogDataTrouble"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@LogDataTrouble").Value = dtHis
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
 
             If dtInfo IsNot Nothing Then
                 If dtInfo.Rows.Count > 0 Then
 
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtMixInfo, "MIX_Info_CSV_")
                     cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
                     cmd.CommandType = CommandType.StoredProcedure
                     cmd.Connection = con
@@ -1860,11 +994,17 @@ Public Class FormSchedulerCSV_Tamping_Quality
                     paramName.ParameterName = "@ProcessTime"
                     paramName.SqlDbType = SqlDbType.DateTime
 
+                    Dim paramFactory As New SqlParameter()
+                    paramFactory.ParameterName = "@FactoryCode"
+                    paramFactory.SqlDbType = SqlDbType.VarChar
+
                     cmd.Parameters.Add(paramTbl)
                     cmd.Parameters.Add(paramName)
+                    cmd.Parameters.Add(paramFactory)
 
                     cmd.Parameters("@MeasData").Value = dtInfo
                     cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
+                    cmd.Parameters("@FactoryCode").Value = pFactoryCode
 
                     cmd.CommandTimeout = 100000
                     Dim i As Integer = cmd.ExecuteNonQuery()
@@ -2014,88 +1154,18 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
     End Function
 
-
     Private Sub up_FTP()
 
         'High Speed Mixer Mch
         '====================
-        If gs_ServerPathHighSpeedMixerMch <> "" And gs_LocalPathHighSpeedMixerMch <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathHighSpeedMixerMch, gs_UserHighSpeedMixerMch, gs_PasswordHighSpeedMixerMch)
+        If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserHighSpeedMixerMch, gs_PasswordHighSpeedMixerMch, gs_ServerPathHighSpeedMixerMch, gs_LocalPathHighSpeedMixerMch, gs_FileName_QualityHighSpeedMixerMch, "zz")
+                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, "zz", gs_FileName_Quality_HighSpeedMixerMch)
             End If
         End If
         '====================
 
-
-        'FTP TAMPING T-05
-        '====================
-        If gs_ServerPathT05 <> "" And gs_LocalPathT05 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT05, gs_UserT05, gs_PasswordT05)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT05, gs_PasswordT05, gs_ServerPathT05, gs_LocalPathT05, gs_FileName_QualityT05, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-06
-        '====================
-        If gs_ServerPathT06 <> "" And gs_LocalPathT06 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT06, gs_UserT06, gs_PasswordT06)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT06, gs_PasswordT06, gs_ServerPathT06, gs_LocalPathT06, gs_FileName_QualityT06, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-07
-        '====================
-        If gs_ServerPathT07 <> "" And gs_LocalPathT07 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT07, gs_UserT07, gs_PasswordT07)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT07, gs_PasswordT07, gs_ServerPathT07, gs_LocalPathT07, gs_FileName_QualityT07, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-08
-        '====================
-        If gs_ServerPathT08 <> "" And gs_LocalPathT08 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT08, gs_UserT08, gs_PasswordT08)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT08, gs_PasswordT08, gs_ServerPathT08, gs_LocalPathT08, gs_FileName_QualityT08, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-09
-        '====================
-        If gs_ServerPathT09 <> "" And gs_LocalPathT09 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT09, gs_UserT09, gs_PasswordT09)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT09, gs_PasswordT09, gs_ServerPathT09, gs_LocalPathT09, gs_FileName_QualityT09, "zz")
-            End If
-        End If
-        '====================
-
-        'FTP TAMPING T-10
-        '====================
-        If gs_ServerPathT10 <> "" And gs_LocalPathT10 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT10, gs_UserT10, gs_PasswordT10)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT10, gs_PasswordT10, gs_ServerPathT10, gs_LocalPathT10, gs_FileName_QualityT10, "zz")
-            End If
-        End If
-
-        'FTP TAMPING T-12
-        '====================
-        If gs_ServerPathT12 <> "" And gs_LocalPathT12 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPathT12, gs_UserT12, gs_PasswordT12)
-            If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_UserT12, gs_PasswordT12, gs_ServerPathT12, gs_LocalPathT12, gs_FileName_QualityT12, "zz")
-            End If
-        End If
-        '====================
     End Sub
 
     Private Sub up_SavedataCSV(ByVal dtTmp As DataTable, ByVal pLineCode As String)
@@ -2104,11 +1174,11 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Dim dt As New DataTable
 
         With dt.Columns
-            .Add("Ala", GetType(String))
-            .Add("Alarm_Code_D", GetType(String))
-            .Add("Alarm_Code_E"rm_Code_A", GetType(String))
+            .Add("Alarm_Code_A", GetType(String))
             .Add("Alarm_Code_B", GetType(String))
-            .Add("Alarm_Code_C, GetType(String))
+            .Add("Alarm_Code_C", GetType(String))
+            .Add("Alarm_Code_D", GetType(String))
+            .Add("Alarm_Code_E", GetType(String))
             .Add("Alarm_Code_F", GetType(String))
             .Add("Alarm_Code_G", GetType(String))
             .Add("Alarm_Code_H", GetType(String))
@@ -2120,13 +1190,19 @@ Public Class FormSchedulerCSV_Tamping_Quality
             .Add("Alarm_Code_N", GetType(String))
             .Add("Alarm_Code_O", GetType(String))
             .Add("Alarm_Code_P", GetType(String))
+            .Add("Alarm_Code_Q", GetType(String))
+            .Add("Alarm_Code_R", GetType(String))
+            .Add("Alarm_Code_S", GetType(String))
+            .Add("Alarm_Code_T", GetType(String))
+            .Add("Alarm_Code_U", GetType(String))
         End With
         'Format(CDate(20 & Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
         For x = 0 To dtTmp.Rows.Count - 1
             If Trim(dtTmp.Rows(x).Item(0)) <> "" Then
                 dt.Rows.Add(Format(CDate(20 & (Trim(dtTmp.Rows(x).Item(0)))), "yyyy-MM-dd"), Format(CDate(dtTmp.Rows(x).Item(1)), "HH:mm:ss"), Trim(dtTmp.Rows(x).Item(2)), Trim(dtTmp.Rows(x).Item(3)),
                             Trim(dtTmp.Rows(x).Item(4)), Trim(dtTmp.Rows(x).Item(5)), Trim(dtTmp.Rows(x).Item(6)), Trim(dtTmp.Rows(x).Item(7)), Trim(dtTmp.Rows(x).Item(8)), Trim(dtTmp.Rows(x).Item(9)),
-                            Trim(dtTmp.Rows(x).Item(10)), Trim(dtTmp.Rows(x).Item(11)), Trim(dtTmp.Rows(x).Item(12)), Trim(dtTmp.Rows(x).Item(13)), Trim(dtTmp.Rows(x).Item(14)), Trim(dtTmp.Rows(x).Item(15)))
+                            Trim(dtTmp.Rows(x).Item(10)), Trim(dtTmp.Rows(x).Item(11)), Trim(dtTmp.Rows(x).Item(12)), Trim(dtTmp.Rows(x).Item(13)), Trim(dtTmp.Rows(x).Item(14)), Trim(dtTmp.Rows(x).Item(15)),
+                            Trim(dtTmp.Rows(x).Item(16)), Trim(dtTmp.Rows(x).Item(17)), Trim(dtTmp.Rows(x).Item(18)), Trim(dtTmp.Rows(x).Item(19)), Trim(dtTmp.Rows(x).Item(20)))
             End If
         Next
 
@@ -2140,7 +1216,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         Try
 
-            cmd = New SqlCommand("sp_PLC_CSV_INFO", con)
+            cmd = New SqlCommand("sp_PLC_CSV_INFO_Quality", con)
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Connection = con
             cmd.Transaction = SQLTrans
@@ -2356,8 +1432,6 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
             If userName <> "OBU" And userName <> "OBO" And userName <> "OSP" Then
                 request.Credentials = New NetworkCredential(userName, password)
-                'Else
-                '    request.Credentials = New NetworkCredential("Tos", "Tosis")
             End If
 
             Using reader As New StreamReader(request.GetResponse().GetResponseStream())
@@ -2390,9 +1464,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
         txtMsg.Text = ""
 
         Try
-
             For i = 0 To Files.Count - 1
-
                 For Each Item In Pattern
                     Dim pSplit As String()
                     pSplit = Split(Files(i), "/")
@@ -2403,9 +1475,8 @@ Public Class FormSchedulerCSV_Tamping_Quality
                         fileName = pSplit(3)
                     End If
 
-                    If fileName = pTrouble Or fileName = pQuality Then
+                    If fileName = pQuality Then
                         If Files(i).ToUpper.Contains(Item.ToUpper) Then
-                            'Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & Files(i)), FtpWebRequest)
                             Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & fileName), FtpWebRequest)
 
                             request.Method = WebRequestMethods.Ftp.DownloadFile ' >> Download File
@@ -2417,39 +1488,10 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
                             Using response As FtpWebResponse = DirectCast(request.GetResponse(), FtpWebResponse)
 
-                                'My.Computer.FileSystem.WriteAllBytes(" ", response.GetResponseStream)
                                 Using responseStream As Stream = response.GetResponseStream()
                                     Using MS As New MemoryStream
-                                        'MsgBox("copy")
                                         responseStream.CopyTo(MS)
                                         My.Computer.FileSystem.WriteAllBytes(PathToWriteFilesTo & "\" & fileName, MS.ToArray, False)
-                                    End Using
-                                End Using
-                            End Using
-                        End If
-                    ElseIf fileName Like "*" & pTrouble & "*" Then
-                        If Files(i).ToUpper.Contains(Item.ToUpper) Then
-                            'Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & Files(i)), FtpWebRequest)
-                            Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & fileName), FtpWebRequest)
-
-                            request.Method = WebRequestMethods.Ftp.DownloadFile ' >> Download File
-
-                            ' This example assumes the FTP site uses anonymous logon.
-                            If UserName <> "OBU" And UserName <> "OBO" And UserName <> "OSP" Then
-                                request.Credentials = New NetworkCredential(UserName, Password)
-                                'Else
-                                '    request.Credentials = New NetworkCredential("Tos", "Tosis")
-                            End If
-
-                            Using response As FtpWebResponse = DirectCast(request.GetResponse(), FtpWebResponse)
-
-                                'My.Computer.FileSystem.WriteAllBytes(" ", response.GetResponseStream)
-                                Using responseStream As Stream = response.GetResponseStream()
-                                    Using MS As New IO.MemoryStream
-                                        'MsgBox("copy")
-                                        responseStream.CopyTo(MS)
-                                        My.Computer.FileSystem.WriteAllBytes(PathToWriteFilesTo & "\" & fileName, MS.ToArray, False)
-
                                     End Using
                                 End Using
                             End Using
@@ -2458,12 +1500,10 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
                 Next
             Next
-
         Catch ex As Exception
             txtMsg.Text = ex.Message
             WriteToErrorLog("Download FTP File", txtMsg.Text)
         End Try
-
     End Sub
 
     Private Sub DeleteFiles(ByRef Files As List(Of String), ByRef Patterns As String, ByRef UserName As String, ByRef Password As String, ByRef Url As String, ByRef PathToWriteFilesTo As String,
