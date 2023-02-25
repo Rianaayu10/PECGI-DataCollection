@@ -6,7 +6,6 @@ Public Class FormConfig
 
     Dim NewEnryption As New clsDESEncryption("TOS")
     Dim lb_Load As Boolean = True
-
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
@@ -188,29 +187,12 @@ Public Class FormConfig
     Private Sub up_Combo()
 
         Dim comboSource As New Dictionary(Of String, String)()
-        comboSource.Add("31001", "Mixing Mach Vacuum HT42H")
-        comboSource.Add("31002", "Mixing Mach Vacuum HT35H")
-        comboSource.Add("31003", "Mixing Mach Vacuum EC")
         comboSource.Add("31004", "High Speed Mixer Mch")
-        comboSource.Add("31005", "Conveyor transfer powder")
         comboSource.Add("31006", "Oscilator Mach")
-        comboSource.Add("31007", "Conveyor transfer box")
-        comboSource.Add("31008", "Box lift")
-        comboSource.Add("31009", "Expandmetal tension 1")
-        comboSource.Add("31010", "Expandmetal tension 2")
-        comboSource.Add("31011", "Oven Roller Mach Manual #1")
-        comboSource.Add("31012", "Oven Heater Mach Manual #1")
-        comboSource.Add("31013", "Oven Roller Mach Manual #2")
-        comboSource.Add("31014", "Oven Heater Mach Manual #2")
-        comboSource.Add("31015", "Hoop Tension")
-        comboSource.Add("31016", "Mesin Pressing (auto manual)")
-        comboSource.Add("31017", "Roller Mach Manual #1")
-        comboSource.Add("31018", "Roller Mach Manual #2")
-        comboSource.Add("31019", "Roller Mach Manual #3")
-        comboSource.Add("31020", "Roller Mach Manual #4")
-        comboSource.Add("31021", "Roller Mach Manual #5")
+        comboSource.Add("31009", "Expandmetal tension")
+        comboSource.Add("31010", "Filling")
         comboSource.Add("31022", "Slitter Mach 1")
-        comboSource.Add("31023", "Slitter Mach 1")
+        comboSource.Add("31023", "Slitter Mach 2")
 
         With cboMachineType
             .ColumnHeaders = False

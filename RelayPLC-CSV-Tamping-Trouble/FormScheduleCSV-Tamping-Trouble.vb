@@ -20,10 +20,38 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
 #Region "DECLARATION"
 
-    Dim HighSpeedMixerMch As Integer = 1
-    Dim GroupLine_HighSpeedMixerMch As Integer = 3
+    Dim Factory As String = "F004"
+    Dim Group As Integer = 3
+
+    'High Speed Mixer Mch
+    Dim HighSpeedMixerMch As Integer = 4
     Dim Line_HighSpeedMixerMch As String = "31004"
     Dim Machine_HighSpeedMixerMch As String = "31004"
+
+    'Oscilator Mach
+    Dim OscilatorMach As Integer = 6
+    Dim Line_OscilatorMach As String = "31006"
+    Dim Machine_OscilatorMach As String = "31006"
+
+    'Filling
+    Dim Filling As Integer = 10
+    Dim Line_Filling As String = "31010"
+    Dim Machine_Filling As String = "31010"
+
+    'Mesin Pressing (auto manual)
+    Dim MesinPressing As Integer = 16
+    Dim Line_MesinPressing As String = "31016"
+    Dim Machine_MesinPressing As String = "31016"
+
+    'Slitter Mach 1
+    Dim SlitterMach1 As Integer = 22
+    Dim Line_SlitterMach1 As String = "31022"
+    Dim Machine_SlitterMach1 As String = "31022"
+
+    'Slitter Mach 2
+    Dim SlitterMach2 As Integer = 23
+    Dim Line_SlitterMach2 As String = "31023"
+    Dim Machine_SlitterMach2 As String = "31023"
 
     Dim col_ProcessName As Integer = 0
     Dim Col_ProcessType As Byte = 1
@@ -36,7 +64,13 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
     Dim FilesList As New List(Of String)
 
+
     Dim Thd_HighSpeedMixerMch As SchedulerSetting
+    Dim Thd_OscilatorMach As SchedulerSetting
+    Dim Thd_Filling As SchedulerSetting
+    Dim Thd_MesinPressing As SchedulerSetting
+    Dim Thd_SlitterMach1 As SchedulerSetting
+    Dim Thd_SlitterMach2 As SchedulerSetting
 
     Dim m_Finish As Boolean
 
@@ -119,6 +153,46 @@ Public Class FormScheduleCSV_Tamping_Trouble
                 Thd_HighSpeedMixerMch.ScheduleThd = Nothing
             End If
             If Thd_HighSpeedMixerMch.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_OscilatorMach.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OscilatorMach.Status = "iddle" Then
+                Thd_OscilatorMach.ScheduleThd = Nothing
+            End If
+            If Thd_OscilatorMach.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_Filling.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Filling.Status = "iddle" Then
+                Thd_Filling.ScheduleThd = Nothing
+            End If
+            If Thd_Filling.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_MesinPressing.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_MesinPressing.Status = "iddle" Then
+                Thd_MesinPressing.ScheduleThd = Nothing
+            End If
+            If Thd_MesinPressing.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_SlitterMach1.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_SlitterMach1.Status = "iddle" Then
+                Thd_SlitterMach1.ScheduleThd = Nothing
+            End If
+            If Thd_SlitterMach1.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_SlitterMach2.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_SlitterMach2.Status = "iddle" Then
+                Thd_SlitterMach2.ScheduleThd = Nothing
+            End If
+            If Thd_SlitterMach2.ScheduleThd Is Nothing Then Exit Do
             Thread.Sleep(100)
         Loop
 
@@ -303,9 +377,46 @@ Public Class FormScheduleCSV_Tamping_Trouble
             up_FTP()
             ''==================
 
-            '01. TAMPING T-05
-            pProses = "HighSpeedMixerMch"
-            up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch)
+            'High Speed Mixer Mch
+            '====================
+            If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
+                pProses = "High Speed Mixe rMch"
+                up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, Group)
+            End If
+            '====================
+
+            'Oscilator Mach
+            '====================
+            If gs_ServerPath_OscilatorMach <> "" And gs_LocalPath_OscilatorMach <> "" Then
+                pProses = "Oscilato Mach"
+                up_ProcessData(OscilatorMach, "High Speed Mixer Mch", gs_LocalPath_OscilatorMach, gs_FileName_History_OscilatorMach, Line_OscilatorMach, Group)
+            End If
+            '====================
+
+            'Mesin Pressing (auto manual)
+            '====================
+            If gs_ServerPath_MesinPressing <> "" And gs_LocalPath_MesinPressing <> "" Then
+                pProses = "Mesin Pressing"
+                up_ProcessData(MesinPressing, "Mesin Pressing", gs_LocalPath_MesinPressing, gs_FileName_History_MesinPressing, Line_MesinPressing, Group)
+            End If
+            '====================
+
+
+            'Slitter Mach 1
+            '====================
+            If gs_ServerPath_SlitterMach1 <> "" And gs_LocalPath_SlitterMach1 <> "" Then
+                pProses = "Slitter Mach 1"
+                up_ProcessData(SlitterMach1, "Slitter Mach 1", gs_LocalPath_SlitterMach1, gs_FileName_History_SlitterMach1, Line_SlitterMach1, Group)
+            End If
+            '====================
+
+            'Slitter Mach 2
+            '====================
+            If gs_ServerPath_SlitterMach2 <> "" And gs_LocalPath_SlitterMach2 <> "" Then
+                pProses = "Slitter Mach 2"
+                up_ProcessData(SlitterMach2, "Slitter Mach 2", gs_LocalPath_SlitterMach2, gs_FileName_History_SlitterMach2, Line_SlitterMach2, Group)
+            End If
+            '====================
 
         Catch ex As Exception
             WriteToErrorLog(pProses, "error : " & ex.Message)
@@ -375,17 +486,93 @@ Public Class FormScheduleCSV_Tamping_Trouble
         Me.Cursor = Cursors.WaitCursor
 
         Try
-
+            ' High Speed Mixer Mch
+            '===========================
             Thread.Sleep(200)
             Thd_HighSpeedMixerMch = New SchedulerSetting
             With Thd_HighSpeedMixerMch
-                .Name = "T-05"
+                .Name = "HighSpeedMixerMch"
                 .EndSchedule = False
                 .Lock = New Object
                 .DelayTime = gi_Interval_HighSpeedMixerMch
-                .ScheduleThd = New Thread(AddressOf up_RefreshTamping5)
+                .ScheduleThd = New Thread(AddressOf up_Refresh_HighSpeedMixerMch)
                 .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "T-05"
+                .ScheduleThd.Name = "HighSpeedMixerMch"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oscilator Mach
+            '===========================
+            Thread.Sleep(200)
+            Thd_OscilatorMach = New SchedulerSetting
+            With Thd_OscilatorMach
+                .Name = "OscilatorMach"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_OscilatorMach
+                .ScheduleThd = New Thread(AddressOf up_Refresh_OscilatorMach)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "OscilatorMach"
+                .ScheduleThd.Start()
+            End With
+
+            ' Expandmetal tension 2
+            '===========================
+            Thread.Sleep(200)
+            Thd_Filling = New SchedulerSetting
+            With Thd_Filling
+                .Name = "Filling"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Filling
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Filling)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Filling"
+                .ScheduleThd.Start()
+            End With
+
+            ' Mesin Pressing (auto manual)
+            '===========================
+            Thread.Sleep(200)
+            Thd_MesinPressing = New SchedulerSetting
+            With Thd_MesinPressing
+                .Name = "MesinPressing"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_MesinPressing
+                .ScheduleThd = New Thread(AddressOf up_Refresh_MesinPressing)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "MesinPressing"
+                .ScheduleThd.Start()
+            End With
+
+            ' Slitter Mach 1
+            '===========================
+            Thread.Sleep(200)
+            Thd_SlitterMach1 = New SchedulerSetting
+            With Thd_SlitterMach1
+                .Name = "SlitterMach1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_SlitterMach1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_SlitterMach1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "SlitterMach1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Slitter Mach 2
+            '===========================
+            Thread.Sleep(200)
+            Thd_SlitterMach2 = New SchedulerSetting
+            With Thd_SlitterMach2
+                .Name = "SlitterMach2"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_SlitterMach2
+                .ScheduleThd = New Thread(AddressOf up_Refresh_SlitterMach2)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "SlitterMach2"
                 .ScheduleThd.Start()
             End With
 
@@ -405,6 +592,24 @@ Public Class FormScheduleCSV_Tamping_Trouble
             Thd_HighSpeedMixerMch.EndSchedule = True
         End SyncLock
 
+        SyncLock Thd_OscilatorMach.Lock
+            Thd_OscilatorMach.EndSchedule = True
+        End SyncLock
+
+        SyncLock Thd_Filling.Lock
+            Thd_Filling.EndSchedule = True
+        End SyncLock
+        SyncLock Thd_MesinPressing.Lock
+            Thd_MesinPressing.EndSchedule = True
+        End SyncLock
+
+        SyncLock Thd_SlitterMach1.Lock
+            Thd_SlitterMach1.EndSchedule = True
+        End SyncLock
+
+        SyncLock Thd_SlitterMach2.Lock
+            Thd_SlitterMach2.EndSchedule = True
+        End SyncLock
     End Sub
 
     Private Function up_ToInserDatatable_Trouble(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pGroupCount As Integer) As DataTable
@@ -703,8 +908,28 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
     End Function
 
-    Private Sub up_RefreshTamping5()
-        up_Refresh(HighSpeedMixerMch, "High Speed Mixer Mch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch)
+    Private Sub up_Refresh_HighSpeedMixerMch()
+        up_Refresh(HighSpeedMixerMch, "HighSpeedMixerMch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, Line_HighSpeedMixerMch, Group)
+    End Sub
+
+    Private Sub up_Refresh_OscilatorMach()
+        up_Refresh(OscilatorMach, "OscilatorMach", Thd_OscilatorMach, gs_ServerPath_OscilatorMach, gs_LocalPath_OscilatorMach, gs_User_OscilatorMach, gs_Password_OscilatorMach, gs_FileName_History_OscilatorMach, Line_OscilatorMach, Group)
+    End Sub
+
+    Private Sub up_Refresh_Filling()
+        up_Refresh(Filling, "Filling", Thd_Filling, gs_ServerPath_Filling, gs_LocalPath_Filling, gs_User_Filling, gs_Password_Filling, gs_FileName_History_Filling, Line_Filling, Group)
+    End Sub
+
+    Private Sub up_Refresh_MesinPressing()
+        up_Refresh(MesinPressing, "MesinPressing", Thd_MesinPressing, gs_ServerPath_MesinPressing, gs_LocalPath_MesinPressing, gs_User_MesinPressing, gs_Password_MesinPressing, gs_FileName_History_MesinPressing, Line_MesinPressing, Group)
+    End Sub
+
+    Private Sub up_Refresh_SlitterMach1()
+        up_Refresh(SlitterMach1, "SlitterMach1", Thd_SlitterMach1, gs_ServerPath_SlitterMach1, gs_LocalPath_SlitterMach1, gs_User_SlitterMach1, gs_Password_SlitterMach1, gs_FileName_History_SlitterMach1, Line_SlitterMach1, Group)
+    End Sub
+
+    Private Sub up_Refresh_SlitterMach2()
+        up_Refresh(SlitterMach2, "SlitterMach2", Thd_SlitterMach2, gs_ServerPath_SlitterMach2, gs_LocalPath_SlitterMach2, gs_User_SlitterMach2, gs_Password_SlitterMach2, gs_FileName_History_SlitterMach2, Line_SlitterMach2, Group)
     End Sub
 
     Private Sub up_Refresh(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal Thd As SchedulerSetting, ByVal pServerPath As String, ByVal pLocalPath As String, ByVal pUser As String, ByVal pPassword As String, ByVal pFileNameHistory As String, ByVal pLineCode As String, ByVal pGroupCount As Integer)
@@ -730,7 +955,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
                     If FilesList.Count > 0 Then
                         'Download File
                         '=============
-                        DownloadFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory, "zz")
+                        DownloadFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory)
 
                         'Delete File
                         '===========
@@ -738,7 +963,6 @@ Public Class FormScheduleCSV_Tamping_Trouble
                     End If
                 End If
                 '====================
-
 
                 up_ProcessData(pProcess, pProcessName, pLocalPath, pFileNameHistory, pGroupCount, pLineCode)
 
@@ -774,11 +998,11 @@ Public Class FormScheduleCSV_Tamping_Trouble
         dtHis = up_ToInserDatatable_Trouble(pLocalPath, pFileNameHistory, pLineCode, pGroupCount)
         dtHis2 = up_ToInserDatatable_Trouble2(pLocalPath, pFileNameHistory, pLineCode, pGroupCount)
 
-        con = New SqlConnection(ConStr)
-        con.Open()
 
         Dim cmd As SqlCommand
         Dim SQLTrans As SqlTransaction
+        con = New SqlConnection(ConStr)
+        con.Open()
 
         SQLTrans = con.BeginTransaction
 
@@ -861,15 +1085,57 @@ Public Class FormScheduleCSV_Tamping_Trouble
 
     Private Sub up_FTP()
 
-        'FTP TAMPING T-05
+
+        'High Speed Mixer Mch
         '====================
         If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
             FilesList = GetFtpFileList(gs_ServerPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch, "zz")
+                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_FileName_History_HighSpeedMixerMch)
             End If
         End If
         '====================
+
+        'Oscilator Mach
+        '====================
+        If gs_ServerPath_OscilatorMach <> "" And gs_LocalPath_OscilatorMach <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OscilatorMach, gs_User_OscilatorMach, gs_Password_OscilatorMach)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OscilatorMach, gs_Password_OscilatorMach, gs_ServerPath_OscilatorMach, gs_LocalPath_OscilatorMach, gs_FileName_History_OscilatorMach)
+            End If
+        End If
+        '====================
+
+        'Mesin Pressing (auto manual)
+        '====================
+        If gs_ServerPath_MesinPressing <> "" And gs_LocalPath_MesinPressing <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_MesinPressing, gs_User_MesinPressing, gs_Password_MesinPressing)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_MesinPressing, gs_Password_MesinPressing, gs_ServerPath_MesinPressing, gs_LocalPath_MesinPressing, gs_FileName_History_MesinPressing)
+            End If
+        End If
+        '====================
+
+        'Slitter Mach 1
+        '====================
+        If gs_ServerPath_SlitterMach1 <> "" And gs_LocalPath_SlitterMach1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_SlitterMach1, gs_User_SlitterMach1, gs_Password_SlitterMach1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_SlitterMach1, gs_Password_SlitterMach1, gs_ServerPath_SlitterMach1, gs_LocalPath_SlitterMach1, gs_FileName_History_SlitterMach1)
+            End If
+        End If
+        '====================
+
+        'Slitter Mach 2
+        '====================
+        If gs_ServerPath_SlitterMach2 <> "" And gs_LocalPath_SlitterMach2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_SlitterMach2, gs_User_SlitterMach2, gs_Password_SlitterMach2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_SlitterMach2, gs_Password_SlitterMach2, gs_ServerPath_SlitterMach2, gs_LocalPath_SlitterMach2, gs_FileName_History_SlitterMach2)
+            End If
+        End If
+        '====================
+
     End Sub
 
     Private Sub up_SavedataCSV(ByVal dtTmp As DataTable, ByVal pLineCode As String)
@@ -1156,7 +1422,7 @@ Public Class FormScheduleCSV_Tamping_Trouble
     End Function
 
     Private Sub DownloadFiles(ByRef Files As List(Of String), ByRef Patterns As String, ByRef UserName As String, ByRef Password As String, ByRef Url As String, ByRef PathToWriteFilesTo As String,
-                              ByVal pTrouble As String, ByVal pQuality As String)
+                              ByVal pTrouble As String)
         Dim Pattern() As String = Patterns.Split("|"c)
         Dim fileName As String = ""
 

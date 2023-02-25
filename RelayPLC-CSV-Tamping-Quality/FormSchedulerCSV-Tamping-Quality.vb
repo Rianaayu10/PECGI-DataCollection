@@ -18,98 +18,120 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
 #Region "DECLARATION"
 
-    'Machine High Speed Mixer
     Dim Factory As String = "F004"
     Dim Group As Integer = 3
 
+    'Mixing Mach. Vacuum HT42H 
     Dim MixingMachVacuumHT42H As Integer = 1
     Dim Line_MixingMachVacuumHT42H As String = "31001"
     Dim Machine_MixingMachVacuumHT42H As String = "31001"
 
+    'Mixing Mach. Vacuum HT35H
     Dim MixingMachVacuumHT35H As Integer = 2
     Dim Line_MixingMachVacuumHT35H As String = "31002"
     Dim Machine_MixingMachVacuumHT35H As String = "31002"
 
+    'Mixing Mach. Vacuum EC
     Dim MixingMachVacuumEC As Integer = 3
     Dim Line_MixingMachVacuumEC As String = "31003"
     Dim Machine_MixingMachVacuumEC As String = "31003"
 
+    'High Speed Mixer Mch
     Dim HighSpeedMixerMch As Integer = 4
     Dim Line_HighSpeedMixerMch As String = "31004"
     Dim Machine_HighSpeedMixerMch As String = "31004"
 
+    'Conveyor transfer powder
     Dim Conveyortransferpowder As Integer = 5
     Dim Line_Conveyortransferpowder As String = "31005"
     Dim Machine_Conveyortransferpowder As String = "31005"
 
+    'Oscilator Mach
     Dim OscilatorMach As Integer = 6
     Dim Line_OscilatorMach As String = "31006"
     Dim Machine_OscilatorMach As String = "31006"
 
+    'Conveyor transfer box
     Dim Conveyortransferbox As Integer = 7
     Dim Line_Conveyortransferbox As String = "31007"
     Dim Machine_Conveyortransferbox As String = "31007"
 
+    'Box lift
     Dim Boxlift As Integer = 8
     Dim Line_Boxlift As String = "31008"
     Dim Machine_Boxlift As String = "31008"
 
-    Dim Expandmetaltension1 As Integer = 9
-    Dim Line_Expandmetaltension1 As String = "31009"
-    Dim Machine_Expandmetaltension1 As String = "31009"
+    'Expandmetal tension
+    Dim Expandmetaltension As Integer = 9
+    Dim Line_Expandmetaltension As String = "31009"
+    Dim Machine_Expandmetaltension As String = "31009"
 
-    Dim Expandmetaltension2 As Integer = 10
-    Dim Line_Expandmetaltension2 As String = "31010"
-    Dim Machine_Expandmetaltension2 As String = "31010"
+    'Filling
+    Dim Filling As Integer = 10
+    Dim Line_Filling As String = "31010"
+    Dim Machine_Filling As String = "31010"
 
+    'MOven Roller Mach. Manual #1
     Dim OvenRollerMachManual1 As Integer = 11
     Dim Line_OvenRollerMachManual1 As String = "31011"
     Dim Machine_OvenRollerMachManual1 As String = "31011"
 
+    'Oven Heater Mach. Manual #1
     Dim OvenHeaterMachManual1 As Integer = 12
     Dim Line_OvenHeaterMachManual1 As String = "31012"
     Dim Machine_OvenHeaterMachManual1 As String = "31012"
 
+    'Oven Roller Mach. Manual #2
     Dim OvenRollerMachManual2 As Integer = 13
     Dim Line_OvenRollerMachManual2 As String = "31013"
     Dim Machine_OvenRollerMachManual2 As String = "31013"
 
+    'Oven Heater Mach. Manual #2
     Dim OvenHeaterMachManual2 As Integer = 14
     Dim Line_OvenHeaterMachManual2 As String = "31014"
     Dim Machine_OvenHeaterMachManual2 As String = "31014"
 
+    'Hoop Tension
     Dim HoopTension As Integer = 15
     Dim Line_HoopTension As String = "31015"
     Dim Machine_HoopTension As String = "31015"
 
+    'Mesin Pressing (auto manual)
     Dim MesinPressing As Integer = 16
     Dim Line_MesinPressing As String = "31016"
     Dim Machine_MesinPressing As String = "31016"
 
+    'Roller Mach. Manual #1
     Dim RollerMachManual1 As Integer = 17
     Dim Line_RollerMachManual1 As String = "31017"
     Dim Machine_RollerMachManual1 As String = "31017"
 
+    'Roller Mach. Manual #2
     Dim RollerMachManual2 As Integer = 18
     Dim Line_RollerMachManual2 As String = "31018"
     Dim Machine_RollerMachManual2 As String = "31018"
 
+    'Roller Mach. Manual #3
     Dim RollerMachManual3 As Integer = 19
     Dim Line_RollerMachManual3 As String = "31019"
     Dim Machine_RollerMachManual3 As String = "31019"
 
+    'Roller Mach. Manual #4
     Dim RollerMachManual4 As Integer = 20
     Dim Line_RollerMachManual4 As String = "31020"
     Dim Machine_RollerMachManual4 As String = "31020"
 
+    'Roller Mach. Manual #5
     Dim RollerMachManual5 As Integer = 21
     Dim Line_RollerMachManual5 As String = "31021"
     Dim Machine_RollerMachManual5 As String = "31021"
 
+    'Slitter Mach 1
     Dim SlitterMach1 As Integer = 22
     Dim Line_SlitterMach1 As String = "31022"
     Dim Machine_SlitterMach1 As String = "31022"
 
+    'Slitter Mach 2
     Dim SlitterMach2 As Integer = 23
     Dim Line_SlitterMach2 As String = "31023"
     Dim Machine_SlitterMach2 As String = "31023"
@@ -130,8 +152,8 @@ Public Class FormSchedulerCSV_Tamping_Quality
     Dim Thd_OscilatorMach As SchedulerSetting
     Dim Thd_Conveyortransferbox As SchedulerSetting
     Dim Thd_Boxlift As SchedulerSetting
-    Dim Thd_Expandmetaltension1 As SchedulerSetting
-    Dim Thd_Expandmetaltension2 As SchedulerSetting
+    Dim Thd_Expandmetaltension As SchedulerSetting
+    Dim Thd_Filling As SchedulerSetting
     Dim Thd_OvenRollerMachManual1 As SchedulerSetting
     Dim Thd_OvenHeaterMachManual1 As SchedulerSetting
     Dim Thd_OvenRollerMachManual2 As SchedulerSetting
@@ -223,6 +245,34 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         up_TimeStop()
 
+        'Mixing Mach Vacuum HT42H
+        Do Until Thd_MixingMachVacuumHT42H.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_MixingMachVacuumHT42H.Status = "iddle" Then
+                Thd_MixingMachVacuumHT42H.ScheduleThd = Nothing
+            End If
+            If Thd_MixingMachVacuumHT42H.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Mixing Mach Vacuum HT35H
+        Do Until Thd_MixingMachVacuumHT35H.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_MixingMachVacuumHT35H.Status = "iddle" Then
+                Thd_MixingMachVacuumHT35H.ScheduleThd = Nothing
+            End If
+            If Thd_MixingMachVacuumHT35H.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Mixing Mach Vacuum EC
+        Do Until Thd_MixingMachVacuumEC.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_MixingMachVacuumEC.Status = "iddle" Then
+                Thd_MixingMachVacuumEC.ScheduleThd = Nothing
+            End If
+            If Thd_MixingMachVacuumEC.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'High Speed Mixer Mch
         Do Until Thd_HighSpeedMixerMch.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
             If Thd_HighSpeedMixerMch.Status = "iddle" Then
                 Thd_HighSpeedMixerMch.ScheduleThd = Nothing
@@ -230,6 +280,176 @@ Public Class FormSchedulerCSV_Tamping_Quality
             If Thd_HighSpeedMixerMch.ScheduleThd Is Nothing Then Exit Do
             Thread.Sleep(100)
         Loop
+
+        'Conveyor transfer powder
+        Do Until Thd_Conveyortransferpowder.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Conveyortransferpowder.Status = "iddle" Then
+                Thd_Conveyortransferpowder.ScheduleThd = Nothing
+            End If
+            If Thd_Conveyortransferpowder.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Oscilator Mach
+        Do Until Thd_OscilatorMach.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OscilatorMach.Status = "iddle" Then
+                Thd_OscilatorMach.ScheduleThd = Nothing
+            End If
+            If Thd_OscilatorMach.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Conveyor transfer box
+        Do Until Thd_Conveyortransferbox.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Conveyortransferbox.Status = "iddle" Then
+                Thd_Conveyortransferbox.ScheduleThd = Nothing
+            End If
+            If Thd_Conveyortransferbox.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Box lift
+        Do Until Thd_Boxlift.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Boxlift.Status = "iddle" Then
+                Thd_Boxlift.ScheduleThd = Nothing
+            End If
+            If Thd_Boxlift.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Expandmetal tension
+        Do Until Thd_Expandmetaltension.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Expandmetaltension.Status = "iddle" Then
+                Thd_Expandmetaltension.ScheduleThd = Nothing
+            End If
+            If Thd_Expandmetaltension.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Filling
+        Do Until Thd_Filling.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_Filling.Status = "iddle" Then
+                Thd_Filling.ScheduleThd = Nothing
+            End If
+            If Thd_Filling.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Oven Roller Mach Manual 1
+        Do Until Thd_OvenRollerMachManual1.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OvenRollerMachManual1.Status = "iddle" Then
+                Thd_OvenRollerMachManual1.ScheduleThd = Nothing
+            End If
+            If Thd_OvenRollerMachManual1.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Oven Heater Mach Manual 1
+        Do Until Thd_OvenHeaterMachManual1.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OvenHeaterMachManual1.Status = "iddle" Then
+                Thd_OvenHeaterMachManual1.ScheduleThd = Nothing
+            End If
+            If Thd_OvenHeaterMachManual1.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Oven Roller Mach Manual 2
+        Do Until Thd_OvenRollerMachManual2.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OvenRollerMachManual2.Status = "iddle" Then
+                Thd_OvenRollerMachManual2.ScheduleThd = Nothing
+            End If
+            If Thd_OvenRollerMachManual2.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Oven Heater Mach Manual 2
+        Do Until Thd_OvenHeaterMachManual2.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_OvenHeaterMachManual2.Status = "iddle" Then
+                Thd_OvenHeaterMachManual2.ScheduleThd = Nothing
+            End If
+            If Thd_OvenHeaterMachManual2.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Hoop Tension
+        Do Until Thd_HoopTension.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_HoopTension.Status = "iddle" Then
+                Thd_HoopTension.ScheduleThd = Nothing
+            End If
+            If Thd_HoopTension.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Mesin Pressing
+        Do Until Thd_MesinPressing.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_MesinPressing.Status = "iddle" Then
+                Thd_MesinPressing.ScheduleThd = Nothing
+            End If
+            If Thd_MesinPressing.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Roller Mach Manual 1
+        Do Until Thd_RollerMachManual1.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_RollerMachManual1.Status = "iddle" Then
+                Thd_RollerMachManual1.ScheduleThd = Nothing
+            End If
+            If Thd_RollerMachManual1.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Roller Mac hManual 2
+        Do Until Thd_RollerMachManual2.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_RollerMachManual2.Status = "iddle" Then
+                Thd_RollerMachManual2.ScheduleThd = Nothing
+            End If
+            If Thd_RollerMachManual2.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Roller Mach Manual 3
+        Do Until Thd_RollerMachManual3.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_RollerMachManual3.Status = "iddle" Then
+                Thd_RollerMachManual3.ScheduleThd = Nothing
+            End If
+            If Thd_RollerMachManual3.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Roller Mach Manual 4
+        Do Until Thd_RollerMachManual4.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_RollerMachManual4.Status = "iddle" Then
+                Thd_RollerMachManual4.ScheduleThd = Nothing
+            End If
+            If Thd_RollerMachManual4.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        'Roller Mach Manual 5
+        Do Until Thd_RollerMachManual5.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_RollerMachManual5.Status = "iddle" Then
+                Thd_RollerMachManual5.ScheduleThd = Nothing
+            End If
+            If Thd_RollerMachManual5.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_SlitterMach1.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_SlitterMach1.Status = "iddle" Then
+                Thd_SlitterMach1.ScheduleThd = Nothing
+            End If
+            If Thd_SlitterMach1.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
+        Do Until Thd_SlitterMach2.ScheduleThd.ThreadState = Threading.ThreadState.Stopped
+            If Thd_SlitterMach2.Status = "iddle" Then
+                Thd_SlitterMach2.ScheduleThd = Nothing
+            End If
+            If Thd_SlitterMach2.ScheduleThd Is Nothing Then Exit Do
+            Thread.Sleep(100)
+        Loop
+
 
         btnStart.Enabled = True
         btnManual.Enabled = True
@@ -421,7 +641,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
             'Mixing Mach. Vacuum HT35H 
             '====================
             If gs_ServerPath_MixingMachVacuumHT35H <> "" And gs_LocalPath_MixingMachVacuumHT35H <> "" Then
-                pProses = "High Speed Mixer Mch"
+                pProses = "Mixing Mach Vacuum HT35H"
                 up_ProcessData(MixingMachVacuumHT35H, "High Speed Mixer Mch", gs_LocalPath_MixingMachVacuumHT35H, gs_FileName_MixingMachVacuumHT35H, Line_MixingMachVacuumHT35H, Machine_MixingMachVacuumHT35H, Factory)
             End If
             '====================
@@ -429,7 +649,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
             'Mixing Mach. Vacuum EC 
             '====================
             If gs_ServerPath_MixingMachVacuumEC <> "" And gs_LocalPath_MixingMachVacuumEC <> "" Then
-                pProses = "High Speed Mixer Mch"
+                pProses = "Mixing Mach Vacuum EC"
                 up_ProcessData(MixingMachVacuumEC, "High Speed Mixer Mch", gs_LocalPath_MixingMachVacuumEC, gs_FileName_MixingMachVacuumEC, Line_MixingMachVacuumEC, Machine_MixingMachVacuumEC, Factory)
             End If
             '====================
@@ -445,7 +665,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
             'Conveyor transfer powder
             '====================
             If gs_ServerPath_Conveyortransferpowder <> "" And gs_LocalPath_Conveyortransferpowder <> "" Then
-                pProses = "High Speed Mixer Mch"
+                pProses = "Conveyor transfer powder"
                 up_ProcessData(Conveyortransferpowder, "High Speed Mixer Mch", gs_LocalPath_Conveyortransferpowder, gs_FileName_Conveyortransferpowder, Line_Conveyortransferpowder, Machine_Conveyortransferpowder, Factory)
             End If
             '====================
@@ -453,7 +673,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
             'Oscilator Mach
             '====================
             If gs_ServerPath_OscilatorMach <> "" And gs_LocalPath_OscilatorMach <> "" Then
-                pProses = "High Speed Mixer Mch"
+                pProses = "Oscilato Mach"
                 up_ProcessData(OscilatorMach, "High Speed Mixer Mch", gs_LocalPath_OscilatorMach, gs_FileName_OscilatorMach, Line_OscilatorMach, Machine_OscilatorMach, Factory)
             End If
             '====================
@@ -461,7 +681,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
             'Conveyor transfer box
             '====================
             If gs_ServerPath_Conveyortransferbox <> "" And gs_LocalPath_Conveyortransferbox <> "" Then
-                pProses = "High Speed Mixer Mch"
+                pProses = "Conveyor transfer box"
                 up_ProcessData(Conveyortransferbox, "High Speed Mixer Mch", gs_LocalPath_Conveyortransferbox, gs_FileName_Conveyortransferbox, Line_Conveyortransferbox, Machine_Conveyortransferbox, Factory)
             End If
             '====================
@@ -474,19 +694,19 @@ Public Class FormSchedulerCSV_Tamping_Quality
             End If
             '====================
 
-            'Expandmetal tension 1
+            'Expandmetal tension 
             '====================
-            If gs_ServerPath_Expandmetaltension1 <> "" And gs_LocalPath_Expandmetaltension1 <> "" Then
-                pProses = "Expandmetal tension 1"
-                up_ProcessData(Expandmetaltension1, "Expandmetal tension 1", gs_LocalPath_Expandmetaltension1, gs_FileName_Expandmetaltension1, Line_Expandmetaltension1, Machine_Expandmetaltension1, Factory)
+            If gs_ServerPath_Expandmetaltension <> "" And gs_LocalPath_Expandmetaltension <> "" Then
+                pProses = "Expandmetal tension"
+                up_ProcessData(Expandmetaltension, "Expandmetal tension", gs_LocalPath_Expandmetaltension, gs_FileName_Expandmetaltension, Line_Expandmetaltension, Machine_Expandmetaltension, Factory)
             End If
             '====================
 
-            'Expandmetal tension 2
+            'Filling
             '====================
-            If gs_ServerPath_Expandmetaltension2 <> "" And gs_LocalPath_Expandmetaltension2 <> "" Then
-                pProses = "Expandmetal tension 2"
-                up_ProcessData(Expandmetaltension2, "Expandmetal tension 2", gs_LocalPath_Expandmetaltension2, gs_FileName_Expandmetaltension2, Line_Expandmetaltension2, Machine_Expandmetaltension2, Factory)
+            If gs_ServerPath_Filling <> "" And gs_LocalPath_Filling <> "" Then
+                pProses = "Filling"
+                up_ProcessData(Filling, "Filling", gs_LocalPath_Filling, gs_FileName_Filling, Line_Filling, Machine_Filling, Factory)
             End If
             '====================
 
@@ -684,19 +904,19 @@ Public Class FormSchedulerCSV_Tamping_Quality
                             gs_Password_Boxlift = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
                             gi_Interval_Boxlift = ds.Tables(0).Rows(i)("TimeInterval")
 
-                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Expandmetaltension1 Then
-                            gs_ServerPath_Expandmetaltension1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPath_Expandmetaltension1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_User_Expandmetaltension1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_Password_Expandmetaltension1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_Interval_Expandmetaltension1 = ds.Tables(0).Rows(i)("TimeInterval")
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Expandmetaltension Then
+                            gs_ServerPath_Expandmetaltension = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Expandmetaltension = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Expandmetaltension = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Expandmetaltension = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Expandmetaltension = ds.Tables(0).Rows(i)("TimeInterval")
 
-                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Expandmetaltension2 Then
-                            gs_ServerPath_Expandmetaltension2 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
-                            gs_LocalPath_Expandmetaltension2 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
-                            gs_User_Expandmetaltension2 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
-                            gs_Password_Expandmetaltension2 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
-                            gi_Interval_Expandmetaltension2 = ds.Tables(0).Rows(i)("TimeInterval")
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Filling Then
+                            gs_ServerPath_Filling = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Filling = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Filling = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Filling = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Filling = ds.Tables(0).Rows(i)("TimeInterval")
 
                         ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OvenRollerMachManual1 Then
                             gs_ServerPath_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
@@ -940,30 +1160,30 @@ Public Class FormSchedulerCSV_Tamping_Quality
             ' Expandmetal tension 1
             '===========================
             Thread.Sleep(200)
-            Thd_Expandmetaltension1 = New SchedulerSetting
-            With Thd_Expandmetaltension1
-                .Name = "Expandmetaltension1"
+            Thd_Expandmetaltension = New SchedulerSetting
+            With Thd_Expandmetaltension
+                .Name = "Expandmetaltension"
                 .EndSchedule = False
                 .Lock = New Object
-                .DelayTime = gi_Interval_Expandmetaltension1
-                .ScheduleThd = New Thread(AddressOf up_Refresh_Expandmetaltension1)
+                .DelayTime = gi_Interval_Expandmetaltension
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Expandmetaltension)
                 .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "Expandmetaltension1"
+                .ScheduleThd.Name = "Expandmetaltension"
                 .ScheduleThd.Start()
             End With
 
             ' Expandmetal tension 2
             '===========================
             Thread.Sleep(200)
-            Thd_Expandmetaltension2 = New SchedulerSetting
-            With Thd_Expandmetaltension2
-                .Name = "Expandmetaltension2"
+            Thd_Filling = New SchedulerSetting
+            With Thd_Filling
+                .Name = "Filling"
                 .EndSchedule = False
                 .Lock = New Object
-                .DelayTime = gi_Interval_Expandmetaltension2
-                .ScheduleThd = New Thread(AddressOf up_Refresh_Expandmetaltension2)
+                .DelayTime = gi_Interval_Filling
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Filling)
                 .ScheduleThd.IsBackground = True
-                .ScheduleThd.Name = "Expandmetaltension2"
+                .ScheduleThd.Name = "Filling"
                 .ScheduleThd.Start()
             End With
 
@@ -1174,8 +1394,119 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         m_Finish = True
 
+        'Mixing Mach Vacuum HT42H
+        SyncLock Thd_MixingMachVacuumHT42H.Lock
+            Thd_MixingMachVacuumHT42H.EndSchedule = True
+        End SyncLock
+
+        'Mixing Mach Vacuum HT35H
+        SyncLock Thd_MixingMachVacuumHT35H.Lock
+            Thd_MixingMachVacuumHT35H.EndSchedule = True
+        End SyncLock
+
+        'Mixing Mach Vacuum EC
+        SyncLock Thd_MixingMachVacuumEC.Lock
+            Thd_MixingMachVacuumEC.EndSchedule = True
+        End SyncLock
+
+        'High Speed Mixer Mch
         SyncLock Thd_HighSpeedMixerMch.Lock
             Thd_HighSpeedMixerMch.EndSchedule = True
+        End SyncLock
+
+        'Conveyor transfer powder
+        SyncLock Thd_Conveyortransferpowder.Lock
+            Thd_Conveyortransferpowder.EndSchedule = True
+        End SyncLock
+
+        'Oscilator Mach
+        SyncLock Thd_OscilatorMach.Lock
+            Thd_OscilatorMach.EndSchedule = True
+        End SyncLock
+
+        'Conveyor transfer box
+        SyncLock Thd_Conveyortransferbox.Lock
+            Thd_Conveyortransferbox.EndSchedule = True
+        End SyncLock
+
+        'Box lift
+        SyncLock Thd_Boxlift.Lock
+            Thd_Boxlift.EndSchedule = True
+        End SyncLock
+
+        'Expandmetal tension
+        SyncLock Thd_Expandmetaltension.Lock
+            Thd_Expandmetaltension.EndSchedule = True
+        End SyncLock
+
+        'Filling
+        SyncLock Thd_Filling.Lock
+            Thd_Filling.EndSchedule = True
+        End SyncLock
+
+        'OvenRoller Mach Manual 1
+        SyncLock Thd_OvenRollerMachManual1.Lock
+            Thd_OvenRollerMachManual1.EndSchedule = True
+        End SyncLock
+
+        'Oven Heater Mach Manual 1
+        SyncLock Thd_OvenHeaterMachManual1.Lock
+            Thd_OvenHeaterMachManual1.EndSchedule = True
+        End SyncLock
+
+        'OvenRoller Mach Manual 2
+        SyncLock Thd_OvenRollerMachManual2.Lock
+            Thd_OvenRollerMachManual2.EndSchedule = True
+        End SyncLock
+
+        'Oven Heater Mach Manual 2
+        SyncLock Thd_OvenHeaterMachManual2.Lock
+            Thd_OvenHeaterMachManual2.EndSchedule = True
+        End SyncLock
+
+        'Hoop Tension
+        SyncLock Thd_HoopTension.Lock
+            Thd_HoopTension.EndSchedule = True
+        End SyncLock
+
+        'Mesin Pressing
+        SyncLock Thd_MesinPressing.Lock
+            Thd_MesinPressing.EndSchedule = True
+        End SyncLock
+
+        'Roller Mach Manual 1
+        SyncLock Thd_RollerMachManual1.Lock
+            Thd_RollerMachManual1.EndSchedule = True
+        End SyncLock
+
+        'RollerMachManual 2
+        SyncLock Thd_RollerMachManual2.Lock
+            Thd_RollerMachManual2.EndSchedule = True
+        End SyncLock
+
+        'RollerMachManual 3
+        SyncLock Thd_RollerMachManual3.Lock
+            Thd_RollerMachManual3.EndSchedule = True
+        End SyncLock
+
+        'RollerMachManual 4
+        SyncLock Thd_RollerMachManual4.Lock
+            Thd_RollerMachManual4.EndSchedule = True
+        End SyncLock
+
+        'RollerMachManual 5
+        SyncLock Thd_RollerMachManual5.Lock
+            Thd_MesinPressing.EndSchedule = True
+        End SyncLock
+
+        'Slitter Mach 1
+        SyncLock Thd_SlitterMach1.Lock
+            Thd_SlitterMach1.EndSchedule = True
+        End SyncLock
+
+        'Slitter Mach 2
+        SyncLock Thd_SlitterMach2.Lock
+            Thd_SlitterMach2.EndSchedule = True
         End SyncLock
 
     End Sub
@@ -1510,12 +1841,12 @@ Public Class FormSchedulerCSV_Tamping_Quality
         up_Refresh(Boxlift, "Boxlift", Thd_Boxlift, gs_ServerPath_Boxlift, gs_LocalPath_Boxlift, gs_User_Boxlift, gs_Password_Boxlift, gs_FileName_Boxlift, Line_Boxlift, Machine_Boxlift)
     End Sub
 
-    Private Sub up_Refresh_Expandmetaltension1()
-        up_Refresh(Expandmetaltension1, "Expandmetaltension1", Thd_Expandmetaltension1, gs_ServerPath_Expandmetaltension1, gs_LocalPath_Expandmetaltension1, gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1, gs_FileName_Expandmetaltension1, Line_Expandmetaltension1, Machine_Expandmetaltension1)
+    Private Sub up_Refresh_Expandmetaltension()
+        up_Refresh(Expandmetaltension, "Expandmetaltension", Thd_Expandmetaltension, gs_ServerPath_Expandmetaltension, gs_LocalPath_Expandmetaltension, gs_User_Expandmetaltension, gs_Password_Expandmetaltension, gs_FileName_Expandmetaltension, Line_Expandmetaltension, Machine_Expandmetaltension)
     End Sub
 
-    Private Sub up_Refresh_Expandmetaltension2()
-        up_Refresh(Expandmetaltension2, "Expandmetaltension2", Thd_Expandmetaltension2, gs_ServerPath_Expandmetaltension2, gs_LocalPath_Expandmetaltension2, gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2, gs_FileName_Expandmetaltension2, Line_Expandmetaltension2, Machine_Expandmetaltension2)
+    Private Sub up_Refresh_Filling()
+        up_Refresh(Filling, "Filling", Thd_Filling, gs_ServerPath_Filling, gs_LocalPath_Filling, gs_User_Filling, gs_Password_Filling, gs_FileName_Filling, Line_Filling, Machine_Filling)
     End Sub
 
     Private Sub up_Refresh_OvenRollerMachManual1()
@@ -1775,20 +2106,20 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         'Expandmetal tension 1
         '====================
-        If gs_ServerPath_Expandmetaltension1 <> "" And gs_LocalPath_Expandmetaltension1 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPath_Expandmetaltension1, gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1)
+        If gs_ServerPath_Expandmetaltension <> "" And gs_LocalPath_Expandmetaltension <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Expandmetaltension, gs_User_Expandmetaltension, gs_Password_Expandmetaltension)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1, gs_ServerPath_Expandmetaltension1, gs_LocalPath_Expandmetaltension1, gs_FileName_Expandmetaltension1)
+                DownloadFiles(FilesList, "", gs_User_Expandmetaltension, gs_Password_Expandmetaltension, gs_ServerPath_Expandmetaltension, gs_LocalPath_Expandmetaltension, gs_FileName_Expandmetaltension)
             End If
         End If
         '====================
 
-        'Expandmetal tension 2
+        'Filling
         '====================
-        If gs_ServerPath_Expandmetaltension2 <> "" And gs_LocalPath_Expandmetaltension2 <> "" Then
-            FilesList = GetFtpFileList(gs_ServerPath_Expandmetaltension2, gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2)
+        If gs_ServerPath_Filling <> "" And gs_LocalPath_Filling <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Filling, gs_User_Filling, gs_Password_Filling)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2, gs_ServerPath_Expandmetaltension2, gs_LocalPath_Expandmetaltension2, gs_FileName_Expandmetaltension2)
+                DownloadFiles(FilesList, "", gs_User_Filling, gs_Password_Filling, gs_ServerPath_Filling, gs_LocalPath_Filling, gs_FileName_Filling)
             End If
         End If
         '====================

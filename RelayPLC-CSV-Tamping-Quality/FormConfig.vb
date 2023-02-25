@@ -197,8 +197,8 @@ Public Class FormConfig
         comboSource.Add("31006", "Oscilator Mach")
         comboSource.Add("31007", "Conveyor transfer box")
         comboSource.Add("31008", "Box lift")
-        comboSource.Add("31009", "Expandmetal tension 1")
-        comboSource.Add("31010", "Expandmetal tension 2")
+        comboSource.Add("31009", "Expandmetal tension")
+        comboSource.Add("31010", "Filling")
         comboSource.Add("31011", "Oven Roller Mach Manual #1")
         comboSource.Add("31012", "Oven Heater Mach Manual #1")
         comboSource.Add("31013", "Oven Roller Mach Manual #2")
@@ -211,7 +211,7 @@ Public Class FormConfig
         comboSource.Add("31020", "Roller Mach Manual #4")
         comboSource.Add("31021", "Roller Mach Manual #5")
         comboSource.Add("31022", "Slitter Mach 1")
-        comboSource.Add("31023", "Slitter Mach 1")
+        comboSource.Add("31023", "Slitter Mach 2")
 
         With cboMachineType
             .ColumnHeaders = False

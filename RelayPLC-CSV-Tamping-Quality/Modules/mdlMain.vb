@@ -74,19 +74,19 @@ Public Module mdlMain
     Public gs_FileName_Boxlift As String = "LOG31008_ProcessInfo.csv"
     Public gi_Interval_Boxlift As Integer = All_Interval
 
-    Public gs_ServerPath_Expandmetaltension1 As String = ""
-    Public gs_LocalPath_Expandmetaltension1 As String = ""
-    Public gs_User_Expandmetaltension1 As String = ""
-    Public gs_Password_Expandmetaltension1 As String = ""
-    Public gs_FileName_Expandmetaltension1 As String = "LOG31009_ProcessInfo.csv"
-    Public gi_Interval_Expandmetaltension1 As Integer = All_Interval
+    Public gs_ServerPath_Expandmetaltension As String = ""
+    Public gs_LocalPath_Expandmetaltension As String = ""
+    Public gs_User_Expandmetaltension As String = ""
+    Public gs_Password_Expandmetaltension As String = ""
+    Public gs_FileName_Expandmetaltension As String = "LOG31009_ProcessInfo.csv"
+    Public gi_Interval_Expandmetaltension As Integer = All_Interval
 
-    Public gs_ServerPath_Expandmetaltension2 As String = ""
-    Public gs_LocalPath_Expandmetaltension2 As String = ""
-    Public gs_User_Expandmetaltension2 As String = ""
-    Public gs_Password_Expandmetaltension2 As String = ""
-    Public gs_FileName_Expandmetaltension2 As String = "LOG31010_ProcessInfo.csv"
-    Public gi_Interval_Expandmetaltension2 As Integer = All_Interval
+    Public gs_ServerPath_Filling As String = ""
+    Public gs_LocalPath_Filling As String = ""
+    Public gs_User_Filling As String = ""
+    Public gs_Password_Filling As String = ""
+    Public gs_FileName_Filling As String = "LOG31010_ProcessInfo.csv"
+    Public gi_Interval_Filling As Integer = All_Interval
 
     Public gs_ServerPath_OvenRollerMachManual1 As String = ""
     Public gs_LocalPath_OvenRollerMachManual1 As String = ""
