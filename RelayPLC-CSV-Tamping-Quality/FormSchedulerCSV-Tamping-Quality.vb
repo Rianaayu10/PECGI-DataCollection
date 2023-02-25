@@ -19,12 +19,101 @@ Public Class FormSchedulerCSV_Tamping_Quality
 #Region "DECLARATION"
 
     'Machine High Speed Mixer
-    Dim HighSpeedMixerMch As Integer = 1
     Dim Factory As String = "F004"
-    Dim GroupLine_HighSpeedMixerMch As Integer = 3
+    Dim Group As Integer = 3
+
+    Dim MixingMachVacuumHT42H As Integer = 1
+    Dim Line_MixingMachVacuumHT42H As String = "31001"
+    Dim Machine_MixingMachVacuumHT42H As String = "31001"
+
+    Dim MixingMachVacuumHT35H As Integer = 2
+    Dim Line_MixingMachVacuumHT35H As String = "31002"
+    Dim Machine_MixingMachVacuumHT35H As String = "31002"
+
+    Dim MixingMachVacuumEC As Integer = 3
+    Dim Line_MixingMachVacuumEC As String = "31003"
+    Dim Machine_MixingMachVacuumEC As String = "31003"
+
+    Dim HighSpeedMixerMch As Integer = 4
     Dim Line_HighSpeedMixerMch As String = "31004"
     Dim Machine_HighSpeedMixerMch As String = "31004"
-    Dim Thd_HighSpeedMixerMch As SchedulerSetting
+
+    Dim Conveyortransferpowder As Integer = 5
+    Dim Line_Conveyortransferpowder As String = "31005"
+    Dim Machine_Conveyortransferpowder As String = "31005"
+
+    Dim OscilatorMach As Integer = 6
+    Dim Line_OscilatorMach As String = "31006"
+    Dim Machine_OscilatorMach As String = "31006"
+
+    Dim Conveyortransferbox As Integer = 7
+    Dim Line_Conveyortransferbox As String = "31007"
+    Dim Machine_Conveyortransferbox As String = "31007"
+
+    Dim Boxlift As Integer = 8
+    Dim Line_Boxlift As String = "31008"
+    Dim Machine_Boxlift As String = "31008"
+
+    Dim Expandmetaltension1 As Integer = 9
+    Dim Line_Expandmetaltension1 As String = "31009"
+    Dim Machine_Expandmetaltension1 As String = "31009"
+
+    Dim Expandmetaltension2 As Integer = 10
+    Dim Line_Expandmetaltension2 As String = "31010"
+    Dim Machine_Expandmetaltension2 As String = "31010"
+
+    Dim OvenRollerMachManual1 As Integer = 11
+    Dim Line_OvenRollerMachManual1 As String = "31011"
+    Dim Machine_OvenRollerMachManual1 As String = "31011"
+
+    Dim OvenHeaterMachManual1 As Integer = 12
+    Dim Line_OvenHeaterMachManual1 As String = "31012"
+    Dim Machine_OvenHeaterMachManual1 As String = "31012"
+
+    Dim OvenRollerMachManual2 As Integer = 13
+    Dim Line_OvenRollerMachManual2 As String = "31013"
+    Dim Machine_OvenRollerMachManual2 As String = "31013"
+
+    Dim OvenHeaterMachManual2 As Integer = 14
+    Dim Line_OvenHeaterMachManual2 As String = "31014"
+    Dim Machine_OvenHeaterMachManual2 As String = "31014"
+
+    Dim HoopTension As Integer = 15
+    Dim Line_HoopTension As String = "31015"
+    Dim Machine_HoopTension As String = "31015"
+
+    Dim MesinPressing As Integer = 16
+    Dim Line_MesinPressing As String = "31016"
+    Dim Machine_MesinPressing As String = "31016"
+
+    Dim RollerMachManual1 As Integer = 17
+    Dim Line_RollerMachManual1 As String = "31017"
+    Dim Machine_RollerMachManual1 As String = "31017"
+
+    Dim RollerMachManual2 As Integer = 18
+    Dim Line_RollerMachManual2 As String = "31018"
+    Dim Machine_RollerMachManual2 As String = "31018"
+
+    Dim RollerMachManual3 As Integer = 19
+    Dim Line_RollerMachManual3 As String = "31019"
+    Dim Machine_RollerMachManual3 As String = "31019"
+
+    Dim RollerMachManual4 As Integer = 20
+    Dim Line_RollerMachManual4 As String = "31020"
+    Dim Machine_RollerMachManual4 As String = "31020"
+
+    Dim RollerMachManual5 As Integer = 21
+    Dim Line_RollerMachManual5 As String = "31021"
+    Dim Machine_RollerMachManual5 As String = "31021"
+
+    Dim SlitterMach1 As Integer = 22
+    Dim Line_SlitterMach1 As String = "31022"
+    Dim Machine_SlitterMach1 As String = "31022"
+
+    Dim SlitterMach2 As Integer = 23
+    Dim Line_SlitterMach2 As String = "31023"
+    Dim Machine_SlitterMach2 As String = "31023"
+
 
     Dim col_ProcessName As Integer = 0
     Dim Col_ProcessType As Byte = 1
@@ -32,6 +121,30 @@ Public Class FormSchedulerCSV_Tamping_Quality
     Dim Col_LastProcess As Byte = 3
     Dim Col_NextProcess As Byte = 4
     Dim Col_ErrorMessage As Byte = 5
+
+    Dim Thd_MixingMachVacuumHT42H As SchedulerSetting
+    Dim Thd_MixingMachVacuumHT35H As SchedulerSetting
+    Dim Thd_MixingMachVacuumEC As SchedulerSetting
+    Dim Thd_HighSpeedMixerMch As SchedulerSetting
+    Dim Thd_Conveyortransferpowder As SchedulerSetting
+    Dim Thd_OscilatorMach As SchedulerSetting
+    Dim Thd_Conveyortransferbox As SchedulerSetting
+    Dim Thd_Boxlift As SchedulerSetting
+    Dim Thd_Expandmetaltension1 As SchedulerSetting
+    Dim Thd_Expandmetaltension2 As SchedulerSetting
+    Dim Thd_OvenRollerMachManual1 As SchedulerSetting
+    Dim Thd_OvenHeaterMachManual1 As SchedulerSetting
+    Dim Thd_OvenRollerMachManual2 As SchedulerSetting
+    Dim Thd_OvenHeaterMachManual2 As SchedulerSetting
+    Dim Thd_HoopTension As SchedulerSetting
+    Dim Thd_MesinPressing As SchedulerSetting
+    Dim Thd_RollerMachManual1 As SchedulerSetting
+    Dim Thd_RollerMachManual2 As SchedulerSetting
+    Dim Thd_RollerMachManual3 As SchedulerSetting
+    Dim Thd_RollerMachManual4 As SchedulerSetting
+    Dim Thd_RollerMachManual5 As SchedulerSetting
+    Dim Thd_SlitterMach1 As SchedulerSetting
+    Dim Thd_SlitterMach2 As SchedulerSetting
 
     Dim col_Count As Integer = 6
     Dim FilesList As New List(Of String)
@@ -296,9 +409,190 @@ Public Class FormSchedulerCSV_Tamping_Quality
             up_FTP()
             ''==================
 
+
+            'Mixing Mach. Vacuum HT42H 
+            '====================
+            If gs_ServerPath_MixingMachVacuumHT42H <> "" And gs_LocalPath_MixingMachVacuumHT42H <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(MixingMachVacuumHT42H, "High Speed Mixer Mch", gs_LocalPath_MixingMachVacuumHT42H, gs_FileName_MixingMachVacuumHT42H, Line_MixingMachVacuumHT42H, Machine_MixingMachVacuumHT42H, Factory)
+            End If
+            '====================
+
+            'Mixing Mach. Vacuum HT35H 
+            '====================
+            If gs_ServerPath_MixingMachVacuumHT35H <> "" And gs_LocalPath_MixingMachVacuumHT35H <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(MixingMachVacuumHT35H, "High Speed Mixer Mch", gs_LocalPath_MixingMachVacuumHT35H, gs_FileName_MixingMachVacuumHT35H, Line_MixingMachVacuumHT35H, Machine_MixingMachVacuumHT35H, Factory)
+            End If
+            '====================
+
+            'Mixing Mach. Vacuum EC 
+            '====================
+            If gs_ServerPath_MixingMachVacuumEC <> "" And gs_LocalPath_MixingMachVacuumEC <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(MixingMachVacuumEC, "High Speed Mixer Mch", gs_LocalPath_MixingMachVacuumEC, gs_FileName_MixingMachVacuumEC, Line_MixingMachVacuumEC, Machine_MixingMachVacuumEC, Factory)
+            End If
+            '====================
+
             'High Speed Mixer Mch
-            pProses = "High Speed Mixer Mch"
-            up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, Factory)
+            '====================
+            If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, Factory)
+            End If
+            '====================
+
+            'Conveyor transfer powder
+            '====================
+            If gs_ServerPath_Conveyortransferpowder <> "" And gs_LocalPath_Conveyortransferpowder <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(Conveyortransferpowder, "High Speed Mixer Mch", gs_LocalPath_Conveyortransferpowder, gs_FileName_Conveyortransferpowder, Line_Conveyortransferpowder, Machine_Conveyortransferpowder, Factory)
+            End If
+            '====================
+
+            'Oscilator Mach
+            '====================
+            If gs_ServerPath_OscilatorMach <> "" And gs_LocalPath_OscilatorMach <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(OscilatorMach, "High Speed Mixer Mch", gs_LocalPath_OscilatorMach, gs_FileName_OscilatorMach, Line_OscilatorMach, Machine_OscilatorMach, Factory)
+            End If
+            '====================
+
+            'Conveyor transfer box
+            '====================
+            If gs_ServerPath_Conveyortransferbox <> "" And gs_LocalPath_Conveyortransferbox <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(Conveyortransferbox, "High Speed Mixer Mch", gs_LocalPath_Conveyortransferbox, gs_FileName_Conveyortransferbox, Line_Conveyortransferbox, Machine_Conveyortransferbox, Factory)
+            End If
+            '====================
+
+            'Box lift
+            '====================
+            If gs_ServerPath_Boxlift <> "" And gs_LocalPath_Boxlift <> "" Then
+                pProses = "Box lift"
+                up_ProcessData(Boxlift, "Box lift", gs_LocalPath_Boxlift, gs_FileName_Boxlift, Line_Boxlift, Machine_Boxlift, Factory)
+            End If
+            '====================
+
+            'Expandmetal tension 1
+            '====================
+            If gs_ServerPath_Expandmetaltension1 <> "" And gs_LocalPath_Expandmetaltension1 <> "" Then
+                pProses = "Expandmetal tension 1"
+                up_ProcessData(Expandmetaltension1, "Expandmetal tension 1", gs_LocalPath_Expandmetaltension1, gs_FileName_Expandmetaltension1, Line_Expandmetaltension1, Machine_Expandmetaltension1, Factory)
+            End If
+            '====================
+
+            'Expandmetal tension 2
+            '====================
+            If gs_ServerPath_Expandmetaltension2 <> "" And gs_LocalPath_Expandmetaltension2 <> "" Then
+                pProses = "Expandmetal tension 2"
+                up_ProcessData(Expandmetaltension2, "Expandmetal tension 2", gs_LocalPath_Expandmetaltension2, gs_FileName_Expandmetaltension2, Line_Expandmetaltension2, Machine_Expandmetaltension2, Factory)
+            End If
+            '====================
+
+            'Oven Roller Mach. Manual #1
+            '====================
+            If gs_ServerPath_OvenRollerMachManual1 <> "" And gs_LocalPath_OvenRollerMachManual1 <> "" Then
+                pProses = "Oven Roller Mach Manual 1"
+                up_ProcessData(OvenRollerMachManual1, "Oven Roller Mach Manual 1", gs_LocalPath_OvenRollerMachManual1, gs_FileName_OvenRollerMachManual1, Line_OvenRollerMachManual1, Machine_OvenRollerMachManual1, Factory)
+            End If
+            '====================
+
+            'Oven Heater Mach. Manual #1
+            '====================
+            If gs_ServerPath_OvenHeaterMachManual1 <> "" And gs_LocalPath_OvenHeaterMachManual1 <> "" Then
+                pProses = "Oven Heater Mach Manual 1"
+                up_ProcessData(OvenHeaterMachManual1, "Oven Heater Mach Manual 1", gs_LocalPath_OvenHeaterMachManual1, gs_FileName_OvenHeaterMachManual1, Line_OvenHeaterMachManual1, Machine_OvenHeaterMachManual1, Factory)
+            End If
+            '====================
+
+            'Oven Roller Mach. Manual #2
+            '====================
+            If gs_ServerPath_OvenRollerMachManual2 <> "" And gs_LocalPath_OvenRollerMachManual2 <> "" Then
+                pProses = "Oven Roller Mach Manual 2"
+                up_ProcessData(OvenRollerMachManual2, "High Speed Mixer Mch", gs_LocalPath_OvenRollerMachManual2, gs_FileName_OvenRollerMachManual2, Line_OvenRollerMachManual2, Machine_OvenRollerMachManual2, Factory)
+            End If
+            '====================
+
+            'Oven Heater Mach. Manual #2
+            '====================
+            If gs_ServerPath_OvenHeaterMachManual2 <> "" And gs_LocalPath_OvenHeaterMachManual2 <> "" Then
+                pProses = "Oven Heater Mach Manual 2"
+                up_ProcessData(HighSpeedMixerMch, "Oven Heater Mach Manual 2", gs_LocalPath_OvenHeaterMachManual2, gs_FileName_OvenHeaterMachManual2, Line_OvenHeaterMachManual2, Machine_OvenHeaterMachManual2, Factory)
+            End If
+            '====================
+
+            'Hoop Tension
+            '====================
+            If gs_ServerPath_HoopTension <> "" And gs_LocalPath_HoopTension <> "" Then
+                pProses = "High Speed Mixer Mch"
+                up_ProcessData(HighSpeedMixerMch, "High Speed Mixer Mch", gs_LocalPath_HighSpeedMixerMch, gs_FileName_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, Factory)
+            End If
+            '====================
+
+            'Mesin Pressing (auto manual)
+            '====================
+            If gs_ServerPath_MesinPressing <> "" And gs_LocalPath_MesinPressing <> "" Then
+                pProses = "Mesin Pressing"
+                up_ProcessData(MesinPressing, "Mesin Pressing", gs_LocalPath_MesinPressing, gs_FileName_MesinPressing, Line_MesinPressing, Machine_MesinPressing, Factory)
+            End If
+            '====================
+
+            'Roller Mach. Manual #1
+            '====================
+            If gs_ServerPath_RollerMachManual1 <> "" And gs_LocalPath_RollerMachManual1 <> "" Then
+                pProses = "Roller Mach Manual 1"
+                up_ProcessData(RollerMachManual1, "Roller Mach Manual 1", gs_LocalPath_RollerMachManual1, gs_FileName_RollerMachManual1, Line_RollerMachManual1, Machine_RollerMachManual1, Factory)
+            End If
+            '====================
+
+            'Roller Mach. Manual #2
+            '====================
+            If gs_ServerPath_RollerMachManual2 <> "" And gs_LocalPath_RollerMachManual2 <> "" Then
+                pProses = "Roller Mach Manual 2"
+                up_ProcessData(RollerMachManual2, "Roller Mach Manual 2", gs_LocalPath_RollerMachManual2, gs_FileName_RollerMachManual2, Line_RollerMachManual2, Machine_RollerMachManual2, Factory)
+            End If
+            '====================
+
+            'Roller Mach. Manual #3
+            '====================
+            If gs_ServerPath_RollerMachManual3 <> "" And gs_LocalPath_RollerMachManual3 <> "" Then
+                pProses = "Roller Mach Manual 3"
+                up_ProcessData(RollerMachManual3, "Roller Mach Manual 3", gs_LocalPath_RollerMachManual3, gs_FileName_RollerMachManual3, Line_RollerMachManual3, Machine_RollerMachManual3, Factory)
+            End If
+            '====================
+
+            'Roller Mach. Manual #4
+            '====================
+            If gs_ServerPath_RollerMachManual4 <> "" And gs_LocalPath_RollerMachManual4 <> "" Then
+                pProses = "Roller Mach Manual 4"
+                up_ProcessData(RollerMachManual4, "Roller Mach Manual 4", gs_LocalPath_RollerMachManual4, gs_FileName_RollerMachManual4, Line_RollerMachManual4, Machine_RollerMachManual4, Factory)
+            End If
+            '====================
+
+            'Roller Mach. Manual #5
+            '====================
+            If gs_ServerPath_RollerMachManual5 <> "" And gs_LocalPath_RollerMachManual5 <> "" Then
+                pProses = "Roller Mach Manual 5"
+                up_ProcessData(RollerMachManual5, "Roller Mach Manual 5", gs_LocalPath_RollerMachManual5, gs_FileName_RollerMachManual5, Line_RollerMachManual5, Machine_RollerMachManual5, Factory)
+            End If
+            '====================
+
+            'Slitter Mach 1
+            '====================
+            If gs_ServerPath_SlitterMach1 <> "" And gs_LocalPath_SlitterMach1 <> "" Then
+                pProses = "Slitter Mach 1"
+                up_ProcessData(SlitterMach1, "Slitter Mach 1", gs_LocalPath_SlitterMach1, gs_FileName_SlitterMach1, Line_SlitterMach1, Machine_SlitterMach1, Factory)
+            End If
+            '====================
+
+            'Slitter Mach 2
+            '====================
+            If gs_ServerPath_SlitterMach2 <> "" And gs_LocalPath_SlitterMach2 <> "" Then
+                pProses = "Slitter Mach 2"
+                up_ProcessData(SlitterMach2, "Slitter Mach 2", gs_LocalPath_SlitterMach2, gs_FileName_SlitterMach2, Line_SlitterMach2, Machine_SlitterMach2, Factory)
+            End If
+            '====================
 
         Catch ex As Exception
             WriteToErrorLog(pProses, "error : " & ex.Message)
@@ -334,12 +628,167 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
                     For i As Integer = 0 To ds.Tables(0).Rows.Count - 1
 
-                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_HighSpeedMixerMch Then
+                        If ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_MixingMachVacuumHT42H Then
                             gs_ServerPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
                             gs_LocalPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
                             gs_User_HighSpeedMixerMch = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
                             gs_Password_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
                             gi_Interval_HighSpeedMixerMch = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_MixingMachVacuumHT35H Then
+                            gs_ServerPath_MixingMachVacuumHT35H = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_MixingMachVacuumHT35H = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_MixingMachVacuumHT35H = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_MixingMachVacuumHT35H = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_MixingMachVacuumHT35H = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_MixingMachVacuumEC Then
+                            gs_ServerPath_MixingMachVacuumEC = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_MixingMachVacuumEC = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_MixingMachVacuumEC = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_MixingMachVacuumEC = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_MixingMachVacuumEC = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_HighSpeedMixerMch Then
+                            gs_ServerPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_HighSpeedMixerMch = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_HighSpeedMixerMch = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_HighSpeedMixerMch = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Conveyortransferpowder Then
+                            gs_ServerPath_Conveyortransferpowder = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Conveyortransferpowder = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Conveyortransferpowder = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Conveyortransferpowder = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Conveyortransferpowder = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OscilatorMach Then
+                            gs_ServerPath_OscilatorMach = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_OscilatorMach = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_OscilatorMach = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_OscilatorMach = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_OscilatorMach = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Conveyortransferbox Then
+                            gs_ServerPath_Conveyortransferbox = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Conveyortransferbox = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Conveyortransferbox = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Conveyortransferbox = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Conveyortransferbox = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Boxlift Then
+                            gs_ServerPath_Boxlift = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Boxlift = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Boxlift = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Boxlift = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Boxlift = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Expandmetaltension1 Then
+                            gs_ServerPath_Expandmetaltension1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Expandmetaltension1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Expandmetaltension1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Expandmetaltension1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Expandmetaltension1 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_Expandmetaltension2 Then
+                            gs_ServerPath_Expandmetaltension2 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_Expandmetaltension2 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_Expandmetaltension2 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_Expandmetaltension2 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_Expandmetaltension2 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OvenRollerMachManual1 Then
+                            gs_ServerPath_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_OvenRollerMachManual1 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OvenHeaterMachManual1 Then
+                            gs_ServerPath_OvenHeaterMachManual1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_OvenHeaterMachManual1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_OvenHeaterMachManual1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_OvenHeaterMachManual1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_OvenHeaterMachManual1 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OvenRollerMachManual2 Then
+                            gs_ServerPath_OvenRollerMachManual2 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_OvenRollerMachManual2 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_OvenRollerMachManual2 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_OvenRollerMachManual2 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_OvenRollerMachManual2 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_OvenHeaterMachManual2 Then
+                            gs_ServerPath_OvenHeaterMachManual2 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_OvenHeaterMachManual2 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_OvenHeaterMachManual2 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_OvenHeaterMachManual2 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_OvenHeaterMachManual2 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_HoopTension Then
+                            gs_ServerPath_HoopTension = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_HoopTension = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_HoopTension = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_HoopTension = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_HoopTension = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_MesinPressing Then
+                            gs_ServerPath_MesinPressing = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_MesinPressing = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_MesinPressing = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_MesinPressing = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_MesinPressing = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_RollerMachManual1 Then
+                            gs_ServerPath_RollerMachManual1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_RollerMachManual1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_RollerMachManual1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_RollerMachManual1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_RollerMachManual1 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_RollerMachManual2 Then
+                            gs_ServerPath_RollerMachManual2 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_RollerMachManual2 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_RollerMachManual2 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_RollerMachManual2 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_RollerMachManual2 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_RollerMachManual3 Then
+                            gs_ServerPath_RollerMachManual3 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_RollerMachManual3 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_RollerMachManual3 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_RollerMachManual3 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_RollerMachManual3 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_RollerMachManual4 Then
+                            gs_ServerPath_RollerMachManual4 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_RollerMachManual4 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_RollerMachManual4 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_RollerMachManual4 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_RollerMachManual4 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_RollerMachManual5 Then
+                            gs_ServerPath_RollerMachManual5 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_RollerMachManual5 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_RollerMachManual5 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_RollerMachManual5 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_RollerMachManual5 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_SlitterMach1 Then
+                            gs_ServerPath_SlitterMach1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_SlitterMach1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_SlitterMach1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_SlitterMach1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_SlitterMach1 = ds.Tables(0).Rows(i)("TimeInterval")
+
+                        ElseIf ds.Tables(0).Rows(i)("Machine_Type").ToString.Trim = Machine_SlitterMach1 Then
+                            gs_ServerPath_SlitterMach1 = ds.Tables(0).Rows(i)("Server_Path").ToString.Trim
+                            gs_LocalPath_SlitterMach1 = ds.Tables(0).Rows(i)("Local_Path").ToString.Trim
+                            gs_User_SlitterMach1 = ds.Tables(0).Rows(i)("user_FTP").ToString.Trim
+                            gs_Password_SlitterMach1 = ds.Tables(0).Rows(i)("Password_FTP").ToString.Trim
+                            gi_Interval_SlitterMach1 = ds.Tables(0).Rows(i)("TimeInterval")
+
                         End If
 
                     Next
@@ -368,6 +817,53 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Me.Cursor = Cursors.WaitCursor
 
         Try
+            ' Mixing Mach Vacuum HT42H
+            '===========================
+            Thread.Sleep(200)
+            Thd_MixingMachVacuumHT42H = New SchedulerSetting
+            With Thd_MixingMachVacuumHT42H
+                .Name = "MixingMachVacuumHT42H"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_MixingMachVacuumHT42H
+                .ScheduleThd = New Thread(AddressOf up_Refresh_MixingMachVacuumHT42H)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "MixingMachVacuumHT42H"
+                .ScheduleThd.Start()
+            End With
+
+            ' Mixing Mach Vacuum HT35H
+            '===========================
+            Thread.Sleep(200)
+            Thd_MixingMachVacuumHT35H = New SchedulerSetting
+            With Thd_MixingMachVacuumHT35H
+                .Name = "MixingMachVacuumHT35H"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_MixingMachVacuumHT35H
+                .ScheduleThd = New Thread(AddressOf up_Refresh_MixingMachVacuumHT35H)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "MixingMachVacuumHT35H"
+                .ScheduleThd.Start()
+            End With
+
+            ' Mixing Mach. Vacuum EC
+            '===========================
+            Thread.Sleep(200)
+            Thd_MixingMachVacuumEC = New SchedulerSetting
+            With Thd_MixingMachVacuumEC
+                .Name = "MixingMachVacuumEC"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_MixingMachVacuumEC
+                .ScheduleThd = New Thread(AddressOf up_Refresh_MixingMachVacuumEC)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "MixingMachVacuumEC"
+                .ScheduleThd.Start()
+            End With
+
+            ' High Speed Mixer Mch
+            '===========================
             Thread.Sleep(200)
             Thd_HighSpeedMixerMch = New SchedulerSetting
             With Thd_HighSpeedMixerMch
@@ -378,6 +874,291 @@ Public Class FormSchedulerCSV_Tamping_Quality
                 .ScheduleThd = New Thread(AddressOf up_Refresh_HighSpeedMixerMch)
                 .ScheduleThd.IsBackground = True
                 .ScheduleThd.Name = "HighSpeedMixerMch"
+                .ScheduleThd.Start()
+            End With
+
+            ' Conveyor transfer powder
+            '===========================
+            Thread.Sleep(200)
+            Thd_Conveyortransferpowder = New SchedulerSetting
+            With Thd_Conveyortransferpowder
+                .Name = "Conveyortransferpowder"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Conveyortransferpowder
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Conveyortransferpowder)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Conveyortransferpowder"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oscilator Mach
+            '===========================
+            Thread.Sleep(200)
+            Thd_OscilatorMach = New SchedulerSetting
+            With Thd_OscilatorMach
+                .Name = "OscilatorMach"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_OscilatorMach
+                .ScheduleThd = New Thread(AddressOf up_Refresh_OscilatorMach)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "OscilatorMach"
+                .ScheduleThd.Start()
+            End With
+
+            ' Conveyor transfer box
+            '===========================
+            Thread.Sleep(200)
+            Thd_Conveyortransferbox = New SchedulerSetting
+            With Thd_Conveyortransferbox
+                .Name = "Conveyortransferbox"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Conveyortransferbox
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Conveyortransferbox)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Conveyortransferbox"
+                .ScheduleThd.Start()
+            End With
+
+            ' Box lift
+            '===========================
+            Thread.Sleep(200)
+            Thd_Boxlift = New SchedulerSetting
+            With Thd_Boxlift
+                .Name = "Boxlift"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Boxlift
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Boxlift)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Boxlift"
+                .ScheduleThd.Start()
+            End With
+
+            ' Expandmetal tension 1
+            '===========================
+            Thread.Sleep(200)
+            Thd_Expandmetaltension1 = New SchedulerSetting
+            With Thd_Expandmetaltension1
+                .Name = "Expandmetaltension1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Expandmetaltension1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Expandmetaltension1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Expandmetaltension1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Expandmetal tension 2
+            '===========================
+            Thread.Sleep(200)
+            Thd_Expandmetaltension2 = New SchedulerSetting
+            With Thd_Expandmetaltension2
+                .Name = "Expandmetaltension2"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_Expandmetaltension2
+                .ScheduleThd = New Thread(AddressOf up_Refresh_Expandmetaltension2)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "Expandmetaltension2"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oven Roller Mach. Manual #1
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual1 = New SchedulerSetting
+            With Thd_RollerMachManual1
+                .Name = "RollerMachManual1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oven Heater Mach. Manual #1
+            '===========================
+            Thread.Sleep(200)
+            Thd_OvenHeaterMachManual1 = New SchedulerSetting
+            With Thd_OvenHeaterMachManual1
+                .Name = "OvenHeaterMachManual1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_OvenHeaterMachManual1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_OvenHeaterMachManual1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "OvenHeaterMachManual1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oven Roller Mach. Manual #2
+            '===========================
+            Thread.Sleep(200)
+            Thd_OvenRollerMachManual1 = New SchedulerSetting
+            With Thd_OvenRollerMachManual1
+                .Name = "OvenRollerMachManual1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_OvenRollerMachManual1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_OvenRollerMachManual1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "OvenRollerMachManual1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Oven Heater Mach. Manual #2
+            '===========================
+            Thread.Sleep(200)
+            Thd_OvenHeaterMachManual2 = New SchedulerSetting
+            With Thd_OvenHeaterMachManual2
+                .Name = "OvenHeaterMachManual2"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_OvenHeaterMachManual2
+                .ScheduleThd = New Thread(AddressOf up_Refresh_OvenHeaterMachManual2)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "OvenHeaterMachManual2"
+                .ScheduleThd.Start()
+            End With
+
+            ' Hoop Tension
+            '===========================
+            Thread.Sleep(200)
+            Thd_HoopTension = New SchedulerSetting
+            With Thd_HoopTension
+                .Name = "HoopTension"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_HoopTension
+                .ScheduleThd = New Thread(AddressOf up_Refresh_HoopTension)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "HoopTension"
+                .ScheduleThd.Start()
+            End With
+
+            ' Mesin Pressing (auto manual)
+            '===========================
+            Thread.Sleep(200)
+            Thd_MesinPressing = New SchedulerSetting
+            With Thd_MesinPressing
+                .Name = "MesinPressing"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_MesinPressing
+                .ScheduleThd = New Thread(AddressOf up_Refresh_MesinPressing)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "MesinPressing"
+                .ScheduleThd.Start()
+            End With
+
+            ' Roller Mach. Manual #1
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual1 = New SchedulerSetting
+            With Thd_RollerMachManual1
+                .Name = "RollerMachManual1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Roller Mach. Manual #2
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual2 = New SchedulerSetting
+            With Thd_RollerMachManual2
+                .Name = "RollerMachManual2"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual2
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual2)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual2"
+                .ScheduleThd.Start()
+            End With
+
+            ' Roller Mach. Manual #3
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual3 = New SchedulerSetting
+            With Thd_RollerMachManual3
+                .Name = "RollerMachManual3"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual3
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual3)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual3"
+                .ScheduleThd.Start()
+            End With
+
+            ' Roller Mach. Manual #4
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual4 = New SchedulerSetting
+            With Thd_RollerMachManual4
+                .Name = "RollerMachManual4"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual4
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual4)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual4"
+                .ScheduleThd.Start()
+            End With
+
+            ' Roller Mach. Manual #5
+            '===========================
+            Thread.Sleep(200)
+            Thd_RollerMachManual5 = New SchedulerSetting
+            With Thd_RollerMachManual5
+                .Name = "RollerMachManual5"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_RollerMachManual5
+                .ScheduleThd = New Thread(AddressOf up_Refresh_RollerMachManual5)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "RollerMachManual5"
+                .ScheduleThd.Start()
+            End With
+
+            ' Slitter Mach 1
+            '===========================
+            Thread.Sleep(200)
+            Thd_SlitterMach1 = New SchedulerSetting
+            With Thd_SlitterMach1
+                .Name = "SlitterMach1"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_SlitterMach1
+                .ScheduleThd = New Thread(AddressOf up_Refresh_SlitterMach1)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "SlitterMach1"
+                .ScheduleThd.Start()
+            End With
+
+            ' Slitter Mach 2
+            '===========================
+            Thread.Sleep(200)
+            Thd_SlitterMach2 = New SchedulerSetting
+            With Thd_SlitterMach2
+                .Name = "SlitterMach2"
+                .EndSchedule = False
+                .Lock = New Object
+                .DelayTime = gi_Interval_SlitterMach2
+                .ScheduleThd = New Thread(AddressOf up_Refresh_SlitterMach2)
+                .ScheduleThd.IsBackground = True
+                .ScheduleThd.Name = "SlitterMach2"
                 .ScheduleThd.Start()
             End With
 
@@ -402,7 +1183,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
     Private Function up_ToInserDatatable_Trouble(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pGroupCount As Integer) As DataTable
         Dim dt As New DataTable
         Dim tmpDatde As String()
-        Dim Col_Line As String = "", AlarmCode As String
+        Dim Col_Line As String = ""
         Dim pAlarm1 As String = "", EndTime As String, LastUpdate As String
         Dim pMachine As String = "", StartTime As String = "", ModeCls As String = "", StatusCls As String = ""
         Dim li_Add As Integer = 0, pBitValue As String = "", pChr As String = ""
@@ -697,11 +1478,98 @@ Public Class FormSchedulerCSV_Tamping_Quality
         End Try
 
     End Function
-    Private Sub up_Refresh_HighSpeedMixerMch()
-        up_Refresh(HighSpeedMixerMch, "HighSpeedMixerMch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, GroupLine_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch)
+    Private Sub up_Refresh_MixingMachVacuumHT42H()
+        up_Refresh(MixingMachVacuumHT42H, "MixingMachVacuumHT42H", Thd_MixingMachVacuumHT42H, gs_ServerPath_MixingMachVacuumHT42H, gs_LocalPath_MixingMachVacuumHT42H, gs_User_MixingMachVacuumHT42H, gs_Password_MixingMachVacuumHT42H, gs_FileName_MixingMachVacuumHT42H, Line_MixingMachVacuumHT42H, Machine_MixingMachVacuumHT42H)
     End Sub
 
-    Private Sub up_Refresh(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal Thd As SchedulerSetting, ByVal pServerPath As String, ByVal pLocalPath As String, ByVal pUser As String, ByVal pPassword As String, ByVal pFileNameHistory As String, ByVal pGroupCount As Integer, ByVal pLineCode As String, ByVal pMCCode As String, Optional pFileName As String = "")
+    Private Sub up_Refresh_MixingMachVacuumHT35H()
+        up_Refresh(MixingMachVacuumHT42H, "MixingMachVacuumHT42H", Thd_MixingMachVacuumHT42H, gs_ServerPath_MixingMachVacuumHT42H, gs_LocalPath_MixingMachVacuumHT42H, gs_User_MixingMachVacuumHT42H, gs_Password_MixingMachVacuumHT42H, gs_FileName_MixingMachVacuumHT42H, Line_MixingMachVacuumHT42H, Machine_MixingMachVacuumHT42H)
+    End Sub
+
+    Private Sub up_Refresh_MixingMachVacuumEC()
+        up_Refresh(MixingMachVacuumEC, "MixingMachVacuumEC", Thd_MixingMachVacuumEC, gs_ServerPath_MixingMachVacuumEC, gs_LocalPath_MixingMachVacuumEC, gs_User_MixingMachVacuumEC, gs_Password_MixingMachVacuumEC, gs_FileName_MixingMachVacuumEC, Line_MixingMachVacuumEC, Machine_MixingMachVacuumEC)
+    End Sub
+
+    Private Sub up_Refresh_HighSpeedMixerMch()
+        up_Refresh(HighSpeedMixerMch, "HighSpeedMixerMch", Thd_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_FileName_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch)
+    End Sub
+
+    Private Sub up_Refresh_Conveyortransferpowder()
+        up_Refresh(Conveyortransferpowder, "Conveyortransferpowder", Thd_Conveyortransferpowder, gs_ServerPath_Conveyortransferpowder, gs_LocalPath_Conveyortransferpowder, gs_User_Conveyortransferpowder, gs_Password_Conveyortransferpowder, gs_FileName_Conveyortransferpowder, Line_Conveyortransferpowder, Machine_Conveyortransferpowder)
+    End Sub
+
+    Private Sub up_Refresh_OscilatorMach()
+        up_Refresh(OscilatorMach, "OscilatorMach", Thd_OscilatorMach, gs_ServerPath_OscilatorMach, gs_LocalPath_OscilatorMach, gs_User_OscilatorMach, gs_Password_OscilatorMach, gs_FileName_OscilatorMach, Line_OscilatorMach, Machine_OscilatorMach)
+    End Sub
+
+    Private Sub up_Refresh_Conveyortransferbox()
+        up_Refresh(Conveyortransferbox, "Conveyortransferbox", Thd_Conveyortransferbox, gs_ServerPath_Conveyortransferbox, gs_LocalPath_Conveyortransferbox, gs_User_Conveyortransferbox, gs_Password_Conveyortransferbox, gs_FileName_Conveyortransferbox, Line_Conveyortransferbox, Machine_Conveyortransferbox)
+    End Sub
+
+    Private Sub up_Refresh_Boxlift()
+        up_Refresh(Boxlift, "Boxlift", Thd_Boxlift, gs_ServerPath_Boxlift, gs_LocalPath_Boxlift, gs_User_Boxlift, gs_Password_Boxlift, gs_FileName_Boxlift, Line_Boxlift, Machine_Boxlift)
+    End Sub
+
+    Private Sub up_Refresh_Expandmetaltension1()
+        up_Refresh(Expandmetaltension1, "Expandmetaltension1", Thd_Expandmetaltension1, gs_ServerPath_Expandmetaltension1, gs_LocalPath_Expandmetaltension1, gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1, gs_FileName_Expandmetaltension1, Line_Expandmetaltension1, Machine_Expandmetaltension1)
+    End Sub
+
+    Private Sub up_Refresh_Expandmetaltension2()
+        up_Refresh(Expandmetaltension2, "Expandmetaltension2", Thd_Expandmetaltension2, gs_ServerPath_Expandmetaltension2, gs_LocalPath_Expandmetaltension2, gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2, gs_FileName_Expandmetaltension2, Line_Expandmetaltension2, Machine_Expandmetaltension2)
+    End Sub
+
+    Private Sub up_Refresh_OvenRollerMachManual1()
+        up_Refresh(OvenRollerMachManual1, "OvenRollerMachManual1", Thd_OvenRollerMachManual1, gs_ServerPath_OvenRollerMachManual1, gs_LocalPath_OvenRollerMachManual1, gs_User_OvenRollerMachManual1, gs_Password_OvenRollerMachManual1, gs_FileName_OvenRollerMachManual1, Line_OvenRollerMachManual1, Machine_OvenRollerMachManual1)
+    End Sub
+
+    Private Sub up_Refresh_OvenHeaterMachManual1()
+        up_Refresh(OvenHeaterMachManual1, "OvenHeaterMachManual1", Thd_OvenHeaterMachManual1, gs_ServerPath_OvenHeaterMachManual1, gs_LocalPath_OvenHeaterMachManual1, gs_User_OvenHeaterMachManual1, gs_Password_OvenHeaterMachManual1, gs_FileName_OvenHeaterMachManual1, Line_OvenHeaterMachManual1, Machine_OvenHeaterMachManual1)
+    End Sub
+
+    Private Sub up_Refresh_OvenRollerMachManual2()
+        up_Refresh(OvenRollerMachManual2, "OvenRollerMachManual2", Thd_OvenRollerMachManual2, gs_ServerPath_OvenRollerMachManual2, gs_LocalPath_OvenRollerMachManual2, gs_User_OvenRollerMachManual2, gs_Password_OvenRollerMachManual2, gs_FileName_OvenRollerMachManual2, Line_OvenRollerMachManual2, Machine_OvenRollerMachManual2)
+    End Sub
+
+    Private Sub up_Refresh_OvenHeaterMachManual2()
+        up_Refresh(OvenHeaterMachManual2, "OvenHeaterMachManual2", Thd_OvenHeaterMachManual2, gs_ServerPath_OvenHeaterMachManual2, gs_LocalPath_OvenHeaterMachManual2, gs_User_OvenHeaterMachManual2, gs_Password_OvenHeaterMachManual2, gs_FileName_OvenHeaterMachManual2, Line_OvenHeaterMachManual2, Machine_OvenHeaterMachManual2)
+    End Sub
+
+    Private Sub up_Refresh_HoopTension()
+        up_Refresh(HoopTension, "HoopTension", Thd_HoopTension, gs_ServerPath_HoopTension, gs_LocalPath_HoopTension, gs_User_HoopTension, gs_Password_HoopTension, gs_FileName_HoopTension, Line_HoopTension, Machine_HoopTension)
+    End Sub
+
+    Private Sub up_Refresh_MesinPressing()
+        up_Refresh(MesinPressing, "MesinPressing", Thd_MesinPressing, gs_ServerPath_MesinPressing, gs_LocalPath_MesinPressing, gs_User_MesinPressing, gs_Password_MesinPressing, gs_FileName_MesinPressing, Line_MesinPressing, Machine_MesinPressing)
+    End Sub
+
+    Private Sub up_Refresh_RollerMachManual1()
+        up_Refresh(RollerMachManual1, "RollerMachManual1", Thd_RollerMachManual1, gs_ServerPath_RollerMachManual1, gs_LocalPath_RollerMachManual1, gs_User_RollerMachManual1, gs_Password_RollerMachManual1, gs_FileName_RollerMachManual1, Line_RollerMachManual1, Machine_RollerMachManual1)
+    End Sub
+
+    Private Sub up_Refresh_RollerMachManual2()
+        up_Refresh(RollerMachManual2, "RollerMachManual2", Thd_RollerMachManual2, gs_ServerPath_RollerMachManual2, gs_LocalPath_RollerMachManual2, gs_User_RollerMachManual2, gs_Password_RollerMachManual2, gs_FileName_RollerMachManual2, Line_RollerMachManual2, Machine_RollerMachManual2)
+    End Sub
+
+    Private Sub up_Refresh_RollerMachManual3()
+        up_Refresh(RollerMachManual3, "RollerMachManual3", Thd_RollerMachManual3, gs_ServerPath_RollerMachManual3, gs_LocalPath_RollerMachManual3, gs_User_RollerMachManual3, gs_Password_RollerMachManual3, gs_FileName_RollerMachManual3, Line_RollerMachManual3, Machine_RollerMachManual3)
+    End Sub
+
+    Private Sub up_Refresh_RollerMachManual4()
+        up_Refresh(RollerMachManual4, "RollerMachManual4", Thd_RollerMachManual4, gs_ServerPath_RollerMachManual4, gs_LocalPath_RollerMachManual4, gs_User_RollerMachManual4, gs_Password_RollerMachManual4, gs_FileName_RollerMachManual4, Line_RollerMachManual4, Machine_RollerMachManual4)
+    End Sub
+    Private Sub up_Refresh_RollerMachManual5()
+        up_Refresh(RollerMachManual5, "RollerMachManual5", Thd_RollerMachManual5, gs_ServerPath_RollerMachManual5, gs_LocalPath_RollerMachManual5, gs_User_RollerMachManual5, gs_Password_RollerMachManual5, gs_FileName_RollerMachManual5, Line_RollerMachManual5, Machine_RollerMachManual5)
+    End Sub
+
+    Private Sub up_Refresh_SlitterMach1()
+        up_Refresh(SlitterMach1, "SlitterMach1", Thd_SlitterMach1, gs_ServerPath_SlitterMach1, gs_LocalPath_SlitterMach1, gs_User_SlitterMach1, gs_Password_SlitterMach1, gs_FileName_SlitterMach1, Line_SlitterMach1, Machine_SlitterMach1)
+    End Sub
+
+    Private Sub up_Refresh_SlitterMach2()
+        up_Refresh(SlitterMach2, "SlitterMach2", Thd_SlitterMach2, gs_ServerPath_SlitterMach2, gs_LocalPath_SlitterMach2, gs_User_SlitterMach2, gs_Password_SlitterMach2, gs_FileName_SlitterMach2, Line_SlitterMach2, Machine_SlitterMach2)
+    End Sub
+
+    Private Sub up_Refresh(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal Thd As SchedulerSetting, ByVal pServerPath As String, ByVal pLocalPath As String, ByVal pUser As String, ByVal pPassword As String, ByVal pFileNameHistory As String, ByVal pLineCode As String, ByVal pMCCode As String, Optional pFileName As String = "")
         Dim errMsg As String = ""
         Dim i_Data As String = ""
         Dim DelayTime As Integer = 0
@@ -710,7 +1578,6 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
         Do Until m_Finish
             Try
-
                 Application.DoEvents()
                 grid.Item(pProcess, Col_ProcessStatus) = "RUNNING"
 
@@ -724,7 +1591,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
                     If FilesList.Count > 0 Then
                         'Download File
                         '=============
-                        DownloadFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory, "zz")
+                        DownloadFiles(FilesList, "", pUser, pPassword, pServerPath, pLocalPath, pFileNameHistory)
 
                         'Delete File
                         '===========
@@ -733,11 +1600,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
                 End If
                 '====================
 
-                If (pProcessName = "High Speed Mixer Mch") Then
-                    up_Process_HighSpeedMixerMch()
-                Else
-                    up_ProcessData(pProcess, pProcessName, pLocalPath, pFileNameHistory, pGroupCount, pLineCode, pMCCode, Factory)
-                End If
+                up_ProcessData(pProcess, pProcessName, pLocalPath, pFileNameHistory, pLineCode, pMCCode, Factory)
 
                 Threading.Thread.Sleep(DelayTime)
 
@@ -760,204 +1623,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
         Loop
     End Sub
 
-    Private Sub up_Process_HighSpeedMixerMch()
-        Dim con As New SqlConnection
-
-        grid.Item(HighSpeedMixerMch, Col_ErrorMessage) = ""
-
-        Dim dtOvenSep As New DataTable
-        dtOvenSep = up_ToInserDatatable_Oven(gs_LocalPath_HighSpeedMixerMch, gs_FileName_Quality_HighSpeedMixerMch, Line_HighSpeedMixerMch, Machine_HighSpeedMixerMch, "HighSpeedMixerMch(-----current-----).csv")
-
-        con = New SqlConnection(ConStr)
-        con.Open()
-
-        Dim cmd As SqlCommand
-        Dim SQLTrans As SqlTransaction
-
-        SQLTrans = con.BeginTransaction
-
-        Try
-
-            Application.DoEvents()
-            grid.Item(HighSpeedMixerMch, Col_ProcessStatus) = "RUNNING"
-
-            If dtOvenSep IsNot Nothing Then
-                If dtOvenSep.Rows.Count > 0 Then
-
-                    'clsSchedulerCSV_BA_DB.InsertData_Info(dtKNEInfo, "KNE_Info_CSV_")
-
-                    cmd = New SqlCommand("sp_Insert_Meas_CSV_Quality_New", con)
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.Connection = con
-                    cmd.Transaction = SQLTrans
-
-                    Dim paramTbl As New SqlParameter()
-                    paramTbl.ParameterName = "@MeasData"
-                    paramTbl.SqlDbType = SqlDbType.Structured
-
-                    Dim paramName As New SqlParameter()
-                    paramName.ParameterName = "@ProcessTime"
-                    paramName.SqlDbType = SqlDbType.DateTime
-
-                    cmd.Parameters.Add(paramTbl)
-                    cmd.Parameters.Add(paramName)
-
-                    cmd.Parameters("@MeasData").Value = dtOvenSep
-                    cmd.Parameters("@ProcessTime").Value = Format(Now, "yyyy-MM-dd HH:mm:ss")
-
-                    cmd.CommandTimeout = 100000
-                    Dim i As Integer = cmd.ExecuteNonQuery()
-
-                End If
-            End If
-
-            SQLTrans.Commit()
-
-            Application.DoEvents()
-            grid.Item(HighSpeedMixerMch, Col_LastProcess) = Format(Now, "dd MMM yyyy HH:mm:ss")
-            grid.Item(HighSpeedMixerMch, Col_NextProcess) = Format(DateAdd(DateInterval.Minute, 5, Now), "dd MMM yyyy HH:mm:ss")
-
-        Catch ex As Exception
-            grid.Item(HighSpeedMixerMch, Col_ErrorMessage) = ex.Message
-            WriteToErrorLog("OvenSeparator Process", ex.Message)
-            SQLTrans.Rollback()
-        End Try
-    End Sub
-
-    Private Function up_ToInserDatatable_OvenBubuk(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pMCCode As String, ByVal fileName As String) As DataTable
-        Dim dt As New DataTable
-
-        Dim col_Line, col_Machine, col_model, Col_MeasTime As String
-        Dim tmpDatde As String()
-        Dim data_001, data_002, data_003, data_004, data_005 As String
-        Dim data_006, data_007, data_008, data_009, data_010 As String
-        Dim data_011, data_012, data_013, data_014, data_015 As String
-        Dim data_016, data_017, data_018, data_019, data_020 As String
-        Dim data_021, data_022, data_023, data_024, data_025 As String
-
-        With dt.Columns
-            .Add("LineCode", GetType(String))
-            .Add("Machine", GetType(String))
-            .Add("Model", GetType(String))
-            .Add("MeasTime", GetType(String))
-            .Add("data_001", GetType(String))
-            .Add("data_002", GetType(String))
-            .Add("data_003", GetType(String))
-            .Add("data_004", GetType(String))
-            .Add("data_005", GetType(String))
-            .Add("data_006", GetType(String))
-            .Add("data_007", GetType(String))
-            .Add("data_008", GetType(String))
-            .Add("data_009", GetType(String))
-            .Add("data_010", GetType(String))
-            .Add("data_011", GetType(String))
-            .Add("data_012", GetType(String))
-            .Add("data_013", GetType(String))
-            .Add("data_014", GetType(String))
-            .Add("data_015", GetType(String))
-            .Add("data_016", GetType(String))
-            .Add("data_017", GetType(String))
-            .Add("data_018", GetType(String))
-            .Add("data_019", GetType(String))
-            .Add("data_020", GetType(String))
-            .Add("data_021", GetType(String))
-            .Add("data_022", GetType(String))
-            .Add("data_023", GetType(String))
-            .Add("data_024", GetType(String))
-            .Add("data_025", GetType(String))
-        End With
-
-        Try
-
-            Dim di As New DirectoryInfo(pLocalPath)
-            Dim aryFi As IO.FileInfo() = di.GetFiles("*.csv")
-            Dim fi As IO.FileInfo = Nothing
-
-            Dim x As Integer
-            Dim strarray(1, 1) As String
-            Dim pCls As String = ""
-
-            For Each fi In aryFi
-
-                If fi.Name <> fileName Then
-
-                    Dim dtCSV As DataTable = ReadCSV(fi.FullName)
-
-                    If dtCSV.Rows.Count > 0 Then
-
-                        For x = 6 To dtCSV.Rows.Count - 2
-                            tmpDatde = Split(Trim(dtCSV.Rows(x)(0)), "/")
-                            If tmpDatde(0) > 0 Then
-                                col_Line = pLineCode
-                                col_Machine = pMCCode
-                                col_model = "BBRSRUSA0PAD"
-                                Col_MeasTime = Format(CDate(Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
-                                data_001 = "2"
-                                data_002 = "0"
-                                data_003 = "0"
-                                data_004 = "0"
-                                data_005 = "0"
-                                data_006 = "0"
-                                data_007 = "0"
-                                data_008 = "0"
-                                data_009 = "0"
-                                data_010 = "0"
-
-                                'data_011 = Trim(dtCSV.Rows(x)(2))
-
-                                If pLineCode = "052" Then
-                                    data_011 = Trim(dtCSV.Rows(x)(2))
-                                Else
-                                    data_011 = Trim(dtCSV.Rows(x)(3))
-                                End If
-
-                                data_012 = "0"
-                                data_013 = "0"
-                                data_014 = "0"
-                                data_015 = "0"
-                                data_016 = "0"
-                                data_017 = "0"
-                                data_018 = "0"
-                                data_019 = "0"
-                                data_020 = "0"
-                                data_021 = "0"
-                                data_022 = "0"
-                                data_023 = "0"
-                                data_024 = "0"
-                                data_025 = "0"
-
-                                dt.Rows.Add(col_Line, col_Machine, col_model, Col_MeasTime,
-                                            data_001, data_002, data_003, data_004, data_005,
-                                            data_006, data_007, data_008, data_009, data_010,
-                                            data_011, data_012, data_013, data_014, data_015,
-                                            data_016, data_017, data_018, data_019, data_020,
-                                            data_021, data_022, data_023, data_024, data_025)
-
-                            End If
-                        Next
-
-                        'Return dt
-
-                        If pLineCode = "052B" Then
-
-                            'Send to History Folder
-                            '======================
-                            My.Computer.FileSystem.MoveFile(pLocalPath & "\" & fi.Name, pLocalPath & "\History\" & fi.Name, True)
-
-                        End If
-
-                    End If
-
-                End If
-
-            Next
-        Catch ex As Exception
-            txtMsg.Text = ex.Message
-        End Try
-        Return dt
-    End Function
-
-    Private Sub up_ProcessData(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal pLocalPath As String, ByVal pFileNameHistory As String, ByVal pGroupCount As Integer, ByVal pLineCode As String, ByVal pMCCode As String, ByVal pFactoryCode As String)
+    Private Sub up_ProcessData(ByVal pProcess As Integer, ByVal pProcessName As String, ByVal pLocalPath As String, ByVal pFileNameHistory As String, ByVal pLineCode As String, ByVal pMCCode As String, ByVal pFactoryCode As String)
         Dim con As New SqlConnection
 
         grid.AddItem("")
@@ -1024,144 +1690,235 @@ Public Class FormSchedulerCSV_Tamping_Quality
         End Try
 
     End Sub
-    Private Function up_ToInserDatatable_Oven(ByVal pLocalPath As String, ByVal pFileName As String, ByVal pLineCode As String, ByVal pMCCode As String, ByVal fileName As String) As DataTable
-        Dim dt As New DataTable
-
-        Dim col_Line, col_Machine, col_model, Col_MeasTime As String
-        Dim tmpDatde As String()
-        Dim data_001, data_002, data_003, data_004, data_005 As String
-        Dim data_006, data_007, data_008, data_009, data_010 As String
-        Dim data_011, data_012, data_013, data_014, data_015 As String
-        Dim data_016, data_017, data_018, data_019, data_020 As String
-        Dim data_021, data_022, data_023, data_024, data_025 As String
-
-        With dt.Columns
-            .Add("LineCode", GetType(String))
-            .Add("Machine", GetType(String))
-            .Add("Model", GetType(String))
-            .Add("MeasTime", GetType(String))
-            .Add("data_001", GetType(String))
-            .Add("data_002", GetType(String))
-            .Add("data_003", GetType(String))
-            .Add("data_004", GetType(String))
-            .Add("data_005", GetType(String))
-            .Add("data_006", GetType(String))
-            .Add("data_007", GetType(String))
-            .Add("data_008", GetType(String))
-            .Add("data_009", GetType(String))
-            .Add("data_010", GetType(String))
-            .Add("data_011", GetType(String))
-            .Add("data_012", GetType(String))
-            .Add("data_013", GetType(String))
-            .Add("data_014", GetType(String))
-            .Add("data_015", GetType(String))
-            .Add("data_016", GetType(String))
-            .Add("data_017", GetType(String))
-            .Add("data_018", GetType(String))
-            .Add("data_019", GetType(String))
-            .Add("data_020", GetType(String))
-            .Add("data_021", GetType(String))
-            .Add("data_022", GetType(String))
-            .Add("data_023", GetType(String))
-            .Add("data_024", GetType(String))
-            .Add("data_025", GetType(String))
-        End With
-
-        Try
-
-            Dim di As New DirectoryInfo(pLocalPath)
-            Dim aryFi As FileInfo() = di.GetFiles("*.csv")
-            Dim fi As FileInfo = Nothing
-
-            Dim x As Integer
-            Dim strarray(1, 1) As String
-            Dim pCls As String = ""
-
-            For Each fi In aryFi
-
-                If fi.Name <> fileName Then
-
-                    Dim dtCSV As DataTable = ReadCSV(fi.FullName)
-
-                    If dtCSV.Rows.Count > 0 Then
-
-                        For x = 6 To dtCSV.Rows.Count - 2
-                            tmpDatde = Split(Trim(dtCSV.Rows(x)(0)), "/")
-                            If tmpDatde(0) > 0 Then
-                                col_Line = pLineCode
-                                col_Machine = pMCCode
-                                col_model = "BBRSRUSA0PAD"
-                                Col_MeasTime = Format(CDate(Trim(dtCSV.Rows(x)(0)) & " " & Trim(dtCSV.Rows(x)(1))), "yyyy-MM-dd HH:mm:ss")
-                                data_001 = "2"
-                                data_002 = "0"
-                                data_003 = "0"
-                                data_004 = "0"
-                                data_005 = "0"
-                                data_006 = "0"
-                                data_007 = "0"
-                                data_008 = "0"
-                                data_009 = "0"
-                                data_010 = "0"
-                                data_011 = Trim(dtCSV.Rows(x)(2))
-
-                                If pLineCode = "052" Then
-                                    data_012 = Trim(dtCSV.Rows(x)(3))
-                                Else
-                                    data_012 = "0"
-                                End If
-
-                                data_013 = "0"
-                                data_014 = "0"
-                                data_015 = "0"
-                                data_016 = "0"
-                                data_017 = "0"
-                                data_018 = "0"
-                                data_019 = "0"
-                                data_020 = "0"
-                                data_021 = "0"
-                                data_022 = "0"
-                                data_023 = "0"
-                                data_024 = "0"
-                                data_025 = "0"
-
-                                dt.Rows.Add(col_Line, col_Machine, col_model, Col_MeasTime,
-                                            data_001, data_002, data_003, data_004, data_005,
-                                            data_006, data_007, data_008, data_009, data_010,
-                                            data_011, data_012, data_013, data_014, data_015,
-                                            data_016, data_017, data_018, data_019, data_020,
-                                            data_021, data_022, data_023, data_024, data_025)
-
-                            End If
-                        Next
-
-                        'Return dt
-
-                        'Send to History Folder
-                        '======================
-                        My.Computer.FileSystem.MoveFile(pLocalPath & "\" & fi.Name, pLocalPath & "\History\" & fi.Name, True)
-
-                    End If
-
-                End If
-
-            Next
-
-            Return dt
-
-        Catch ex As Exception
-            txtMsg.Text = ex.Message
-        End Try
-
-    End Function
 
     Private Sub up_FTP()
+
+        'Mixing Mach. Vacuum HT42H 
+        '====================
+        If gs_ServerPath_MixingMachVacuumHT42H <> "" And gs_LocalPath_MixingMachVacuumHT42H <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_MixingMachVacuumHT42H, gs_User_MixingMachVacuumHT42H, gs_Password_MixingMachVacuumHT42H)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_MixingMachVacuumHT42H, gs_Password_MixingMachVacuumHT42H, gs_ServerPath_MixingMachVacuumHT42H, gs_LocalPath_MixingMachVacuumHT42H, gs_FileName_HighSpeedMixerMch)
+            End If
+        End If
+        '====================
+
+        'Mixing Mach. Vacuum HT35H 
+        '====================
+        If gs_ServerPath_MixingMachVacuumHT35H <> "" And gs_LocalPath_MixingMachVacuumHT35H <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_MixingMachVacuumHT35H, gs_User_MixingMachVacuumHT35H, gs_Password_MixingMachVacuumHT35H)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_MixingMachVacuumHT35H, gs_Password_MixingMachVacuumHT35H, gs_ServerPath_MixingMachVacuumHT35H, gs_LocalPath_MixingMachVacuumHT35H, gs_FileName_MixingMachVacuumHT35H)
+            End If
+        End If
+        '====================
+
+        'Mixing Mach. Vacuum EC 
+        '====================
+        If gs_ServerPath_MixingMachVacuumEC <> "" And gs_LocalPath_MixingMachVacuumEC <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_MixingMachVacuumEC, gs_User_MixingMachVacuumEC, gs_Password_MixingMachVacuumEC)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_MixingMachVacuumEC, gs_Password_MixingMachVacuumEC, gs_ServerPath_MixingMachVacuumEC, gs_LocalPath_MixingMachVacuumEC, gs_FileName_MixingMachVacuumEC)
+            End If
+        End If
+        '====================
 
         'High Speed Mixer Mch
         '====================
         If gs_ServerPath_HighSpeedMixerMch <> "" And gs_LocalPath_HighSpeedMixerMch <> "" Then
             FilesList = GetFtpFileList(gs_ServerPath_HighSpeedMixerMch, gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch)
             If FilesList.Count > 0 Then
-                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, "zz", gs_FileName_Quality_HighSpeedMixerMch)
+                DownloadFiles(FilesList, "", gs_User_HighSpeedMixerMch, gs_Password_HighSpeedMixerMch, gs_ServerPath_HighSpeedMixerMch, gs_LocalPath_HighSpeedMixerMch, gs_FileName_HighSpeedMixerMch)
+            End If
+        End If
+        '====================
+
+        'Conveyor transfer powder
+        '====================
+        If gs_ServerPath_Conveyortransferpowder <> "" And gs_LocalPath_Conveyortransferpowder <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Conveyortransferpowder, gs_User_Conveyortransferpowder, gs_Password_Conveyortransferpowder)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_Conveyortransferpowder, gs_Password_Conveyortransferpowder, gs_ServerPath_Conveyortransferpowder, gs_LocalPath_Conveyortransferpowder, gs_FileName_Conveyortransferpowder)
+            End If
+        End If
+        '====================
+
+        'Oscilator Mach
+        '====================
+        If gs_ServerPath_OscilatorMach <> "" And gs_LocalPath_OscilatorMach <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OscilatorMach, gs_User_OscilatorMach, gs_Password_OscilatorMach)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OscilatorMach, gs_Password_OscilatorMach, gs_ServerPath_OscilatorMach, gs_LocalPath_OscilatorMach, gs_FileName_OscilatorMach)
+            End If
+        End If
+        '====================
+
+        'Conveyor transfer box
+        '====================
+        If gs_ServerPath_Conveyortransferbox <> "" And gs_LocalPath_Conveyortransferbox <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Conveyortransferbox, gs_User_Conveyortransferbox, gs_Password_Conveyortransferbox)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_Conveyortransferbox, gs_Password_Conveyortransferbox, gs_ServerPath_Conveyortransferbox, gs_LocalPath_Conveyortransferbox, gs_FileName_Conveyortransferbox)
+            End If
+        End If
+        '====================
+
+        'Box lift
+        '====================
+        If gs_ServerPath_Boxlift <> "" And gs_LocalPath_Boxlift <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Boxlift, gs_User_Boxlift, gs_Password_Boxlift)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_Boxlift, gs_Password_Boxlift, gs_ServerPath_Boxlift, gs_LocalPath_Boxlift, gs_FileName_Boxlift)
+            End If
+        End If
+        '====================
+
+        'Expandmetal tension 1
+        '====================
+        If gs_ServerPath_Expandmetaltension1 <> "" And gs_LocalPath_Expandmetaltension1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Expandmetaltension1, gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_Expandmetaltension1, gs_Password_Expandmetaltension1, gs_ServerPath_Expandmetaltension1, gs_LocalPath_Expandmetaltension1, gs_FileName_Expandmetaltension1)
+            End If
+        End If
+        '====================
+
+        'Expandmetal tension 2
+        '====================
+        If gs_ServerPath_Expandmetaltension2 <> "" And gs_LocalPath_Expandmetaltension2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_Expandmetaltension2, gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_Expandmetaltension2, gs_Password_Expandmetaltension2, gs_ServerPath_Expandmetaltension2, gs_LocalPath_Expandmetaltension2, gs_FileName_Expandmetaltension2)
+            End If
+        End If
+        '====================
+
+        'Oven Roller Mach. Manual #1
+        '====================
+        If gs_ServerPath_OvenRollerMachManual1 <> "" And gs_LocalPath_OvenRollerMachManual1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OvenRollerMachManual1, gs_User_OvenRollerMachManual1, gs_Password_OvenRollerMachManual1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OvenRollerMachManual1, gs_Password_OvenRollerMachManual1, gs_ServerPath_OvenRollerMachManual1, gs_LocalPath_OvenRollerMachManual1, gs_FileName_OvenRollerMachManual1)
+            End If
+        End If
+        '====================
+
+        'Oven Heater Mach. Manual #1
+        '====================
+        If gs_ServerPath_OvenHeaterMachManual1 <> "" And gs_LocalPath_OvenHeaterMachManual1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OvenHeaterMachManual1, gs_User_OvenHeaterMachManual1, gs_Password_OvenHeaterMachManual1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OvenHeaterMachManual1, gs_Password_OvenHeaterMachManual1, gs_ServerPath_OvenHeaterMachManual1, gs_LocalPath_OvenHeaterMachManual1, gs_FileName_OvenHeaterMachManual1)
+            End If
+        End If
+        '====================
+
+        'Oven Roller Mach. Manual #2
+        '====================
+        If gs_ServerPath_OvenRollerMachManual2 <> "" And gs_LocalPath_OvenRollerMachManual2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OvenRollerMachManual2, gs_User_OvenRollerMachManual2, gs_Password_OvenRollerMachManual2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OvenRollerMachManual2, gs_Password_OvenRollerMachManual2, gs_ServerPath_OvenRollerMachManual2, gs_LocalPath_OvenRollerMachManual2, gs_FileName_OvenRollerMachManual2)
+            End If
+        End If
+        '====================
+
+        'Oven Heater Mach. Manual #2
+        '====================
+        If gs_ServerPath_OvenHeaterMachManual2 <> "" And gs_LocalPath_OvenHeaterMachManual2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_OvenHeaterMachManual2, gs_User_OvenHeaterMachManual2, gs_Password_OvenHeaterMachManual2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_OvenHeaterMachManual2, gs_Password_OvenHeaterMachManual2, gs_ServerPath_OvenHeaterMachManual2, gs_LocalPath_OvenHeaterMachManual2, gs_FileName_OvenHeaterMachManual2)
+            End If
+        End If
+        '====================
+
+        'Hoop Tension
+        '====================
+        If gs_ServerPath_HoopTension <> "" And gs_LocalPath_HoopTension <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_HoopTension, gs_User_HoopTension, gs_Password_HoopTension)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_HoopTension, gs_Password_HoopTension, gs_ServerPath_HoopTension, gs_LocalPath_HoopTension, gs_FileName_HoopTension)
+            End If
+        End If
+        '====================
+
+        'Mesin Pressing (auto manual)
+        '====================
+        If gs_ServerPath_MesinPressing <> "" And gs_LocalPath_MesinPressing <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_MesinPressing, gs_User_MesinPressing, gs_Password_MesinPressing)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_MesinPressing, gs_Password_MesinPressing, gs_ServerPath_MesinPressing, gs_LocalPath_MesinPressing, gs_FileName_MesinPressing)
+            End If
+        End If
+        '====================
+
+        'Roller Mach. Manual #1
+        '====================
+        If gs_ServerPath_RollerMachManual1 <> "" And gs_LocalPath_RollerMachManual1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_RollerMachManual1, gs_User_RollerMachManual1, gs_Password_RollerMachManual1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_RollerMachManual1, gs_Password_RollerMachManual1, gs_ServerPath_RollerMachManual1, gs_LocalPath_RollerMachManual1, gs_FileName_RollerMachManual1)
+            End If
+        End If
+        '====================
+
+        'Roller Mach. Manual #2
+        '====================
+        If gs_ServerPath_RollerMachManual2 <> "" And gs_LocalPath_RollerMachManual2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_RollerMachManual2, gs_User_RollerMachManual2, gs_Password_RollerMachManual2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_RollerMachManual2, gs_Password_RollerMachManual2, gs_ServerPath_RollerMachManual2, gs_LocalPath_RollerMachManual2, gs_FileName_RollerMachManual2)
+            End If
+        End If
+        '====================
+
+        'Roller Mach. Manual #3
+        '====================
+        If gs_ServerPath_RollerMachManual3 <> "" And gs_LocalPath_RollerMachManual3 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_RollerMachManual3, gs_User_RollerMachManual3, gs_Password_RollerMachManual3)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_RollerMachManual3, gs_Password_RollerMachManual3, gs_ServerPath_RollerMachManual3, gs_LocalPath_RollerMachManual3, gs_FileName_RollerMachManual3)
+            End If
+        End If
+        '====================
+
+        'Roller Mach. Manual #4
+        '====================
+        If gs_ServerPath_RollerMachManual4 <> "" And gs_LocalPath_RollerMachManual4 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_RollerMachManual4, gs_User_RollerMachManual4, gs_Password_RollerMachManual4)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_RollerMachManual4, gs_Password_RollerMachManual4, gs_ServerPath_RollerMachManual4, gs_LocalPath_RollerMachManual4, gs_FileName_RollerMachManual4)
+            End If
+        End If
+        '====================
+
+        'Roller Mach. Manual #5
+        '====================
+        If gs_ServerPath_RollerMachManual5 <> "" And gs_LocalPath_RollerMachManual5 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_RollerMachManual5, gs_User_RollerMachManual5, gs_Password_RollerMachManual5)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_RollerMachManual5, gs_Password_RollerMachManual5, gs_ServerPath_RollerMachManual5, gs_LocalPath_RollerMachManual5, gs_FileName_RollerMachManual5)
+            End If
+        End If
+        '====================
+
+        'Slitter Mach 1
+        '====================
+        If gs_ServerPath_SlitterMach1 <> "" And gs_LocalPath_SlitterMach1 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_SlitterMach1, gs_User_SlitterMach1, gs_Password_SlitterMach1)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_SlitterMach1, gs_Password_SlitterMach1, gs_ServerPath_SlitterMach1, gs_LocalPath_SlitterMach1, gs_FileName_SlitterMach1)
+            End If
+        End If
+        '====================
+
+        'Slitter Mach 2
+        '====================
+        If gs_ServerPath_SlitterMach2 <> "" And gs_LocalPath_SlitterMach2 <> "" Then
+            FilesList = GetFtpFileList(gs_ServerPath_SlitterMach2, gs_User_SlitterMach2, gs_Password_SlitterMach2)
+            If FilesList.Count > 0 Then
+                DownloadFiles(FilesList, "", gs_User_SlitterMach2, gs_Password_SlitterMach2, gs_ServerPath_SlitterMach2, gs_LocalPath_SlitterMach2, gs_FileName_SlitterMach2)
             End If
         End If
         '====================
@@ -1456,8 +2213,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
 
     End Function
 
-    Private Sub DownloadFiles(ByRef Files As List(Of String), ByRef Patterns As String, ByRef UserName As String, ByRef Password As String, ByRef Url As String, ByRef PathToWriteFilesTo As String,
-                              ByVal pTrouble As String, ByVal pQuality As String)
+    Private Sub DownloadFiles(ByRef Files As List(Of String), ByRef Patterns As String, ByRef UserName As String, ByRef Password As String, ByRef Url As String, ByRef PathToWriteFilesTo As String, ByVal pQuality As String)
         Dim Pattern() As String = Patterns.Split("|"c)
         Dim fileName As String = ""
 
@@ -1478,8 +2234,7 @@ Public Class FormSchedulerCSV_Tamping_Quality
                     If fileName = pQuality Then
                         If Files(i).ToUpper.Contains(Item.ToUpper) Then
                             Dim request As FtpWebRequest = DirectCast(WebRequest.Create(Url & fileName), FtpWebRequest)
-
-                            request.Method = WebRequestMethods.Ftp.DownloadFile ' >> Download File
+                            request.Method = WebRequestMethods.Ftp.DownloadFile ' Download File
 
                             ' This example assumes the FTP site uses anonymous logon.
                             If UserName <> "OBU" Or UserName <> "OBO" Or UserName <> "OSP" Then
