@@ -4,16 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E54A752D-EBF7-4CE9-9B30-B1F0B3E54B21}</ProjectGuid>
+    <ProjectGuid>{B30CF85B-D219-4314-AB22-76E5ACD429F1}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <StartupObject>RelayPLC_CSV_Tamping_Quality.My.MyApplication</StartupObject>
-    <RootNamespace>RelayPLC_CSV_Tamping_Quality</RootNamespace>
-    <AssemblyName>RelayPLC-CSV-Tamping-Quality</AssemblyName>
+    <StartupObject>RelayPLC_CSV_Finishing_Trouble.My.MyApplication</StartupObject>
+    <RootNamespace>RelayPLC_CSV_Finishing_Trouble</RootNamespace>
+    <AssemblyName>RelayPLC-CSV-Finishing-Trouble</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +23,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>RelayPLC-CSV-Tamping-Quality.xml</DocumentationFile>
+    <DocumentationFile>RelayPLC-CSV-Finishing-Trouble.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -32,7 +33,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>RelayPLC-CSV-Tamping-Quality.xml</DocumentationFile>
+    <DocumentationFile>RelayPLC-CSV-Finishing-Trouble.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -92,10 +93,10 @@
     <Compile Include="FormConfig.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSchedulerCSV-Tamping-Quality.Designer.vb">
-      <DependentUpon>FormSchedulerCSV-Tamping-Quality.vb</DependentUpon>
+    <Compile Include="FormScheduleCSV-Finishing-Trouble.Designer.vb">
+      <DependentUpon>FormScheduleCSV-Finishing-Trouble.vb</DependentUpon>
     </Compile>
-    <Compile Include="FormSchedulerCSV-Tamping-Quality.vb">
+    <Compile Include="FormScheduleCSV-Finishing-Trouble.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modules\mdlMain.vb" />
@@ -114,14 +115,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="obj\Debug\.NETFramework,Version=v4.6.2.AssemblyAttributes.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="FormConfig.resx">
       <DependentUpon>FormConfig.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSchedulerCSV-Tamping-Quality.resx">
-      <DependentUpon>FormSchedulerCSV-Tamping-Quality.vb</DependentUpon>
+    <EmbeddedResource Include="FormScheduleCSV-Finishing-Trouble.resx">
+      <DependentUpon>FormScheduleCSV-Finishing-Trouble.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -143,8 +143,6 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
