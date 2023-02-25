@@ -138,3 +138,6 @@ RelayPLC-CSV-Visual-Quality/obj/Debug/DesignTimeResolveAssemblyReferencesInput.c
 RelayPLC-CSV-Visual_Trouble/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 RelayPLC-CSV-Visual_Trouble/obj/Debug/RelayPLC-CSV-Visual_Trouble.vbproj.AssemblyReference.cache
 RelayPLC-CSV-Tamping-Quality/RelayPLC-CSV-Tamping-Quality.vbproj
+RelayPLC-CSV-Tamping-Quality/RelayPLC-CSV-Tamping-Quality.vbproj
+RelayPLC-CSV-Tamping-Trouble/bin/Debug/Log/Error/errLoad_data_FTP_error_20230225.log
+RelayPLC-CSV-Tamping-Trouble/bin/Debug/Log/Error/errLoad_data_grid_error_20230225.log
